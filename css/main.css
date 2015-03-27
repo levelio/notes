@@ -1137,7 +1137,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8201cf;
+  background: #ebf4db;
 }
 .sidebar-nav {
   margin: 0;
@@ -1256,6 +1256,9 @@ body {
 }
 .cc-license img {
   display: inline-block;
+}
+.icon-heart {
+  color: #f00;
 }
 @media (max-width: 767px) {
   body {
