@@ -134,6 +134,126 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/02/new-tag-from-html5/">
+                HTML5新增元素介绍
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-11-02
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/HTML5/">HTML5</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/02/new-tag-from-html5/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/new-tag-from-html5/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！下面来简单介绍下他们：</p>
+<h3 id="section">section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
+<h3 id="article">article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>
+<h3 id="main">main</h3><p><code>main</code> 元素呈现了文档 <code>body</code> 或应用的主体部分，这部分内容在文档中应该是独一无二的，在一个文档中不能出现一个以上的 <code>main</code>,不能是以下元素的继承 <code>article</code>,<code>aside</code>,<code>footer</code>,<code>header</code>,<code>nav</code>。</p>
+<h3 id="aside">aside</h3><p><code>aside</code> 元素代表与了一些与页面其他部分关联性不是那么大的内容，比如广告。</p>
+<h3 id="header">header</h3><p><code>header</code> 代表了一组介绍性或者导航性质的辅助内容，可能包含标题元素，也可以包含其他元素，像logo、分节头部、搜索表单等。<code>header</code> 不是分节元素，不会引入分节到大纲中。</p>
+<h3 id="footer">footer</h3><p><code>footer</code> 元素表示最近的一个章节内容或者根节点元素的页脚。一个页脚通常包含该章节坐着、版权数据或者文档相关的链接信息。</p>
+<h3 id="nav">nav</h3><p><code>nav</code> 代表一个含有多个超链接的区域。</p>
+<h3 id="figure">figure</h3><p><code>figure</code> 代表一个独立的内容流，常与 <code>figcaption</code> 元素一起出现。</p>
+<h3 id="figcaption">figcaption</h3><p><code>figcaption</code> 用作 <code>figure</code> 的标题，类似于表格的 <code>caption</code> 元素。</p>
+<h3 id="template">template</h3><p><code>template</code> 元素是一种机制，允许包含加载页面时不渲染，但又可以随后通过 Javascript 实力化的客户端内容，就像我们这样做一样<code>script type=&quot;text/temple&quot;</code>。</p>
+<h3 id="audio_&amp;_video">audio &amp; video</h3><p><code>audio</code> 和 <code>video</code> 是多媒体元素，他们提供相对应的 API 用于开发者定制 UI，同时也提供了出发 UA 展示其默认控件的方式。</p>
+<h3 id="embed">embed</h3><p><code>embed</code> 元素表示一个插件，展用于插件内容。</p>
+<h3 id="mark">mark</h3><p><code>mark</code> 元素代表了一个文档中需要标记或者高亮的部分，比如说搜索引擎搜索后的关键词。不要为了语法高亮而去使用 mark，应该使用 <code>strong</code> 元素，<code>mark</code> 元素表示上下文的关联性。</p>
+<h3 id="progress">progress</h3><p><code>progress</code> 用来表示一个进度条,代表一个任务的完成进度。</p>
+<h3 id="meter">meter</h3><p><code>meter</code> 代表了一个度量，比如对磁盘空间的度量。</p>
+<h3 id="time">time</h3><p><code>time</code> 表示一个时间。有两个属性,datetime(一个有效的时间格式，表示具体时间),pubdate(一般用于文章发布时间，评论回复时间等)。</p>
+<h3 id="ruby、rt、rp">ruby、rt、rp</h3><p><code>ruby</code>、<code>rt</code>、<code>rp</code> 代表 Ruby 表达式。</p>
+<h3 id="bdi">bdi</h3><p><code>bdi</code> 代表了一段隔绝于周围元素的双向书写文本格式。</p>
+<h3 id="wbr">wbr</h3><p><code>bdi</code> 代表了可能断行的部分。</p>
+<h3 id="canvas">canvas</h3><p><code>canvas</code> 用于渲染动态位图。</p>
+<h3 id="datalist">datalist</h3><p><code>datalist</code> 与input的list属性共同使用，可以用于创建下拉选择框控件。</p>
+<h3 id="keygen">keygen</h3><p><code>keygen</code> 代表生成的密钥对。</p>
+<h3 id="output">output</h3><p><code>output</code> 代表了一种输出内容。</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/HTML5/">
+                #HTML5
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/24/type-script-anders-hejlsberg/">
                 参加与大师面对面活动后的小心思
               </a>
@@ -474,7 +594,7 @@ sass-convert style<span class="class">.scss</span> style.sass
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/扯/">扯</a>
+                <a href="/categories/生活/">生活</a>
 
                 
                 
@@ -567,11 +687,11 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">5</span>
+            <span class="site-state-item-count">6</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">
