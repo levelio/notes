@@ -20,9 +20,9 @@
 
 
 
-	<meta name="keywords" content="-生活," />
+	<meta name="keywords" content="CSS,前端," />
 
-  <title> 参加与大师面对面活动后的小心思 // Hackerhe'NOTE </title>
+  <title> CSS的层叠、特殊性和继承 // Hackerhe'NOTE </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              参加与大师面对面活动后的小心思
+              CSS的层叠、特殊性和继承
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-10-23
+            发表于 2015-11-01
           
         </span>
 
@@ -129,7 +129,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/生活/">生活</a>
+                <a href="/categories/CSS/">CSS</a>
 
                 
                 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/10/24/type-script-anders-hejlsberg/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/type-script-anders-hejlsberg/"></span>
+            <a href="/2015/11/02/20151102_cascading-and-inheritance/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151102_cascading-and-inheritance/"></span>
             </a>
           </span>
           
@@ -159,7 +159,97 @@
         
 
         
-          <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/IMG_0078.JPG" alt="小心思"></p>
+          <h2 id="层叠">层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。层叠给每个规则分配一个权重,如下:</p>
+<ul>
+<li>作者样式表: 网站开发者的编写，被视为最重要的样式表。</li>
+<li>用户样式表: 用户通过浏览器自定义的样式，这些样式表的权重要比网站开发者的样式表低一级。</li>
+<li>浏览器/用户代理应用的样式: 浏览器或用户代理默认的样式，这些可以随意覆盖是最低级的。</li>
+</ul>
+<p>按照上面的分析，咱们就有了以下排序(权重由高到低):</p>
+<ol>
+<li>标有 !important 的用户样式表</li>
+<li>标有 !important 的作者样式表</li>
+<li>作者样式表</li>
+<li>用户样式表</li>
+<li>浏览器/用户代理的默认样式表</li>
+</ol>
+<p>根据优先级覆盖样式，如果优先级相同，则后者覆盖前者。</p>
+<h2 id="特殊性">特殊性</h2><p>为了方便计算选择器之间的权重，我们引入特殊性这个概念，通常我们会给每种选择器分配一个数字。然后，将规则的每种选择器的值加在一起，计算出规则的权重。通常来说，如果一个特定选择器中的选择器少于10个，那我们就能以10为基数计算特殊性。</p>
+<p>选择器的特殊性分成 4 个等级：a，b，c，d。</p>
+<ul>
+<li>如果是行内样式, a = 1</li>
+<li>ID 选择器的总数等于 b 的值</li>
+<li>类选择器、伪类选择器和属性选择器总数等于 c 的值</li>
+<li>类型选择器和伪元素选择器的总数等于 d 的值</li>
+</ul>
+<p>特殊性示例</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选择器</th>
+<th style="text-align:center">特殊性</th>
+<th style="text-align:center">以10为基数的特殊性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">style=””</td>
+<td style="text-align:center">1,0,0,0</td>
+<td style="text-align:center">1000</td>
+</tr>
+<tr>
+<td style="text-align:left">#wrapper #content {}</td>
+<td style="text-align:center">0,2,0,0</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:left">#content .title {}</td>
+<td style="text-align:center">0,1,1,0</td>
+<td style="text-align:center">110</td>
+</tr>
+<tr>
+<td style="text-align:left">div#content {}</td>
+<td style="text-align:center">0,1,0,1</td>
+<td style="text-align:center">101</td>
+</tr>
+<tr>
+<td style="text-align:left">#content {}</td>
+<td style="text-align:center">0,1,0,0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">p.comment .putdate {}</td>
+<td style="text-align:center">0,0,2,1</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:left">p.comment {}</td>
+<td style="text-align:center">0,0,1,1</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:left">div p {}</td>
+<td style="text-align:center">0,0,0,2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:left">p {}</td>
+<td style="text-align:center">0,0,0,1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>根据基数覆盖，如果基数相同，则后者覆盖前者。</p>
+<p>比如,下面这段代码,最后的颜色是灰色：</p>
+<pre><code><span class="id">#content</span> <span class="tag">div</span><span class="id">#main-content</span> <span class="tag">h2</span>{ <span class="attribute">color</span>: gray; }    <span class="comment">//100*2 + 1*2 = 202  </span>
+<span class="id">#content</span> <span class="id">#main-content</span>&gt;<span class="tag">h2</span>{ <span class="attribute">color</span>: blue; }       <span class="comment">//100*2 + 1 = 201</span>
+</code></pre><h2 id="继承">继承</h2><p>应用样式的元素的后代会继承样式的某些属性，比如字号、颜色等。假如你设置了以下代码</p>
+<pre><code>body{ font-size: 20px;}
+
+<span class="tag">&lt;<span class="title">h1</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h2</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+</code></pre><p>你会发现，h1 和 h2 元素并未继承 20px 的大小，因为浏览器默认样式覆盖了它。</p>
+<p>继承来的样式的权重为 0,任何直接设置的样式都可以覆盖。</p>
 
         
       </div>
@@ -170,8 +260,12 @@
         
           <div class="post-tags">
             
-              <a href="/tags/生活/">
-                #-生活
+              <a href="/tags/CSS/">
+                #CSS
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
               </a>
             
           </div>
@@ -181,13 +275,13 @@
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/11/02/new-tag-from-html5/">HTML5新增元素介绍</a>
+                <a href="/2015/11/02/20151101_new-tag-from-html5/">HTML5新增元素介绍</a>
               
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/04/19/learn-sass-basesyntax/">Sass系列之基本语法</a>
+                <a href="/2015/10/24/20151024_type-script-anders-hejlsberg/">参加与大师面对面活动后的小心思</a>
               
             </div>
           </div>
@@ -247,11 +341,11 @@
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">6</span>
+            <span class="site-state-item-count">7</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">
@@ -283,7 +377,7 @@
         <div class="post-toc">
           
           
-            <p class="post-toc-empty">此文章未包含目录</p>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#层叠"><span class="nav-number">1.</span> <span class="nav-text">层叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊性"><span class="nav-number">2.</span> <span class="nav-text">特殊性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">3.</span> <span class="nav-text">继承</span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -840,8 +934,8 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/10/24/type-script-anders-hejlsberg/';
-      var disqus_url = 'http://imhzq.com/2015/10/24/type-script-anders-hejlsberg/';
+      var disqus_identifier = '2015/11/02/20151102_cascading-and-inheritance/';
+      var disqus_url = 'http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/';
 
       (function(){
         var dsq = document.createElement('script');

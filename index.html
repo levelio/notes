@@ -134,7 +134,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/11/02/new-tag-from-html5/">
+              <a class="post-title-link" href="/2015/11/02/20151101_new-tag-from-html5/">
                 HTML5新增元素介绍
               </a>
             
@@ -168,8 +168,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/11/02/new-tag-from-html5/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/new-tag-from-html5/"></span>
+            <a href="/2015/11/02/20151101_new-tag-from-html5/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151101_new-tag-from-html5/"></span>
             </a>
           </span>
           
@@ -189,7 +189,7 @@
 <h3 id="section">section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
 <h3 id="article">article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>
             <div class="post-more-link text-center">
-              <a class="btn" href="/2015/11/02/new-tag-from-html5/#more">
+              <a class="btn" href="/2015/11/02/20151101_new-tag-from-html5/#more">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -237,7 +237,194 @@
           
           
             
-              <a class="post-title-link" href="/2015/10/24/type-script-anders-hejlsberg/">
+              <a class="post-title-link" href="/2015/11/02/20151102_cascading-and-inheritance/">
+                CSS的层叠、特殊性和继承
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-11-01
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/CSS/">CSS</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/02/20151102_cascading-and-inheritance/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151102_cascading-and-inheritance/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="层叠">层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。层叠给每个规则分配一个权重,如下:</p>
+<ul>
+<li>作者样式表: 网站开发者的编写，被视为最重要的样式表。</li>
+<li>用户样式表: 用户通过浏览器自定义的样式，这些样式表的权重要比网站开发者的样式表低一级。</li>
+<li>浏览器/用户代理应用的样式: 浏览器或用户代理默认的样式，这些可以随意覆盖是最低级的。</li>
+</ul>
+<p>按照上面的分析，咱们就有了以下排序(权重由高到低):</p>
+<ol>
+<li>标有 !important 的用户样式表</li>
+<li>标有 !important 的作者样式表</li>
+<li>作者样式表</li>
+<li>用户样式表</li>
+<li>浏览器/用户代理的默认样式表</li>
+</ol>
+<p>根据优先级覆盖样式，如果优先级相同，则后者覆盖前者。</p>
+<h2 id="特殊性">特殊性</h2><p>为了方便计算选择器之间的权重，我们引入特殊性这个概念，通常我们会给每种选择器分配一个数字。然后，将规则的每种选择器的值加在一起，计算出规则的权重。通常来说，如果一个特定选择器中的选择器少于10个，那我们就能以10为基数计算特殊性。</p>
+<p>选择器的特殊性分成 4 个等级：a，b，c，d。</p>
+<ul>
+<li>如果是行内样式, a = 1</li>
+<li>ID 选择器的总数等于 b 的值</li>
+<li>类选择器、伪类选择器和属性选择器总数等于 c 的值</li>
+<li>类型选择器和伪元素选择器的总数等于 d 的值</li>
+</ul>
+<p>特殊性示例</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选择器</th>
+<th style="text-align:center">特殊性</th>
+<th style="text-align:center">以10为基数的特殊性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">style=””</td>
+<td style="text-align:center">1,0,0,0</td>
+<td style="text-align:center">1000</td>
+</tr>
+<tr>
+<td style="text-align:left">#wrapper #content {}</td>
+<td style="text-align:center">0,2,0,0</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:left">#content .title {}</td>
+<td style="text-align:center">0,1,1,0</td>
+<td style="text-align:center">110</td>
+</tr>
+<tr>
+<td style="text-align:left">div#content {}</td>
+<td style="text-align:center">0,1,0,1</td>
+<td style="text-align:center">101</td>
+</tr>
+<tr>
+<td style="text-align:left">#content {}</td>
+<td style="text-align:center">0,1,0,0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">p.comment .putdate {}</td>
+<td style="text-align:center">0,0,2,1</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:left">p.comment {}</td>
+<td style="text-align:center">0,0,1,1</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:left">div p {}</td>
+<td style="text-align:center">0,0,0,2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:left">p {}</td>
+<td style="text-align:center">0,0,0,1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>根据基数覆盖，如果基数相同，则后者覆盖前者。</p>
+<p>比如,下面这段代码,最后的颜色是灰色：</p>
+<pre><code><span class="id">#content</span> <span class="tag">div</span><span class="id">#main-content</span> <span class="tag">h2</span>{ <span class="attribute">color</span>: gray; }    <span class="comment">//100*2 + 1*2 = 202  </span>
+<span class="id">#content</span> <span class="id">#main-content</span>&gt;<span class="tag">h2</span>{ <span class="attribute">color</span>: blue; }       <span class="comment">//100*2 + 1 = 201</span>
+</code></pre><h2 id="继承">继承</h2><p>应用样式的元素的后代会继承样式的某些属性，比如字号、颜色等。假如你设置了以下代码</p>
+<pre><code>body{ font-size: 20px;}
+
+<span class="tag">&lt;<span class="title">h1</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h2</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>
+</code></pre><p>你会发现，h1 和 h2 元素并未继承 20px 的大小，因为浏览器默认样式覆盖了它。</p>
+<p>继承来的样式的权重为 0,任何直接设置的样式都可以覆盖。</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/CSS/">
+                #CSS
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/20151024_type-script-anders-hejlsberg/">
                 参加与大师面对面活动后的小心思
               </a>
             
@@ -271,8 +458,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/10/24/type-script-anders-hejlsberg/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/type-script-anders-hejlsberg/"></span>
+            <a href="/2015/10/24/20151024_type-script-anders-hejlsberg/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/20151024_type-script-anders-hejlsberg/"></span>
             </a>
           </span>
           
@@ -330,7 +517,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/04/19/learn-sass-basesyntax/">
+              <a class="post-title-link" href="/2015/04/19/20150419_learn-sass-basesyntax/">
                 Sass系列之基本语法
               </a>
             
@@ -350,7 +537,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/Sass/">Sass</a>
+                <a href="/categories/CSS/">CSS</a>
 
                 
                 
@@ -364,8 +551,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/19/learn-sass-basesyntax/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/19/learn-sass-basesyntax/"></span>
+            <a href="/2015/04/19/20150419_learn-sass-basesyntax/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/19/20150419_learn-sass-basesyntax/"></span>
             </a>
           </span>
           
@@ -399,7 +586,7 @@
 sass-convert style<span class="class">.scss</span> style.sass
 </code></pre><p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
             <div class="post-more-link text-center">
-              <a class="btn" href="/2015/04/19/learn-sass-basesyntax/#more">
+              <a class="btn" href="/2015/04/19/20150419_learn-sass-basesyntax/#more">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -451,7 +638,7 @@ sass-convert style<span class="class">.scss</span> style.sass
           
           
             
-              <a class="post-title-link" href="/2015/04/17/learn-sass-step/">
+              <a class="post-title-link" href="/2015/04/17/20150417_learn-sass-step/">
                 Sass系列之安装
               </a>
             
@@ -471,7 +658,7 @@ sass-convert style<span class="class">.scss</span> style.sass
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/Sass/">Sass</a>
+                <a href="/categories/CSS/">CSS</a>
 
                 
                 
@@ -485,8 +672,8 @@ sass-convert style<span class="class">.scss</span> style.sass
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/17/learn-sass-step/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/learn-sass-step/"></span>
+            <a href="/2015/04/17/20150417_learn-sass-step/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/20150417_learn-sass-step/"></span>
             </a>
           </span>
           
@@ -505,7 +692,7 @@ sass-convert style<span class="class">.scss</span> style.sass
             <h2 id="什么是_Sass">什么是 Sass</h2><p><a href="http://sass-lang.com/">Sass</a> 对 CSS3 的语法进行了扩充，增加了新的规则、变量、函数、选择器、继承等特性，让 css 看起来更像一门语言，这种特性也被称作“css预编译”，我们通过它可以用编程的思路去写样式，然后通过编译生成我们需要的样式表文件。</p>
 <p>当然，类似的还有 Less、stylus 等，关键还是找到趁手的。</p>
             <div class="post-more-link text-center">
-              <a class="btn" href="/2015/04/17/learn-sass-step/#more">
+              <a class="btn" href="/2015/04/17/20150417_learn-sass-step/#more">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -557,7 +744,7 @@ sass-convert style<span class="class">.scss</span> style.sass
           
           
             
-              <a class="post-title-link" href="/2015/04/10/第一篇文章/">
+              <a class="post-title-link" href="/2015/04/10/20150410_first-article/">
                 第一篇文章
               </a>
             
@@ -568,7 +755,7 @@ sass-convert style<span class="class">.scss</span> style.sass
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-04-10
+            发表于 2015-04-09
           
         </span>
 
@@ -591,8 +778,8 @@ sass-convert style<span class="class">.scss</span> style.sass
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/10/第一篇文章/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/10/第一篇文章/"></span>
+            <a href="/2015/04/10/20150410_first-article/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/10/20150410_first-article/"></span>
             </a>
           </span>
           
@@ -670,11 +857,11 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">6</span>
+            <span class="site-state-item-count">7</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">

@@ -20,9 +20,9 @@
 
 
 
-	<meta name="keywords" content="Css,Sass,前端," />
+	<meta name="keywords" content="-生活," />
 
-  <title> Sass系列之基本语法 // Hackerhe'NOTE </title>
+  <title> 参加与大师面对面活动后的小心思 // Hackerhe'NOTE </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              Sass系列之基本语法
+              参加与大师面对面活动后的小心思
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-04-19
+            发表于 2015-10-23
           
         </span>
 
@@ -129,7 +129,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/Sass/">Sass</a>
+                <a href="/categories/生活/">生活</a>
 
                 
                 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/19/learn-sass-basesyntax/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/19/learn-sass-basesyntax/"></span>
+            <a href="/2015/10/24/20151024_type-script-anders-hejlsberg/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/20151024_type-script-anders-hejlsberg/"></span>
             </a>
           </span>
           
@@ -159,168 +159,7 @@
         
 
         
-          <h2 id="sass_文件类型">sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
-<p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
-<pre><code><span class="id">#body</span>
-  <span class="attribute">background</span>: <span class="hexcolor">#fff</span>
-  <span class="id">#title</span>
-    <span class="attribute">margin</span>: <span class="number">0</span> <span class="attribute">auto</span>
-</code></pre><p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
-<pre><code><span class="id">#body</span>{
-    <span class="attribute">background</span>: <span class="hexcolor">#fff</span>;
-    <span class="id">#title</span>{
-    <span class="attribute">margin</span>: <span class="number">0</span> auto; 
-    }
-}
-</code></pre><p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
-<pre><code><span class="comment">//将 style.scss 转换为 style.sass</span>
-sass-convert style<span class="class">.scss</span> style.sass
-</code></pre><p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
-<a id="more"></a>
-<h2 id="编译">编译</h2><h3 id="sass_编译">sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css</p>
-<pre><code><span class="comment">//将 style.scss 编译成 style.css</span>
-sass style<span class="class">.scss</span> style.css
-</code></pre><p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
-<p>当然有，我们可以使用 compass 或者 gulp、grunt 来实现这项功能。</p>
-<p>gulp 和 grunt 是前端开发的脚手架，我们会在另外的文章里详细讲解，这里我们先简单介绍下 compass。</p>
-<h3 id="通过_compass_编译_sass">通过 compass 编译 sass</h3><p>我们现在安装 compass, 和 sass 一样，我们通过 gem 来安装 compass</p>
-<pre><code>gem <span class="keyword">install</span> compass
-</code></pre><p>通过 compass 初始化项目</p>
-<pre><code><span class="comment">//learn-sass 是要创建的项目文件夹</span>
-compass <span class="keyword">create</span> learn-sass
-</code></pre><p>打开我们的文件夹，文件结构就是这样的</p>
-<p>learn-sass<br><br>    &nbsp;&nbsp;|- .sass-cache<br><br>    &nbsp;&nbsp;|- sass<br><br>    &nbsp;&nbsp;|- stylesheets<br><br>    &nbsp;&nbsp;|- config.rb<br></p>
-<p><code>.sass-cache</code> 是 sass 编译缓存存放的地方</p>
-<p><code>sass</code> 存放的就是我们编写的 <em>.scss 和 </em>.sass 文件</p>
-<p><code>stylesheets</code> 里面是 compass 帮我们将 sass 文件夹内的 <em>.sass 和 </em>.scss 文件编译成的 css 文件</p>
-<p><code>config.rb</code> 里面是 compass 的配置信息，具体说明，我会在另外一篇文章中详细介绍</p>
-<p>执行 <code>compass watch</code> 后，修改 sass 中的文件，compass 会自动帮我们生成 css 到 stylesheets 文件夹中</p>
-<h2 id="基本语法">基本语法</h2><h3 id="变量声明">变量声明</h3><p>是的，css 中，可以像其他语言一样声明变量了，声明方式以 $ 符开头</p>
-<pre><code><span class="comment">//声明</span>
-<span class="variable">$titleColor</span><span class="value">: <span class="hexcolor">#0f0</span>;</span>
-<span class="variable">$titleWidth</span><span class="value">: <span class="number">16px</span>;</span>
-
-<span class="comment">//使用</span>
-<span class="class">.title</span>{
-    <span class="attribute">background</span><span class="value">: <span class="variable">$titleColor</span>;</span>
-    <span class="attribute">width</span><span class="value">: <span class="variable">$titleWidth</span>;</span>
-}
-</code></pre><p>这样我们就可以把常用的数值，声明成变量，让我们的项目结构清晰易维护</p>
-<h3 id="@import">@import</h3><p>通常我们会把所有的变量，统一的放在一个 <code>_variables.scss</code> 文件中，然后在用到的地方中通过 @import “variables.scss” 的方式来引用这些变量, 我们可以省略</p>
-<pre><code><span class="at_rule">@<span class="keyword">import</span> <span class="string">"variables"</span></span>;
-</code></pre><p>大家肯定已经想到了 css 中的 @import 功能，这个和那个又有什么区别哪</p>
-<p>css 中的 @import 必须放在代码最前面，并且会阻塞浏览器，性能不优，我们尽量避免使用， sass 中重新定义了 @import 可以在任何地方使用。 那我们如果真的想用 css 自己的 @import 时，我们可以用以下方式表示使用原生的</p>
-<ol>
-<li>当@import 后边跟的文件名时 ＊.css时</li>
-<li>当@import 后边跟的是 <a href="http://开头的字符串时" target="_blank" rel="external">http://开头的字符串时</a></li>
-<li>当@import 后面跟的是 url() 函数时</li>
-<li>当@import 后面跟的时 media queries 的时候</li>
-</ol>
-<h3 id="注释">注释</h3><p>sass 中可以使用 css 原生的注释，也可以使用 双斜线这种注释方式，具体区别如下 </p>
-<pre><code><span class="comment">/* 这种注释方式会出现在生成的 css代码中 */</span>
-<span class="comment">// 这种注释方式不会出现在生成的 css代码中</span>
-</code></pre><h3 id="嵌套">嵌套</h3><p>sass 提供了两种嵌套方式，分别是属性嵌套和选择器的嵌套，能极大的降低选择器和属性的重复书写，如下</p>
-<pre><code><span class="id">#header</span>{
-    <span class="attribute">width</span>:<span class="number">20px</span>;
-    <span class="attribute">height</span>:<span class="number">300px</span>;
-    <span class="tag">title</span>{
-        <span class="tag">font</span>:{ <span class="comment">//属性嵌套使用 :</span>
-            <span class="attribute">size</span>:<span class="number">18px</span>;
-            <span class="attribute">weight</span>: normal;
-        }
-        <span class="keyword">&amp;</span><span class="pseudo">:hover</span>{    <span class="comment">//&amp; 符号在 sass 中表示父级选择器，这里就是 title</span>
-            <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
-        }
-    }
-}
-</code></pre><p>编译后</p>
-<pre><code><span class="id">#header</span><span class="rules">{
-    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">20px</span></span></span>;
-    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">300px</span></span></span>;
-<span class="rule">}</span></span>
-<span class="id">#header</span> <span class="tag">title</span><span class="rules">{
-    <span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">18px</span></span></span>;
-    <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> normal</span></span>;
-<span class="rule">}</span></span>
-<span class="id">#header</span> <span class="tag">title</span><span class="pseudo">:hover</span><span class="rules">{
-    <span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#fff</span></span></span>;
-<span class="rule">}</span></span>
-</code></pre><p>对比一下，是不是可以少写很多的代码了那</p>
-<h3 id="函数">函数</h3><p>刚才我们讲了变量，变量的操作有两种，一种是直接变量操作，一种是通过函数操作</p>
-<pre><code><span class="variable">$titleWidth</span><span class="value">:<span class="number">24px</span> + <span class="number">5</span>;</span> <span class="comment">//sass 变量支持基本的算数运算，&gt;= &lt;= &lt; &gt; == != ()</span>
-</code></pre><p>函数操作，一种是通过 sass 内部定义的函数，称作 functions，第二种是可重用的代码块，称作 mixin，我们主要讲 mixin 这种方式</p>
-<pre><code><span class="comment">//定义 mixin</span>
-<span class="variable">@mixin</span> col-<span class="number">12</span>{
-    <span class="attribute">width</span>:<span class="number">100%</span>;
-}
-
-<span class="comment">//调用</span>
-.title{
-    <span class="variable">@include</span> <span class="function">col-12</span>();
-}
-
-<span class="comment">//编译后生成</span>
-.title{
-    <span class="attribute">width</span>: <span class="number">100%</span>;
-}
-</code></pre><p>当然，既然是函数，我们可以传入参数值</p>
-<pre><code><span class="comment">//定义带参数的 mixin</span>
-<span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>){</span>
-    <span class="attribute">width</span><span class="value">: <span class="variable">$width</span>;</span>
-}
-
-<span class="comment">//调用方式和无参是一样的</span>
-<span class="class">.title</span>{
-    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> col</span>(<span class="number">100%</span>);</span>
-}
-</code></pre><p>参数默认值也是有的哦</p>
-<pre><code><span class="comment">//@定义带参数有默认值的 mixin</span>
-<span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>:<span class="number">100%</span>){</span>   <span class="comment">//参数后跟 : 指定默认值</span>
-    <span class="attribute">width</span> <span class="value">: <span class="variable">$width</span>
-}</span>
-</code></pre><h3 id="继承">继承</h3><p>sass 通过 @extent 可以继承其他选择器的样式</p>
-<pre><code><span class="class">.content</span>{
-    <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
-    <span class="attribute">float</span>:left;
-}
-
-<span class="class">.left</span>{
-    <span class="variable">@extent</span> .content; <span class="comment">//通过 @extent 继承 .content 选择器的样式</span>
-    <span class="attribute">width</span>:<span class="number">30%</span>;
-}
-
-<span class="comment">//编译后</span>
-<span class="class">.content</span>, <span class="class">.left</span> {
-    <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
-    <span class="attribute">float</span>:left;
-}
-
-<span class="class">.left</span>{
-    <span class="attribute">width</span>: <span class="number">30%</span>;
-}
-</code></pre><p>@extent 不能继承选择器序列，可以用 %声明样式，来表示这是个只继承的样式</p>
-<pre><code><span class="comment">//选择器序列</span>
-<span class="class">.left</span> <span class="class">.name</span>{
-    <span class="attribute">width</span><span class="value">:<span class="number">200px</span>;</span>
-}
-
-<span class="class">.right</span>{
-    <span class="at_rule">@extent<span class="preprocessor"> .left</span><span class="preprocessor"> .name</span>;</span> <span class="comment">//这会报语法错误，不能继承选择器序列</span>
-}
-
-<span class="comment">// %</span>
-<span class="variable">$title</span>{
-    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span>
-}
-
-<span class="class">.left</span>{
-    <span class="at_rule">@extent <span class="variable">$title</span>;</span>
-}
-<span class="comment">//编译后</span>
-<span class="class">.left</span>{
-    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span> 
-}
-</code></pre><h2 id="最后">最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
+          <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/IMG_0078.JPG" alt="小心思"></p>
 
         
       </div>
@@ -331,16 +170,8 @@ compass <span class="keyword">create</span> learn-sass
         
           <div class="post-tags">
             
-              <a href="/tags/Css/">
-                #Css
-              </a>
-            
-              <a href="/tags/Sass/">
-                #Sass
-              </a>
-            
-              <a href="/tags/前端/">
-                #前端
+              <a href="/tags/生活/">
+                #-生活
               </a>
             
           </div>
@@ -350,13 +181,13 @@ compass <span class="keyword">create</span> learn-sass
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/10/24/type-script-anders-hejlsberg/">参加与大师面对面活动后的小心思</a>
+                <a href="/2015/11/02/20151102_cascading-and-inheritance/">CSS的层叠、特殊性和继承</a>
               
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/04/17/learn-sass-step/">Sass系列之安装</a>
+                <a href="/2015/04/19/20150419_learn-sass-basesyntax/">Sass系列之基本语法</a>
               
             </div>
           </div>
@@ -416,11 +247,11 @@ compass <span class="keyword">create</span> learn-sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">6</span>
+            <span class="site-state-item-count">7</span>
             <span class="site-state-item-name">标签</span>
         </div>
         <div class="site-state-item site-state-pages">
@@ -452,7 +283,7 @@ compass <span class="keyword">create</span> learn-sass
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sass_文件类型"><span class="nav-number">1.</span> <span class="nav-text">sass 文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">2.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sass_编译"><span class="nav-number">2.1.</span> <span class="nav-text">sass 编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过_compass_编译_sass"><span class="nav-number">2.2.</span> <span class="nav-text">通过 compass 编译 sass</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量声明"><span class="nav-number">3.1.</span> <span class="nav-text">变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#@import"><span class="nav-number">3.2.</span> <span class="nav-text">@import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">3.3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套"><span class="nav-number">3.4.</span> <span class="nav-text">嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">3.5.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">3.6.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            <p class="post-toc-empty">此文章未包含目录</p>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -1009,8 +840,8 @@ compass <span class="keyword">create</span> learn-sass
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/04/19/learn-sass-basesyntax/';
-      var disqus_url = 'http://imhzq.com/2015/04/19/learn-sass-basesyntax/';
+      var disqus_identifier = '2015/10/24/20151024_type-script-anders-hejlsberg/';
+      var disqus_url = 'http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/';
 
       (function(){
         var dsq = document.createElement('script');
