@@ -134,6 +134,126 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/07/20151107_talk-line-height/">
+                当line-height小于font-size时发生了什么
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-11-06
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/CSS/">CSS</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/07/20151107_talk-line-height/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/07/20151107_talk-line-height/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="前言">前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
+<h2 id="Demo1">Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
+<pre><code>.<span class="built_in">box</span>{
+    <span class="variable">height</span>: <span class="number">300</span>px;
+    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;
+}
+p{
+    font-<span class="built_in">size</span>: <span class="number">16</span>px;
+    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;
+}
+span{
+    font-<span class="built_in">size</span>: <span class="number">100</span>px;
+    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;
+}
+
+&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
+&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;
+&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
+</code></pre><p>起初，我一直不能明白 20px 的 line-height 减去 100px 的 font-size，得到上下两个半行间距各为 -40px，最后 span 元素的 inline-box 应该是 20px 啊，那为啥 p 元素的 line-box 远远大于这个值啊，难道是内容区将其撑开了？百思不得其姐啊！</p>
+<p>又仔细翻阅了下权威指南相关介绍，啊！我果然还是太年轻了，这里我天真的以为两个负的半行间距会导致 span 元素的 inline-box 下沉,然而并不会，我做了个简单的效果图：</p>
+<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1-2.png" alt="demo2"></p>
+<p>这里可以清楚的看到，蓝色框为 20px 高的 行内框，在元素内容区<code>垂直居中</code>。因为行框定义为行中最高行内框的顶端到行内最低行内框的底端之间的距离，所以蓝色框的顶部到黄色框的底部之间的距离，就是行框的高度了。</p>
+<p>可以清楚的看到，span 元素 20px 高的 inline-box 在高 100px 的内容区<code>垂直剧中</code>!!</p>
+<p>又因为行框定义为行中最高行内框的顶端到最低行内框的底端之间的距离</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Css/">
+                #Css
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/11/02/20151101_new-tag-from-html5/">
                 HTML5新增元素介绍
               </a>
@@ -897,7 +1017,7 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

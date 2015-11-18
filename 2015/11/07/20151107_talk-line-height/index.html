@@ -20,9 +20,9 @@
 
 
 
-	<meta name="keywords" content="Css,Sass,前端," />
+	<meta name="keywords" content="Css,前端," />
 
-  <title> Sass系列之安装 // ICEDOM </title>
+  <title> 当line-height小于font-size时发生了什么 // ICEDOM </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              Sass系列之安装
+              当line-height小于font-size时发生了什么
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-04-17
+            发表于 2015-11-06
           
         </span>
 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/17/20150417_learn-sass-step/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/17/20150417_learn-sass-step/"></span>
+            <a href="/2015/11/07/20151107_talk-line-height/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/07/20151107_talk-line-height/"></span>
             </a>
           </span>
           
@@ -159,27 +159,30 @@
         
 
         
-          <h2 id="什么是_Sass">什么是 Sass</h2><p><a href="http://sass-lang.com/" target="_blank" rel="external">Sass</a> 对 CSS3 的语法进行了扩充，增加了新的规则、变量、函数、选择器、继承等特性，让 css 看起来更像一门语言，这种特性也被称作“css预编译”，我们通过它可以用编程的思路去写样式，然后通过编译生成我们需要的样式表文件。</p>
-<p>当然，类似的还有 Less、stylus 等，关键还是找到趁手的。</p>
-<a id="more"></a>
-<h2 id="安装">安装</h2><h3 id="安装_Ruby_运行环境">安装 Ruby 运行环境</h3><p>因为 Sass 引擎是用 Ruby 编写的，所以我们安装 Sass 前，需要先安装 Ruby 运行环境，既然要安装 Ruby，那么我们先来安装 RVM 吧，RVM 和 NVM 概念差不多，RVM 是 Ruby 的版本管理工具</p>
-<p>我们通过下面命令来安装 RVM</p>
-<pre><code>curl <span class="operator">-s</span>SL https://get.rvm.io | bash <span class="operator">-s</span> stable
-</code></pre><p>安装完成后，我们用下面的命令列出可以安装的 Ruby 版本</p>
-<pre><code>rvm <span class="type">list</span> known
-</code></pre><p>我们通过 install 命令来安装对应的 Ruby 2.2.0 版本</p>
-<pre><code>rvm <span class="keyword">install</span> <span class="number">2.2</span>.<span class="number">0</span>
-</code></pre><p>至此，Ruby 环境就好了，RVM 的具体使用方式这里就不赘述了,详情可以参考官网 <a href="https://rvm.io" target="_blank" rel="external">https://rvm.io</a></p>
-<h3 id="安装Sass">安装Sass</h3><p>安装好 Ruby 环境后，通过 gem 包管理工具安装 Sass，因为国内网络环境复杂，使用前可先将 gem 的源替换成淘宝的</p>
-<pre><code><span class="comment">//删除源</span>
-gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/</span>
-<span class="comment">//新增源</span>
-gem sources --a <span class="string">https:</span><span class="comment">//ruby.taobao.org/</span>
-<span class="comment">//查看替换结果</span>
-gem sources -l
-<span class="comment">//安装Sass</span>
-gem install sass
-</code></pre><p>我们的 Sass 安装就完成了，下节我们就可以愉快的使用 Sass 了。</p>
+          <h2 id="前言">前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
+<h2 id="Demo1">Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
+<pre><code>.<span class="built_in">box</span>{
+    <span class="variable">height</span>: <span class="number">300</span>px;
+    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;
+}
+p{
+    font-<span class="built_in">size</span>: <span class="number">16</span>px;
+    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;
+}
+span{
+    font-<span class="built_in">size</span>: <span class="number">100</span>px;
+    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;
+}
+
+&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
+&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;
+&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
+</code></pre><p>起初，我一直不能明白 20px 的 line-height 减去 100px 的 font-size，得到上下两个半行间距各为 -40px，最后 span 元素的 inline-box 应该是 20px 啊，那为啥 p 元素的 line-box 远远大于这个值啊，难道是内容区将其撑开了？百思不得其姐啊！</p>
+<p>又仔细翻阅了下权威指南相关介绍，啊！我果然还是太年轻了，这里我天真的以为两个负的半行间距会导致 span 元素的 inline-box 下沉,然而并不会，我做了个简单的效果图：</p>
+<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1-2.png" alt="demo2"></p>
+<p>这里可以清楚的看到，蓝色框为 20px 高的 行内框，在元素内容区<code>垂直居中</code>。因为行框定义为行中最高行内框的顶端到行内最低行内框的底端之间的距离，所以蓝色框的顶部到黄色框的底部之间的距离，就是行框的高度了。</p>
+<p>可以清楚的看到，span 元素 20px 高的 inline-box 在高 100px 的内容区<code>垂直剧中</code>!!</p>
+<p>又因为行框定义为行中最高行内框的顶端到最低行内框的底端之间的距离</p>
 
         
       </div>
@@ -194,10 +197,6 @@ gem install sass
                 #Css
               </a>
             
-              <a href="/tags/Sass/">
-                #Sass
-              </a>
-            
               <a href="/tags/前端/">
                 #前端
               </a>
@@ -209,13 +208,11 @@ gem install sass
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/04/19/20150419_learn-sass-basesyntax/">Sass系列之基本语法</a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/04/10/20150410_first-article/">第一篇文章</a>
+                <a href="/2015/11/02/20151101_new-tag-from-html5/">HTML5新增元素介绍</a>
               
             </div>
           </div>
@@ -311,7 +308,7 @@ gem install sass
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是_Sass"><span class="nav-number">1.</span> <span class="nav-text">什么是 Sass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装_Ruby_运行环境"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Ruby 运行环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Sass"><span class="nav-number">2.2.</span> <span class="nav-text">安装Sass</span></a></li></ol></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo1"><span class="nav-number">2.</span> <span class="nav-text">Demo1</span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -868,8 +865,8 @@ gem install sass
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/04/17/20150417_learn-sass-step/';
-      var disqus_url = 'http://imhzq.com/2015/04/17/20150417_learn-sass-step/';
+      var disqus_identifier = '2015/11/07/20151107_talk-line-height/';
+      var disqus_url = 'http://imhzq.com/2015/11/07/20151107_talk-line-height/';
 
       (function(){
         var dsq = document.createElement('script');
