@@ -166,6 +166,7 @@
 <blockquote>
 <p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="如何编写高效的CSS选择符">如何编写高效的CSS选择符</h2><h3 id="避免使用通配规则">避免使用通配规则</h3><p>除了传统意义的通配符外，相邻兄弟选择符、子选择符、后代选择符和属性选择符都应该避免使用，推荐使用 ID、类和标签选择器</p>
 <h3 id="不要限定_ID_选择符">不要限定 ID 选择符</h3><p>在页面中一个指定的 ID 只对应一个元素，没有必要添加额外的选择符</p>
 <pre><code><span class="tag">div</span><span class="id">#header</span><span class="rules">{<span class="rule">}</span></span> <span class="comment">/* 这样是没必要的，应该简化为 #header */</span>
