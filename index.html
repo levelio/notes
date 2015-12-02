@@ -134,6 +134,117 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/08/20151108_simplifying-css-selectors/">
+                CSS选择器优化
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-11-07
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/CSS/">CSS</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/08/20151108_simplifying-css-selectors/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/08/20151108_simplifying-css-selectors/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h2 id="最右边优先">最右边优先</h2><p>我最初的觉得 CSS 选择符一定也是从左到右匹配规则的，就像下面这个例子</p>
+<pre><code><span class="id">#header</span> <span class="tag">li</span><span class="rules">{ <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; <span class="rule">}</span></span>
+</code></pre><p>先找到 id 为 header 的元素，然后把这个样式应用到子元素 li 上。我们知道只有一个 id 为 header 的元素，并且它只有几个 li 元素，这个选择符应该是相当高效的才对。</p>
+<p>事实上 <em>CSS 选择符是从右到左进行匹配的。</em> 那么回头看上面那个看似高效的的选择符实际上开销相当高，浏览器必须遍历页面上每个 li 元素并确定其父元素的 id 是否是 header。</p>
+<blockquote>
+<p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
+</blockquote>
+<h2 id="如何编写高效的CSS选择符">如何编写高效的CSS选择符</h2><h3 id="避免使用通配规则">避免使用通配规则</h3><p>除了传统意义的通配符外，相邻兄弟选择符、子选择符、后代选择符和属性选择符都应该避免使用，推荐使用 ID、类和标签选择器</p>
+<h3 id="不要限定_ID_选择符">不要限定 ID 选择符</h3><p>在页面中一个指定的 ID 只对应一个元素，没有必要添加额外的选择符</p>
+<pre><code><span class="tag">div</span><span class="id">#header</span><span class="rules">{<span class="rule">}</span></span> <span class="comment">/* 这样是没必要的，应该简化为 #header */</span>
+</code></pre><h3 id="不要限定类选择符">不要限定类选择符</h3><p>不要用具体的标签限定类选择符，而是根据实际情况对累名进行扩展。例如，把 li.item 改成 .li-item</p>
+<h3 id="让规则越具体越好">让规则越具体越好</h3><p>不要编写 ul li a 这样的长选择符，最好是创建一个像 .li-item 这样的类，并把它添加到适当的元素上</p>
+<h3 id="避免使用后代选择符">避免使用后代选择符</h3><p>通常处理后代选择符的开销是最高的，而是用梓煊泽肤也可以得到想要的结果，并且更高效。</p>
+<h3 id="避免使用标签－子选择符">避免使用标签－子选择符</h3><p>如果有像 #header &gt; li &gt; a 这样的基于标签的子选择符，那么应该使用一个类来关联每个标签元素。</p>
+<h3 id="质疑子选择符的所有用途">质疑子选择符的所有用途</h3><p>检查所有使用子选择符的地方，然后尽可能用具体的类取代它们。</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/CSS/">
+                #CSS
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/11/07/20151107_talk-line-height/">
                 当line-height小于font-size时发生了什么
               </a>
@@ -1016,7 +1127,7 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

@@ -20,9 +20,9 @@
 
 
 
-	<meta name="keywords" content="HTML5,前端," />
+	<meta name="keywords" content="CSS,前端," />
 
-  <title> HTML5新增元素介绍 // ICEDOM </title>
+  <title> CSS选择器优化 // ICEDOM </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              HTML5新增元素介绍
+              CSS选择器优化
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-11-02
+            发表于 2015-11-07
           
         </span>
 
@@ -129,7 +129,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/HTML5/">HTML5</a>
+                <a href="/categories/CSS/">CSS</a>
 
                 
                 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/11/02/20151101_new-tag-from-html5/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151101_new-tag-from-html5/"></span>
+            <a href="/2015/11/08/20151108_simplifying-css-selectors/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/08/20151108_simplifying-css-selectors/"></span>
             </a>
           </span>
           
@@ -159,31 +159,21 @@
         
 
         
-          <p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！下面来简单介绍下他们：</p>
-<h3 id="section">section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
-<h3 id="article">article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>
-<a id="more"></a>
-<h3 id="main">main</h3><p><code>main</code> 元素呈现了文档 <code>body</code> 或应用的主体部分，这部分内容在文档中应该是独一无二的，在一个文档中不能出现一个以上的 <code>main</code>,不能是以下元素的继承 <code>article</code>,<code>aside</code>,<code>footer</code>,<code>header</code>,<code>nav</code>。</p>
-<h3 id="aside">aside</h3><p><code>aside</code> 元素代表与了一些与页面其他部分关联性不是那么大的内容，比如广告。</p>
-<h3 id="header">header</h3><p><code>header</code> 代表了一组介绍性或者导航性质的辅助内容，可能包含标题元素，也可以包含其他元素，像logo、分节头部、搜索表单等。<code>header</code> 不是分节元素，不会引入分节到大纲中。</p>
-<h3 id="footer">footer</h3><p><code>footer</code> 元素表示最近的一个章节内容或者根节点元素的页脚。一个页脚通常包含该章节坐着、版权数据或者文档相关的链接信息。</p>
-<h3 id="nav">nav</h3><p><code>nav</code> 代表一个含有多个超链接的区域。</p>
-<h3 id="figure">figure</h3><p><code>figure</code> 代表一个独立的内容流，常与 <code>figcaption</code> 元素一起出现。</p>
-<h3 id="figcaption">figcaption</h3><p><code>figcaption</code> 用作 <code>figure</code> 的标题，类似于表格的 <code>caption</code> 元素。</p>
-<h3 id="template">template</h3><p><code>template</code> 元素是一种机制，允许包含加载页面时不渲染，但又可以随后通过 Javascript 实力化的客户端内容，就像我们这样做一样<code>script type=&quot;text/temple&quot;</code>。</p>
-<h3 id="audio_&amp;_video">audio &amp; video</h3><p><code>audio</code> 和 <code>video</code> 是多媒体元素，他们提供相对应的 API 用于开发者定制 UI，同时也提供了出发 UA 展示其默认控件的方式。</p>
-<h3 id="embed">embed</h3><p><code>embed</code> 元素表示一个插件，展用于插件内容。</p>
-<h3 id="mark">mark</h3><p><code>mark</code> 元素代表了一个文档中需要标记或者高亮的部分，比如说搜索引擎搜索后的关键词。不要为了语法高亮而去使用 mark，应该使用 <code>strong</code> 元素，<code>mark</code> 元素表示上下文的关联性。</p>
-<h3 id="progress">progress</h3><p><code>progress</code> 用来表示一个进度条,代表一个任务的完成进度。</p>
-<h3 id="meter">meter</h3><p><code>meter</code> 代表了一个度量，比如对磁盘空间的度量。</p>
-<h3 id="time">time</h3><p><code>time</code> 表示一个时间。有两个属性,datetime(一个有效的时间格式，表示具体时间),pubdate(一般用于文章发布时间，评论回复时间等)。</p>
-<h3 id="ruby、rt、rp">ruby、rt、rp</h3><p><code>ruby</code>、<code>rt</code>、<code>rp</code> 代表 Ruby 表达式。</p>
-<h3 id="bdi">bdi</h3><p><code>bdi</code> 代表了一段隔绝于周围元素的双向书写文本格式。</p>
-<h3 id="wbr">wbr</h3><p><code>bdi</code> 代表了可能断行的部分。</p>
-<h3 id="canvas">canvas</h3><p><code>canvas</code> 用于渲染动态位图。</p>
-<h3 id="datalist">datalist</h3><p><code>datalist</code> 与input的list属性共同使用，可以用于创建下拉选择框控件。</p>
-<h3 id="keygen">keygen</h3><p><code>keygen</code> 代表生成的密钥对。</p>
-<h3 id="output">output</h3><p><code>output</code> 代表了一种输出内容。</p>
+          <h2 id="最右边优先">最右边优先</h2><p>我最初的觉得 CSS 选择符一定也是从左到右匹配规则的，就像下面这个例子</p>
+<pre><code><span class="id">#header</span> <span class="tag">li</span><span class="rules">{ <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; <span class="rule">}</span></span>
+</code></pre><p>先找到 id 为 header 的元素，然后把这个样式应用到子元素 li 上。我们知道只有一个 id 为 header 的元素，并且它只有几个 li 元素，这个选择符应该是相当高效的才对。</p>
+<p>事实上 <em>CSS 选择符是从右到左进行匹配的。</em> 那么回头看上面那个看似高效的的选择符实际上开销相当高，浏览器必须遍历页面上每个 li 元素并确定其父元素的 id 是否是 header。</p>
+<blockquote>
+<p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
+</blockquote>
+<h2 id="如何编写高效的CSS选择符">如何编写高效的CSS选择符</h2><h3 id="避免使用通配规则">避免使用通配规则</h3><p>除了传统意义的通配符外，相邻兄弟选择符、子选择符、后代选择符和属性选择符都应该避免使用，推荐使用 ID、类和标签选择器</p>
+<h3 id="不要限定_ID_选择符">不要限定 ID 选择符</h3><p>在页面中一个指定的 ID 只对应一个元素，没有必要添加额外的选择符</p>
+<pre><code><span class="tag">div</span><span class="id">#header</span><span class="rules">{<span class="rule">}</span></span> <span class="comment">/* 这样是没必要的，应该简化为 #header */</span>
+</code></pre><h3 id="不要限定类选择符">不要限定类选择符</h3><p>不要用具体的标签限定类选择符，而是根据实际情况对累名进行扩展。例如，把 li.item 改成 .li-item</p>
+<h3 id="让规则越具体越好">让规则越具体越好</h3><p>不要编写 ul li a 这样的长选择符，最好是创建一个像 .li-item 这样的类，并把它添加到适当的元素上</p>
+<h3 id="避免使用后代选择符">避免使用后代选择符</h3><p>通常处理后代选择符的开销是最高的，而是用梓煊泽肤也可以得到想要的结果，并且更高效。</p>
+<h3 id="避免使用标签－子选择符">避免使用标签－子选择符</h3><p>如果有像 #header &gt; li &gt; a 这样的基于标签的子选择符，那么应该使用一个类来关联每个标签元素。</p>
+<h3 id="质疑子选择符的所有用途">质疑子选择符的所有用途</h3><p>检查所有使用子选择符的地方，然后尽可能用具体的类取代它们。</p>
 
         
       </div>
@@ -194,8 +184,8 @@
         
           <div class="post-tags">
             
-              <a href="/tags/HTML5/">
-                #HTML5
+              <a href="/tags/CSS/">
+                #CSS
               </a>
             
               <a href="/tags/前端/">
@@ -209,13 +199,11 @@
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/11/02/20151102_way-use-void-in-js/">为什么要用href=javascript:void(0);</a>
+                <a href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a>
               
             </div>
           </div>
@@ -311,7 +299,7 @@
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#section"><span class="nav-number">1.</span> <span class="nav-text">section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#article"><span class="nav-number">2.</span> <span class="nav-text">article</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">3.</span> <span class="nav-text">main</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aside"><span class="nav-number">4.</span> <span class="nav-text">aside</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#header"><span class="nav-number">5.</span> <span class="nav-text">header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#footer"><span class="nav-number">6.</span> <span class="nav-text">footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nav"><span class="nav-number">7.</span> <span class="nav-text">nav</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#figure"><span class="nav-number">8.</span> <span class="nav-text">figure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#figcaption"><span class="nav-number">9.</span> <span class="nav-text">figcaption</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template"><span class="nav-number">10.</span> <span class="nav-text">template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#audio_&_video"><span class="nav-number">11.</span> <span class="nav-text">audio & video</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#embed"><span class="nav-number">12.</span> <span class="nav-text">embed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mark"><span class="nav-number">13.</span> <span class="nav-text">mark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#progress"><span class="nav-number">14.</span> <span class="nav-text">progress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meter"><span class="nav-number">15.</span> <span class="nav-text">meter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#time"><span class="nav-number">16.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ruby、rt、rp"><span class="nav-number">17.</span> <span class="nav-text">ruby、rt、rp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bdi"><span class="nav-number">18.</span> <span class="nav-text">bdi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wbr"><span class="nav-number">19.</span> <span class="nav-text">wbr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas"><span class="nav-number">20.</span> <span class="nav-text">canvas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datalist"><span class="nav-number">21.</span> <span class="nav-text">datalist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keygen"><span class="nav-number">22.</span> <span class="nav-text">keygen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output"><span class="nav-number">23.</span> <span class="nav-text">output</span></a></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最右边优先"><span class="nav-number">1.</span> <span class="nav-text">最右边优先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写高效的CSS选择符"><span class="nav-number">2.</span> <span class="nav-text">如何编写高效的CSS选择符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用通配规则"><span class="nav-number">2.1.</span> <span class="nav-text">避免使用通配规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要限定_ID_选择符"><span class="nav-number">2.2.</span> <span class="nav-text">不要限定 ID 选择符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要限定类选择符"><span class="nav-number">2.3.</span> <span class="nav-text">不要限定类选择符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让规则越具体越好"><span class="nav-number">2.4.</span> <span class="nav-text">让规则越具体越好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用后代选择符"><span class="nav-number">2.5.</span> <span class="nav-text">避免使用后代选择符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用标签－子选择符"><span class="nav-number">2.6.</span> <span class="nav-text">避免使用标签－子选择符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质疑子选择符的所有用途"><span class="nav-number">2.7.</span> <span class="nav-text">质疑子选择符的所有用途</span></a></li></ol></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -868,8 +856,8 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/11/02/20151101_new-tag-from-html5/';
-      var disqus_url = 'http://imhzq.com/2015/11/02/20151101_new-tag-from-html5/';
+      var disqus_identifier = '2015/11/08/20151108_simplifying-css-selectors/';
+      var disqus_url = 'http://imhzq.com/2015/11/08/20151108_simplifying-css-selectors/';
 
       (function(){
         var dsq = document.createElement('script');
