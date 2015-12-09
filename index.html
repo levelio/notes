@@ -134,6 +134,101 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/09/20150901_Repaints-and Reflows/">
+                未命名
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-12-09
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/12/09/20150901_Repaints-and Reflows/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/09/20150901_Repaints-and Reflows/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>title: “重排与重绘”<br>date: 2015-09-01<br>categories: “CSS”<br>tags:</p>
+<pre><code>-<span class="ruby"> <span class="constant">CSS</span>
+</span>-<span class="ruby"> 前端</span>
+</code></pre><hr>
+<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
+<p>DOM树： 表示页面结构</p>
+<p>渲染树： 表示 DOM 节点如何显示</p>
+<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
+<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
+<h2 id="何时重排">何时重排</h2><ol>
+<li>页面渲染器初始化的时候</li>
+<li>浏览器窗口发生尺寸变化时</li>
+<li>删除或添加新的可见 DOM 元素</li>
+<li>元素的位置改变</li>
+<li>元素的盒子模型发生变化</li>
+<li>元素内容发生变化（引起盒子模型发生变化）</li>
+</ol>
+<h2 id="减少重排和重绘">减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="/2015/12/09/20150901_Repaints-and Reflows/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/04/20151204_use-shadowsocks/">
                 拥抱自由shadowsocks
               </a>
@@ -568,118 +663,6 @@ span{
           
           
             
-              <a class="post-title-link" href="/2015/11/02/20151102_way-use-void-in-js/">
-                为什么要用href=javascript:void(0);
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-11-01
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/javascript/">javascript</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/11/02/20151102_way-use-void-in-js/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151102_way-use-void-in-js/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="为什么">为什么</h3><p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p>
-<p>使用这种方式，常出现在元素是 a 标签，但是又不想让其打开或刷新网页，比如导航列表里面的当前选中项 <code>&lt;a href=&quot;javascript:;&quot; class=&quot;curr&quot;&gt;1&lt;/a&gt;</code>。</p>
-<p>那么究竟为什么这么写呢，<code>href=&quot;javascript:void(0);&quot;</code> 和 <code>herf=&quot;javascript:;&quot;</code> 有什么区别？另外好像 <code>href=&quot;javascript:&quot;</code>这样写也可以啊！</p>
-<h3 id="JavaScript:_协议的_URI">JavaScript: 协议的 URI</h3><p>经过一番激烈的搜索后，看到如下解释：</p>
-<p>当用户点击一个以 javascript: 协议开头的 URI 时，浏览器会对冒号后面的代码进行求值，然后把求值的结果显示在页面上，这时页面基本上是一大片空白，这通常不是我们想要的。只有当这段代码的求值结果是 undefined 的时候，浏览器才不会去做这件傻事，所以我们经常会用 void 运算符来实现这个需求。像下面这样：</p>
-<pre><code>&lt;<span class="tag">a</span> href=<span class="string">"javascript:void(0);"</span>&gt;
-  这个链接点击之后不会做任何事情，如果去掉 <span class="function"><span class="title">void</span><span class="params">()</span></span>，
-  点击之后整个页面会被替换成一个字符 <span class="number">0</span>。
-&lt;/a&gt;
-&lt;<span class="tag">a</span> href=<span class="string">"javascript:void(document.body.style.backgroundColor='green');"</span>&gt;
-  点击这个链接会让页面背景变成绿色。
-&lt;/a&gt;
-</code></pre><p>焕然大悟啊！<code>void(0)</code>、<code>&quot;&quot;</code>都只是用来返回 <code>undefined</code> 用的，因为 js 分号可以省略，就有了 <code>href=&quot;javascript:&quot;</code> 这样的写法。</p>
-<p>那又有疑问了，为啥不直接用 <code>undefined</code>？原因是担心拿到的 <code>undefined</code> 可能不是 <code>undefined</code>，可能是被人重新赋值过的全局变量！</p>
-<pre><code><span class="built_in">window</span>.<span class="literal">undefined</span> = {};
-</code></pre><p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/javascript/">
-                #javascript
-              </a>
-            
-              <a href="/tags/前端/">
-                #前端
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2015/11/02/20151102_cascading-and-inheritance/">
                 CSS的层叠、特殊性和继承
               </a>
@@ -763,6 +746,118 @@ span{
             
               <a href="/tags/CSS/">
                 #CSS
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/11/02/20151102_way-use-void-in-js/">
+                为什么要用href=javascript:void(0);
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-11-01
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/javascript/">javascript</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/02/20151102_way-use-void-in-js/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/02/20151102_way-use-void-in-js/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <h3 id="为什么">为什么</h3><p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p>
+<p>使用这种方式，常出现在元素是 a 标签，但是又不想让其打开或刷新网页，比如导航列表里面的当前选中项 <code>&lt;a href=&quot;javascript:;&quot; class=&quot;curr&quot;&gt;1&lt;/a&gt;</code>。</p>
+<p>那么究竟为什么这么写呢，<code>href=&quot;javascript:void(0);&quot;</code> 和 <code>herf=&quot;javascript:;&quot;</code> 有什么区别？另外好像 <code>href=&quot;javascript:&quot;</code>这样写也可以啊！</p>
+<h3 id="JavaScript:_协议的_URI">JavaScript: 协议的 URI</h3><p>经过一番激烈的搜索后，看到如下解释：</p>
+<p>当用户点击一个以 javascript: 协议开头的 URI 时，浏览器会对冒号后面的代码进行求值，然后把求值的结果显示在页面上，这时页面基本上是一大片空白，这通常不是我们想要的。只有当这段代码的求值结果是 undefined 的时候，浏览器才不会去做这件傻事，所以我们经常会用 void 运算符来实现这个需求。像下面这样：</p>
+<pre><code>&lt;<span class="tag">a</span> href=<span class="string">"javascript:void(0);"</span>&gt;
+  这个链接点击之后不会做任何事情，如果去掉 <span class="function"><span class="title">void</span><span class="params">()</span></span>，
+  点击之后整个页面会被替换成一个字符 <span class="number">0</span>。
+&lt;/a&gt;
+&lt;<span class="tag">a</span> href=<span class="string">"javascript:void(document.body.style.backgroundColor='green');"</span>&gt;
+  点击这个链接会让页面背景变成绿色。
+&lt;/a&gt;
+</code></pre><p>焕然大悟啊！<code>void(0)</code>、<code>&quot;&quot;</code>都只是用来返回 <code>undefined</code> 用的，因为 js 分号可以省略，就有了 <code>href=&quot;javascript:&quot;</code> 这样的写法。</p>
+<p>那又有疑问了，为啥不直接用 <code>undefined</code>？原因是担心拿到的 <code>undefined</code> 可能不是 <code>undefined</code>，可能是被人重新赋值过的全局变量！</p>
+<pre><code><span class="built_in">window</span>.<span class="literal">undefined</span> = {};
+</code></pre><p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
+
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/javascript/">
+                #javascript
               </a>
             
               <a href="/tags/前端/">
@@ -1104,105 +1199,13 @@ sass-convert style<span class="class">.scss</span> style.sass
 
 
   
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/10/20150410_first-article/">
-                第一篇文章
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-09
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/生活/">生活</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/10/20150410_first-article/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/10/20150410_first-article/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>折腾来折腾去，总算是有个家了！</p>
-<p>两个月前搭建起来这个博客，到现在才决心要好好维护下去，真是惭愧啊。</p>
-<p>总之，今后我会在这里记录写生活琐碎、音乐、技术分享等等。</p>
-<p>博客由 <a href="http://hexo.io" target="_blank" rel="external">hexo</a> 驱动，部署于 <a href="https://github.com/Simlesos" target="_blank" rel="external">github</a></p>
-
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/生活/">
-                #生活
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
 
           </div>
 
+          
+            <div class="pagination">
+              <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+            </div>
           
         </div>
 
@@ -1228,7 +1231,7 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">

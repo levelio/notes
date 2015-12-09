@@ -20,9 +20,29 @@
 
 
 
-	<meta name="keywords" content="生活," />
 
-  <title> 拥抱自由shadowsocks // ICEDOM </title>
+    <meta name="keywords" content="和志强,前端,.NET,兴趣使然的键盘操纵者,不错的YoungBoy,螳臂当车的歹徒" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?92cb7623497952db1be6bc0d39851ee4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  <title>  // ICEDOM </title>
 </head>
 
 <body>
@@ -111,7 +131,7 @@
           
           
             
-              拥抱自由shadowsocks
+              
             
           
         </h1>
@@ -120,22 +140,11 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-12-03
+            发表于 2015-12-09
           
         </span>
 
         
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/生活/">生活</a>
-
-                
-                
-
-              
-            </span>
           
         
 
@@ -143,8 +152,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/12/04/20151204_use-shadowsocks/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/04/20151204_use-shadowsocks/"></span>
+            <a href="/2015/12/09/20150901_Repaints-and Reflows/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/09/20150901_Repaints-and Reflows/"></span>
             </a>
           </span>
           
@@ -159,68 +168,100 @@
         
 
         
-          <h2 id="前言">前言</h2><p>从 2013 年开始用 <a href="http://jproxy.io/" target="_blank" rel="external">jproxy</a> 已经3年了，最终她也没能逃过魔掌:( ，感谢 <a href="http://weibo.com/xiaojay#_rnd1449301836815" target="_blank" rel="external">xiaojay</a> 大大期间不断的维护！</p>
-<p>Google 不能访问就好像断网了一样难受，回想那几个小时简直痛不欲生啊！用百度简直想吐，竞价排名去死吧！思来想去，一不做二不休，自己搭个⬆吧！</p>
-<h2 id="购买_VPS">购买 VPS</h2><p>选来选去，还是选了<a href="https://bandwagonhost.com/index.php" target="_blank" rel="external">搬瓦工</a>，买了$19.99 一年的套餐，配置如下：</p>
-<pre><code><span class="attribute">RAM</span>: <span class="string">256MB</span>
-<span class="attribute">Disk</span>: <span class="string">10GB SSD</span>
-<span class="attribute">Bandwidth</span>: <span class="string">550GB</span>
-</code></pre><p>对了，在搬瓦工的主页右键显示网页源码，里面有段注释：</p>
-<pre><code><span class="comment">&lt;!-- Try this promo code: IAMSMART5C48JJ --&gt;</span>
-</code></pre><p>购买的时候，可以加进去。我试了，最大的优惠额度是 5%，支付的时候可以用支付宝支付～</p>
-<a id="more"></a>
-<h2 id="设置主机">设置主机</h2><p>进入主机控制面板</p>
-<h3 id="更换系统">更换系统</h3><p>选择 Install new OS，更换新系统，我选择的是  centos-6-x86_64-minimal 内存占用只有 7m 左右，毕竟内存只有 256m，能少占点就少占点:-)</p>
-<h3 id="获取ROOT用户密码">获取ROOT用户密码</h3><p>选择 Root Password modification 就可以过的 root 用户密码了，ssh登陆进去</p>
-<pre><code><span class="title">ssh</span> root@<span class="number">1.1.1.1</span> -p <span class="number">3000</span>
-</code></pre><p>修改 root 用户密码，创建新用户等等～</p>
-<h3 id="使用搬瓦工的Shadowsocks_Server">使用搬瓦工的Shadowsocks Server</h3><p>选择 Shadowsocks Server，安装 shadowsocks 服务，下载对应的 <a href="https://github.com/shadowsocks" target="_blank" rel="external">shadowscoks客户端</a>,配置上相关参数即可，相当简单！</p>
-<h3 id="使用_shadowsocks-libev">使用 shadowsocks-libev</h3><p>shadowsocks-libev 是一个 shadowsocks 协议的轻量级实现，是 shadowsocks-android, shadowsocks-ios 以及 shadowsocks-openwrt 的上游项目。其具有以下特点：</p>
-<ol>
-<li>体积小巧，静态编译并打包后只有 100 KB。</li>
-<li>高并发，基于 libev 实现的异步 I/O，以及基于线程池的异步 DNS，同时连接数可上万。</li>
-<li>低资源占用，几乎不占用 CPU 资源，服务器端内存占用一般在 3MB 左右。</li>
-<li>跨平台，适用于所有常见硬件平台，已测试通过的包括 x86，ARM 和 MIPS。也适用于大部分 POSIX 的操作系统或平台，包括 Linux，OS X 和 gwin 等。</li>
-<li>协议及配置兼容，完全兼容 shadowsocks 协议，且兼容标准实现中的 JSON 风格配置文件，可与任意实现的 shadowsocks 端或服务端搭配使用。</li>
+          <p>title: “重排与重绘”<br>date: 2015-09-01<br>categories: “CSS”<br>tags:</p>
+<pre><code>-<span class="ruby"> <span class="constant">CSS</span>
+</span>-<span class="ruby"> 前端</span>
+</code></pre><hr>
+<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
+<p>DOM树： 表示页面结构</p>
+<p>渲染树： 表示 DOM 节点如何显示</p>
+<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
+<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
+<h2 id="何时重排">何时重排</h2><ol>
+<li>页面渲染器初始化的时候</li>
+<li>浏览器窗口发生尺寸变化时</li>
+<li>删除或添加新的可见 DOM 元素</li>
+<li>元素的位置改变</li>
+<li>元素的盒子模型发生变化</li>
+<li>元素内容发生变化（引起盒子模型发生变化）</li>
 </ol>
-<h4 id="安装必要组件">安装必要组件</h4><pre><code>centos: yum <span class="keyword">install</span> build-essential autoconf libtool openssl-devel gcc -y
-        yum <span class="keyword">install</span> git -y
-</code></pre><h4 id="下载及编译_shadowsocks-libev">下载及编译 shadowsocks-libev</h4><pre><code>git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/madeye/shadowsocks-libev.git
-<span class="keyword">cd</span> shadowsocks-libev
-./configure
-<span class="keyword">make</span> &amp;&amp; <span class="keyword">make</span> install
-</code></pre><h4 id="创建_ssconfig-json_文件">创建 ssconfig.json 文件</h4><pre><code>{
-    <span class="string">"server"</span>:<span class="string">"servier_ip"</span>,   <span class="preprocessor"># 服务器IP</span>
-    <span class="string">"server_port"</span>:<span class="number">65000</span>,     <span class="preprocessor"># ss服务器所使用的端口号，建议改到30000-60000</span>
-    <span class="string">"password"</span>:<span class="string">"password"</span>,   <span class="preprocessor"># ss服务器密码，轻易不要分享</span>
-    <span class="string">"timeout"</span>:<span class="number">60</span>,            <span class="preprocessor"># 超时时间，建议设置为60</span>
-    <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>   <span class="preprocessor"># 加密方式，需要和客户端配合设置</span>
+<h2 id="减少重排和重绘">减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
+<a id="more"></a>
+<h3 id="渲染树队列的队列与刷新">渲染树队列的队列与刷新</h3><p>大多数浏览器都会优化这个队列，通过批量执行等方式来优化重排过程，然而你可能会不经意间强制要求浏览器放弃优化，立即执行队列并刷新。</p>
+<p>调用下面这些方法时，浏览器为了能返回正确的数据，会立即触发重排：</p>
+<pre><code>offsetTop, offsetLeft, offsetWidth, offsetHeight
+scrollTop, scrollLeft, scrollWidth, scrollHeight
+clientTop, clientLift, clientWidth, clientHeight
+<span class="function"><span class="title">getComputedStyle</span><span class="params">()</span></span>
+</code></pre><h3 id="优化代码">优化代码</h3><p>考虑这个例子：</p>
+<pre><code>var <span class="keyword">el</span> = document.getElementById(<span class="string">"header"</span>);
+<span class="keyword">el</span>.style.borderLeft = <span class="string">'1px'</span>;
+<span class="keyword">el</span>.style.borderRight = <span class="string">'2px'</span>;
+<span class="keyword">el</span>.style.margin = <span class="string">'3px'</span>;
+</code></pre><p>一般情况下，浏览器会优化这个，只发生一次重排。但是，如果在这期间有其他代码请求布局信息，会导致浏览器三次重排。一个更高效的方法就是，使用 cssText，只修改一次 DOM：</p>
+<pre><code><span class="reserved">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);
+el.style.cssText += <span class="string">"border-left:1px;border-right:2px;margin:3px;"</span>;
+</code></pre><p>另一个方法是修改元素的 class 名称，这种方法更清晰，更易维护，但是会带来轻微的性能营销，因为改变类时需要检查及联样式。</p>
+<pre><code><span class="reserved">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);
+el.className = <span class="string">"active"</span>;
+</code></pre><h3 id="批量修改_DOM">批量修改 DOM</h3><p>当需要对 DOM 元素进行一连串的操作时，可以先让元素脱离文档流，然后对其应用多重改变，再把元素加入文档流。第一步和第三步会触发两次重排，如果不这么做，第二步做的任何修改都会触发一次重排。</p>
+<p>那么怎么才能让元素脱离文档流哪？ 有三种基本方法：</p>
+<ol>
+<li>隐藏元素，应用修改，重新显示</li>
+<li>使用文档片段 (document fragment) 在当前 DOM 之外构建一个子树，再把它拷贝回文档</li>
+<li>创建一个需要修改节点的镜像，然后修改镜像，再用镜像替换原节点</li>
+</ol>
+<p>比如我们需要向列表中添加一些项，如下</p>
+<pre><code><span class="xml"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url1"</span>&gt;</span>Name1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url2"</span>&gt;</span>Name2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+
+var data = [
+    </span><span class="expression">{<span class="variable">url</span>: <span class="string">"url1"</span>, <span class="variable">name</span>: <span class="string">"Name1"</span>}</span><span class="xml">,
+    </span><span class="expression">{<span class="variable">url</span>: <span class="string">"url2"</span>, <span class="variable">name</span>: <span class="string">"Name2"</span>}</span><span class="xml">
+]</span>
+</code></pre><p>我们写一个添加的函数</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">appendDataToElement</span><span class="params">(to, data)</span></span>{
+    <span class="keyword">var</span> link, li, item;
+    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++){
+        item = data[i];
+        link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);
+        link.href = item.url;
+        link.appendChild(<span class="built_in">document</span>.createTextNode(item.name));
+        li = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);
+        li.appendChild(link);
+        to.appendChild(li);
+    }
 }
-</code></pre><h4 id="运行">运行</h4><pre><code><span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>ss-server -c ~<span class="regexp">/ssconfig.json -f /</span>tmp<span class="regexp">/ss1.pid</span>
-</code></pre><p>这时候，打开客户端，设置相关参数就可以了，之后，可以用非 ROOT 用户运行 ss</p>
-<pre><code><span class="preprocessor"># 创建 hzq 用户</span>
-useradd hzq
-<span class="preprocessor"># 为hzq创建密码</span>
-passwd hzq
-&gt; 输入两次密码
-<span class="preprocessor"># 切换用户至hzq</span>
-su - hzq
-<span class="preprocessor"># 在主目录创建第一个配置文件，配置格式请参考`使用配置文件运行`一节</span>
-vim ~/ssconfig.json
 
-<span class="preprocessor"># 保存完毕即可立即运行</span>
-/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid
+<span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);
+appendDataToElement(ul, data);
+</code></pre><p>如果使用这种方法， data 数组中的每一个新条目被增加到 DOM 树中都会导致重绘，我们可以此用第一种方法，改变需要重排元素的 display 属性，从而使其脱离文档流，添加完成后，在修改 display 属性，使其添加回文档流中，代码如下：</p>
+<pre><code>var <span class="variable">ul =</span> document.getElementById(<span class="string">"test"</span>);
+ul.style.<span class="variable">display =</span> <span class="string">"none"</span>;
+appendDataToElementById(ul, data);
+ul.style.<span class="variable">display =</span> <span class="string">"block"</span>
+</code></pre><p>第二种减少重排的方法就是使用文档片段，代码如下：</p>
+<pre><code><span class="reserved">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment();
+appendDataToElement(fragment, data);
+<span class="reserved">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);
+ul.appendChild(fragment);
+</code></pre><p>第三种方式，需要为原节点创建一个镜像，添加完成后，再替换原来的DOM节点，代码如下：</p>
+<pre><code>var ul = document.getElementById(<span class="string">"test"</span>);
+var <span class="built_in">clone</span>Ul = ul.cloneNode(<span class="literal">true</span>);
+appendDataToElement(<span class="built_in">clone</span>Ul, data);
+ul.parentNode.replaceChild(<span class="built_in">clone</span>Ul,ul);
+</code></pre><p>推荐使用第二种方案，它操作DOM的次数最少。</p>
+<h3 id="缓存布局信息">缓存布局信息</h3><p>我们在用定时器写动画的时候，经常会出现这种写法：</p>
+<pre><code>var es = <span class="keyword">el</span>.style;
+es.<span class="keyword">left</span> = <span class="number">1</span> + <span class="keyword">el</span>.offsetLeft + <span class="string">"px"</span>;
+es.top = <span class="number">1</span> + <span class="keyword">el</span>.offsetTop + <span class="string">"px"</span>;
+</code></pre><p>前面说过，这种写法会使浏览器强制重排获取正确的属性值，每次 ＋1 都会触发重排，我们可以将移动信息做缓存，如下</p>
+<pre><code>var <span class="variable">es =</span> el.style, <span class="variable">positionNum =</span> el.offsetLeft;
+es.<span class="variable">left =</span> ++positionNum;
+</code></pre><p>这样，我们就避免了，多次重排!</p>
 
-<span class="preprocessor"># 设置开启自启动</span>
-<span class="preprocessor"># 我们先切换至root用户</span>
-su - root
-
-<span class="preprocessor"># 接着在启动脚本里加入启动命令</span>
-<span class="preprocessor"># 指定ss以用户hzq的权限运行</span>
-<span class="preprocessor"># 执行下面的命令时一定注意文件路径是否正确</span>
-echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/config1.json -f /tmp/ss1.pid\""</span> &gt;&gt; /etc/rc.local
-</code></pre><h2 id="总结">总结</h2><pre><code>打开 Google ，熟悉的页面又出来了，终于有网了！
-</code></pre>
         
       </div>
     
@@ -228,26 +269,16 @@ echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/c
     
       <div class="post-footer">
         
-          <div class="post-tags">
-            
-              <a href="/tags/生活/">
-                #生活
-              </a>
-            
-          </div>
-        
 
         
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/12/09/20150901_Repaints-and Reflows/"></a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a>
+                <a href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a>
               
             </div>
           </div>
@@ -343,7 +374,7 @@ echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/c
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#购买_VPS"><span class="nav-number">2.</span> <span class="nav-text">购买 VPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置主机"><span class="nav-number">3.</span> <span class="nav-text">设置主机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更换系统"><span class="nav-number">3.1.</span> <span class="nav-text">更换系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取ROOT用户密码"><span class="nav-number">3.2.</span> <span class="nav-text">获取ROOT用户密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用搬瓦工的Shadowsocks_Server"><span class="nav-number">3.3.</span> <span class="nav-text">使用搬瓦工的Shadowsocks Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用_shadowsocks-libev"><span class="nav-number">3.4.</span> <span class="nav-text">使用 shadowsocks-libev</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装必要组件"><span class="nav-number">3.4.1.</span> <span class="nav-text">安装必要组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载及编译_shadowsocks-libev"><span class="nav-number">3.4.2.</span> <span class="nav-text">下载及编译 shadowsocks-libev</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建_ssconfig-json_文件"><span class="nav-number">3.4.3.</span> <span class="nav-text">创建 ssconfig.json 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行"><span class="nav-number">3.4.4.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#何时重排"><span class="nav-number">1.</span> <span class="nav-text">何时重排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少重排和重绘"><span class="nav-number">2.</span> <span class="nav-text">减少重排和重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染树队列的队列与刷新"><span class="nav-number">2.1.</span> <span class="nav-text">渲染树队列的队列与刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化代码"><span class="nav-number">2.2.</span> <span class="nav-text">优化代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量修改_DOM"><span class="nav-number">2.3.</span> <span class="nav-text">批量修改 DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存布局信息"><span class="nav-number">2.4.</span> <span class="nav-text">缓存布局信息</span></a></li></ol></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -900,8 +931,8 @@ echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/c
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/12/04/20151204_use-shadowsocks/';
-      var disqus_url = 'http://imhzq.com/2015/12/04/20151204_use-shadowsocks/';
+      var disqus_identifier = '2015/12/09/20150901_Repaints-and Reflows/';
+      var disqus_url = 'http://imhzq.com/2015/12/09/20150901_Repaints-and Reflows/';
 
       (function(){
         var dsq = document.createElement('script');
