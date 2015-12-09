@@ -20,29 +20,9 @@
 
 
 
+	<meta name="keywords" content="Css,前端," />
 
-    <meta name="keywords" content="和志强,前端,.NET,兴趣使然的键盘操纵者,不错的YoungBoy,螳臂当车的歹徒" />
-
-
-
-
-
-    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?92cb7623497952db1be6bc0d39851ee4";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-  <title>  // ICEDOM </title>
+  <title> 重排与重绘 // ICEDOM </title>
 </head>
 
 <body>
@@ -131,7 +111,7 @@
           
           
             
-              
+              重排与重绘
             
           
         </h1>
@@ -140,11 +120,22 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-12-09
+            发表于 2015-08-31
           
         </span>
 
         
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/CSS/">CSS</a>
+
+                
+                
+
+              
+            </span>
           
         
 
@@ -152,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/12/09/20150901_Repaints-and Reflows/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/09/20150901_Repaints-and Reflows/"></span>
+            <a href="/2015/09/01/20150901_Repaints-and Reflows/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/20150901_Repaints-and Reflows/"></span>
             </a>
           </span>
           
@@ -168,11 +159,7 @@
         
 
         
-          <p>title: “重排与重绘”<br>date: 2015-09-01<br>categories: “CSS”<br>tags:</p>
-<pre><code>-<span class="ruby"> <span class="constant">CSS</span>
-</span>-<span class="ruby"> 前端</span>
-</code></pre><hr>
-<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
+          <p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
 <p>DOM树： 表示页面结构</p>
 <p>渲染树： 表示 DOM 节点如何显示</p>
 <p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
@@ -269,16 +256,30 @@ es.<span class="variable">left =</span> ++positionNum;
     
       <div class="post-footer">
         
+          <div class="post-tags">
+            
+              <a href="/tags/Css/">
+                #Css
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
 
         
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
+                <a href="/2015/10/24/20151024_type-script-anders-hejlsberg/">参加与大师面对面活动后的小心思</a>
+              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a>
+                <a href="/2015/04/19/20150419_learn-sass-basesyntax/">Sass系列之基本语法</a>
               
             </div>
           </div>
@@ -931,8 +932,8 @@ es.<span class="variable">left =</span> ++positionNum;
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/12/09/20150901_Repaints-and Reflows/';
-      var disqus_url = 'http://imhzq.com/2015/12/09/20150901_Repaints-and Reflows/';
+      var disqus_identifier = '2015/09/01/20150901_Repaints-and Reflows/';
+      var disqus_url = 'http://imhzq.com/2015/09/01/20150901_Repaints-and Reflows/';
 
       (function(){
         var dsq = document.createElement('script');

@@ -134,101 +134,6 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/09/20150901_Repaints-and Reflows/">
-                未命名
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-12-09
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/12/09/20150901_Repaints-and Reflows/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/09/20150901_Repaints-and Reflows/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <p>title: “重排与重绘”<br>date: 2015-09-01<br>categories: “CSS”<br>tags:</p>
-<pre><code>-<span class="ruby"> <span class="constant">CSS</span>
-</span>-<span class="ruby"> 前端</span>
-</code></pre><hr>
-<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
-<p>DOM树： 表示页面结构</p>
-<p>渲染树： 表示 DOM 节点如何显示</p>
-<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
-<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
-<h2 id="何时重排">何时重排</h2><ol>
-<li>页面渲染器初始化的时候</li>
-<li>浏览器窗口发生尺寸变化时</li>
-<li>删除或添加新的可见 DOM 元素</li>
-<li>元素的位置改变</li>
-<li>元素的盒子模型发生变化</li>
-<li>元素内容发生变化（引起盒子模型发生变化）</li>
-</ol>
-<h2 id="减少重排和重绘">减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="/2015/12/09/20150901_Repaints-and Reflows/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2015/12/04/20151204_use-shadowsocks/">
                 拥抱自由shadowsocks
               </a>
@@ -955,6 +860,120 @@ span{
             
               <a href="/tags/生活/">
                 #-生活
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/01/20150901_Repaints-and Reflows/">
+                重排与重绘
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-08-31
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/CSS/">CSS</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/01/20150901_Repaints-and Reflows/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/01/20150901_Repaints-and Reflows/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
+<p>DOM树： 表示页面结构</p>
+<p>渲染树： 表示 DOM 节点如何显示</p>
+<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
+<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
+<h2 id="何时重排">何时重排</h2><ol>
+<li>页面渲染器初始化的时候</li>
+<li>浏览器窗口发生尺寸变化时</li>
+<li>删除或添加新的可见 DOM 元素</li>
+<li>元素的位置改变</li>
+<li>元素的盒子模型发生变化</li>
+<li>元素内容发生变化（引起盒子模型发生变化）</li>
+</ol>
+<h2 id="减少重排和重绘">减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
+            <div class="post-more-link text-center">
+              <a class="btn" href="/2015/09/01/20150901_Repaints-and Reflows/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Css/">
+                #Css
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
               </a>
             
           </div>
