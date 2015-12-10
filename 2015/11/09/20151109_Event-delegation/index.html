@@ -20,9 +20,9 @@
 
 
 
-	<meta name="keywords" content="生活," />
+	<meta name="keywords" content="javascript,前端," />
 
-  <title> 第一篇文章 // ICEDOM </title>
+  <title> 事件委托 // ICEDOM </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              第一篇文章
+              事件委托
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            Posted on 2015-04-09
+            Posted on 2015-11-08
           
         </span>
 
@@ -129,7 +129,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; In
               
-                <a href="/categories/生活/">生活</a>
+                <a href="/categories/javascript/">javascript</a>
 
                 
                 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/04/10/20150410_first-article/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/10/20150410_first-article/"></span>
+            <a href="/2015/11/09/20151109_Event-delegation/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/09/20151109_Event-delegation/"></span>
             </a>
           </span>
           
@@ -159,10 +159,81 @@
         
 
         
-          <p>折腾来折腾去，总算是有个家了！</p>
-<p>两个月前搭建起来这个博客，到现在才决心要好好维护下去，真是惭愧啊。</p>
-<p>总之，今后我会在这里记录写生活琐碎、音乐、技术分享等等。</p>
-<p>博客由 <a href="http://hexo.io" target="_blank" rel="external">hexo</a> 驱动，部署于 <a href="https://github.com/Simlesos" target="_blank" rel="external">github</a></p>
+          <p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，此时对每一个富交互应用的网页来说都是一个拥堵的时刻。事件绑定占用了处理事件，而且，浏览器需要跟踪每个事件处理器，这也会占用更多的内存。</p>
+<p>一种简单的 DOM 事件处理技术就是事件委托。</p>
+<p>根据 DOM 标准，每个事件都要经历三个阶段</p>
+<ol>
+<li>捕获（IE不支持）</li>
+<li>到达目标</li>
+<li>冒泡 </li>
+</ol>
+<a id="more"></a>
+<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/646E5068-FD77-4934-8981-04596183F3F1.png" alt="img"></p>
+<p>对事件委托来说，冒泡就够了，比如说我们想要给下面这段代码中每个 a 标签增加一个点击事件</p>
+<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"links"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</code></pre><p>可以把 onclick 事件绑定在 ul 元素上，然后通过 event.target 获得当前冒泡事件对象，再根据业务逻辑判断是否是目标元素的点击事件</p>
+<pre><code><span class="keyword">var</span> <span class="keyword">list</span> = document.getElementById(<span class="string">"links"</span>);
+<span class="keyword">var</span> handler = function (<span class="keyword">e</span>){
+    <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
+    <span class="keyword">e</span>.preventDefault();
+    <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
+    <span class="keyword">if</span>(target.nodeName !== <span class="string">"A"</span>) <span class="keyword">return</span>;
+    console.<span class="literal">log</span>(target.nodeName + <span class="string">": "</span> + target.textContent);
+};
+
+<span class="keyword">if</span>(<span class="keyword">list</span>.addEventListener){
+    <span class="keyword">list</span>.addEventListener(<span class="string">"click"</span>, handler, false);
+}<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">list</span>.attachEvent){
+    <span class="keyword">list</span>.attachEvent(<span class="string">"onclick"</span>, handler);
+}<span class="keyword">else</span>{
+    <span class="keyword">list</span>[<span class="string">"onclick"</span>] = handler;
+}
+</code></pre><p>我们可以简单的封装个函数：</p>
+<pre><code><span class="comment">/**
+     *
+     * @param dom 委托对象
+     * @param nodeName 目标元素 nodeName
+     * @param type 事件类型
+     * @param cb 事件执行函数
+     */</span>
+    function delegation(dom,nodeName, <span class="keyword">type</span>, cb){
+        <span class="keyword">var</span> handler = function(<span class="keyword">e</span>){
+            <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
+            <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
+            <span class="keyword">if</span>(target.nodeName !== nodeName.toUpperCase()) <span class="keyword">return</span>;
+            cb(<span class="keyword">e</span>);
+            <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">e</span>.preventDefault === 'function'){
+                <span class="keyword">e</span>.preventDefault();
+                <span class="keyword">e</span>.stopPropagation();
+            }<span class="keyword">else</span>{
+                <span class="keyword">e</span>.returnValue = false;
+                <span class="keyword">e</span>.cancelBubble = true;
+            }
+        };
+
+        <span class="keyword">if</span>(dom.addEventListener){
+            dom.addEventListener(<span class="keyword">type</span>, handler,false);
+        }<span class="keyword">else</span> <span class="keyword">if</span>(dom.attachEvent){
+            dom.attachEvent(<span class="string">"on"</span> + <span class="keyword">type</span>, handler);
+        }<span class="keyword">else</span>{
+            dom[<span class="string">"on"</span> + <span class="keyword">type</span>] = handler;
+        }
+
+        <span class="keyword">return</span> handler;
+    }
+</code></pre><p>使用起来，直接调用</p>
+<pre><code><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementById(<span class="string">"links"</span>);
+delegation(links, <span class="string">"a"</span>, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>{
+    <span class="keyword">var</span> target = e.target || e.srcElement;
+    <span class="built_in">console</span>.log(target.nodeName + <span class="string">":"</span> + target.textContent);
+});
+</code></pre><p>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
 
         
       </div>
@@ -173,8 +244,12 @@
         
           <div class="post-tags">
             
-              <a href="/tags/生活/">
-                #生活
+              <a href="/tags/javascript/">
+                #javascript
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
               </a>
             
           </div>
@@ -184,11 +259,13 @@
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/04/17/20150417_learn-sass-step/">Sass系列之安装</a>
+                <a href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a>
               
             </div>
 
             <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a>
               
             </div>
           </div>
@@ -841,8 +918,8 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/04/10/20150410_first-article/';
-      var disqus_url = 'http://imhzq.com/2015/04/10/20150410_first-article/';
+      var disqus_identifier = '2015/11/09/20151109_Event-delegation/';
+      var disqus_url = 'http://imhzq.com/2015/11/09/20151109_Event-delegation/';
 
       (function(){
         var dsq = document.createElement('script');
