@@ -4,7 +4,7 @@
   <subtitle><![CDATA[ICEDOM]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-12T13:32:09.000Z</updated>
+  <updated>2015-12-12T13:33:42.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://imhzq.com/2015/12/05/20151205_js-this/"/>
     <id>http://imhzq.com/2015/12/05/20151205_js-this/</id>
     <published>2015-12-04T16:00:00.000Z</published>
-    <updated>2015-12-12T13:32:09.000Z</updated>
+    <updated>2015-12-12T13:33:42.000Z</updated>
     <content type="html"><![CDATA[<p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
