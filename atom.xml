@@ -65,7 +65,7 @@
     <link href="http://imhzq.com/2015/12/04/20151204_use-shadowsocks/"/>
     <id>http://imhzq.com/2015/12/04/20151204_use-shadowsocks/</id>
     <published>2015-12-03T16:00:00.000Z</published>
-    <updated>2015-12-12T14:10:44.000Z</updated>
+    <updated>2015-12-12T14:13:49.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>从 2013 年开始用 <a href="http://jproxy.io/" target="_blank" rel="external">jproxy</a> 已经3年了，最终她也没能逃过魔掌:( ，感谢 <a href="http://weibo.com/xiaojay#_rnd1449301836815" target="_blank" rel="external">xiaojay</a> 大大期间不断的维护！</p>
 <p>Google 不能访问就好像断网了一样难受，回想那几个小时简直痛不欲生啊！用百度简直想吐，竞价排名去死吧！思来想去，一不做二不休，自己搭个⬆吧！</p>
 <h2 id="u8D2D_u4E70_VPS"><a href="#u8D2D_u4E70_VPS" class="headerlink" title="购买 VPS"></a>购买 VPS</h2><p>选来选去，还是选了<a href="https://bandwagonhost.com/index.php" target="_blank" rel="external">搬瓦工</a>，买了$19.99 一年的套餐，配置如下：</p>
