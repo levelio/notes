@@ -9,68 +9,68 @@
 <a id="more"></a>
 <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/646E5068-FD77-4934-8981-04596183F3F1.png" alt="img"></p>
 <p>对事件委托来说，冒泡就够了，比如说我们想要给下面这段代码中每个 a 标签增加一个点击事件</p>
-<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"links"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+<pre><code>&lt;ul id=&quot;links&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </code></pre><p>可以把 onclick 事件绑定在 ul 元素上，然后通过 event.target 获得当前冒泡事件对象，再根据业务逻辑判断是否是目标元素的点击事件</p>
-<pre><code><span class="keyword">var</span> <span class="keyword">list</span> = document.getElementById(<span class="string">"links"</span>);
-<span class="keyword">var</span> handler = function (<span class="keyword">e</span>){
-    <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
-    <span class="keyword">e</span>.preventDefault();
-    <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
-    <span class="keyword">if</span>(target.nodeName !== <span class="string">"A"</span>) <span class="keyword">return</span>;
-    console.<span class="literal">log</span>(target.nodeName + <span class="string">": "</span> + target.textContent);
+<pre><code>var list = document.getElementById(&quot;links&quot;);
+var handler = function (e){
+    e = e || window.event;
+    e.preventDefault();
+    var target = e.target || e.srcElement;
+    if(target.nodeName !== &quot;A&quot;) return;
+    console.log(target.nodeName + &quot;: &quot; + target.textContent);
 };
 
-<span class="keyword">if</span>(<span class="keyword">list</span>.addEventListener){
-    <span class="keyword">list</span>.addEventListener(<span class="string">"click"</span>, handler, false);
-}<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">list</span>.attachEvent){
-    <span class="keyword">list</span>.attachEvent(<span class="string">"onclick"</span>, handler);
-}<span class="keyword">else</span>{
-    <span class="keyword">list</span>[<span class="string">"onclick"</span>] = handler;
+if(list.addEventListener){
+    list.addEventListener(&quot;click&quot;, handler, false);
+}else if(list.attachEvent){
+    list.attachEvent(&quot;onclick&quot;, handler);
+}else{
+    list[&quot;onclick&quot;] = handler;
 }
 </code></pre><p>我们可以简单的封装个函数：</p>
-<pre><code><span class="comment">/**
+<pre><code>/**
      *
      * @param dom 委托对象
      * @param nodeName 目标元素 nodeName
      * @param type 事件类型
      * @param cb 事件执行函数
-     */</span>
-    function delegation(dom,nodeName, <span class="keyword">type</span>, cb){
-        <span class="keyword">var</span> handler = function(<span class="keyword">e</span>){
-            <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
-            <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
-            <span class="keyword">if</span>(target.nodeName !== nodeName.toUpperCase()) <span class="keyword">return</span>;
-            cb(<span class="keyword">e</span>);
-            <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">e</span>.preventDefault === 'function'){
-                <span class="keyword">e</span>.preventDefault();
-                <span class="keyword">e</span>.stopPropagation();
-            }<span class="keyword">else</span>{
-                <span class="keyword">e</span>.returnValue = false;
-                <span class="keyword">e</span>.cancelBubble = true;
+     */
+    function delegation(dom,nodeName, type, cb){
+        var handler = function(e){
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            if(target.nodeName !== nodeName.toUpperCase()) return;
+            cb(e);
+            if(typeof e.preventDefault === &apos;function&apos;){
+                e.preventDefault();
+                e.stopPropagation();
+            }else{
+                e.returnValue = false;
+                e.cancelBubble = true;
             }
         };
 
-        <span class="keyword">if</span>(dom.addEventListener){
-            dom.addEventListener(<span class="keyword">type</span>, handler,false);
-        }<span class="keyword">else</span> <span class="keyword">if</span>(dom.attachEvent){
-            dom.attachEvent(<span class="string">"on"</span> + <span class="keyword">type</span>, handler);
-        }<span class="keyword">else</span>{
-            dom[<span class="string">"on"</span> + <span class="keyword">type</span>] = handler;
+        if(dom.addEventListener){
+            dom.addEventListener(type, handler,false);
+        }else if(dom.attachEvent){
+            dom.attachEvent(&quot;on&quot; + type, handler);
+        }else{
+            dom[&quot;on&quot; + type] = handler;
         }
 
-        <span class="keyword">return</span> handler;
+        return handler;
     }
 </code></pre><p>使用起来，直接调用</p>
-<pre><code><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementById(<span class="string">"links"</span>);
-delegation(links, <span class="string">"a"</span>, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>{
-    <span class="keyword">var</span> target = e.target || e.srcElement;
-    <span class="built_in">console</span>.log(target.nodeName + <span class="string">":"</span> + target.textContent);
+<pre><code>var links = document.getElementById(&quot;links&quot;);
+delegation(links, &quot;a&quot;, &quot;click&quot;, function(e){
+    var target = e.target || e.srcElement;
+    console.log(target.nodeName + &quot;:&quot; + target.textContent);
 });
 </code></pre><p>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
 </div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/12/04/20151204_use-shadowsocks/" class="pre"><i class="icon-previous">拥抱自由shadowsocks</i></a><a href="/2015/11/08/20151108_simplifying-css-selectors/" class="next">CSS选择器优化<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';

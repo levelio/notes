@@ -1,21 +1,21 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>当line-height小于font-size时发生了什么 | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">当line-height小于font-size时发生了什么</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">当line-height小于font-size时发生了什么</h1><div class="post-meta">2015-11-07 | <span class="categories">分类于<a href="/categories/CSS/"> CSS</a></span></div><span data-disqus-identifier="2015/11/07/20151107_talk-line-height/" class="disqus-comment-count"></span><div class="post-content"><h2 id="前言">前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
-<h2 id="Demo1">Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
-<pre><code>.<span class="built_in">box</span>{
-    <span class="variable">height</span>: <span class="number">300</span>px;
-    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>当line-height小于font-size时发生了什么 | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">当line-height小于font-size时发生了什么</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">当line-height小于font-size时发生了什么</h1><div class="post-meta">2015-11-07 | <span class="categories">分类于<a href="/categories/CSS/"> CSS</a></span></div><span data-disqus-identifier="2015/11/07/20151107_talk-line-height/" class="disqus-comment-count"></span><div class="post-content"><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
+<h2 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
+<pre><code>.box{
+    height: 300px;
+    background-color: yellowgreen;
 }
 p{
-    font-<span class="built_in">size</span>: <span class="number">16</span>px;
-    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;
+    font-size: 16px;
+    line-height: 1.5;
 }
 span{
-    font-<span class="built_in">size</span>: <span class="number">100</span>px;
-    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;
+    font-size: 100px;
+    line-height: 20px;
 }
 
-&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
-&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;
-&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;
+&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
+&lt;p&gt;ABCDEFG&lt;span class=&quot;test&quot;&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;
+&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
 </code></pre><a id="more"></a>
 <p>起初，我一直不能明白 20px 的 line-height 减去 100px 的 font-size，得到上下两个半行间距各为 -40px，最后 span 元素的 inline-box 应该是 20px 啊，那为啥 p 元素的 line-box 远远大于这个值啊，难道是内容区将其撑开了？百思不得其姐啊！</p>
 <p>又仔细翻阅了下权威指南相关介绍，啊！我果然还是太年轻了，这里我天真的以为两个负的半行间距会导致 span 元素的 inline-box 下沉,然而并不会，我做了个简单的效果图：</p>

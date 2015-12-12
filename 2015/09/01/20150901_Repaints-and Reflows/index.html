@@ -3,7 +3,7 @@
 <p>渲染树： 表示 DOM 节点如何显示</p>
 <p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
 <p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
-<h2 id="何时重排">何时重排</h2><ol>
+<h2 id="u4F55_u65F6_u91CD_u6392"><a href="#u4F55_u65F6_u91CD_u6392" class="headerlink" title="何时重排"></a>何时重排</h2><ol>
 <li>页面渲染器初始化的时候</li>
 <li>浏览器窗口发生尺寸变化时</li>
 <li>删除或添加新的可见 DOM 元素</li>
@@ -11,26 +11,26 @@
 <li>元素的盒子模型发生变化</li>
 <li>元素内容发生变化（引起盒子模型发生变化）</li>
 </ol>
-<h2 id="减少重排和重绘">减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
+<h2 id="u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8"><a href="#u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8" class="headerlink" title="减少重排和重绘"></a>减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
 <a id="more"></a>
-<h3 id="渲染树队列的队列与刷新">渲染树队列的队列与刷新</h3><p>大多数浏览器都会优化这个队列，通过批量执行等方式来优化重排过程，然而你可能会不经意间强制要求浏览器放弃优化，立即执行队列并刷新。</p>
+<h3 id="u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0"><a href="#u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0" class="headerlink" title="渲染树队列的队列与刷新"></a>渲染树队列的队列与刷新</h3><p>大多数浏览器都会优化这个队列，通过批量执行等方式来优化重排过程，然而你可能会不经意间强制要求浏览器放弃优化，立即执行队列并刷新。</p>
 <p>调用下面这些方法时，浏览器为了能返回正确的数据，会立即触发重排：</p>
 <pre><code>offsetTop, offsetLeft, offsetWidth, offsetHeight
 scrollTop, scrollLeft, scrollWidth, scrollHeight
 clientTop, clientLift, clientWidth, clientHeight
-<span class="function"><span class="title">getComputedStyle</span><span class="params">()</span></span>
-</code></pre><h3 id="优化代码">优化代码</h3><p>考虑这个例子：</p>
-<pre><code>var <span class="keyword">el</span> = document.getElementById(<span class="string">"header"</span>);
-<span class="keyword">el</span>.style.borderLeft = <span class="string">'1px'</span>;
-<span class="keyword">el</span>.style.borderRight = <span class="string">'2px'</span>;
-<span class="keyword">el</span>.style.margin = <span class="string">'3px'</span>;
+getComputedStyle()
+</code></pre><h3 id="u4F18_u5316_u4EE3_u7801"><a href="#u4F18_u5316_u4EE3_u7801" class="headerlink" title="优化代码"></a>优化代码</h3><p>考虑这个例子：</p>
+<pre><code>var el = document.getElementById(&quot;header&quot;);
+el.style.borderLeft = &apos;1px&apos;;
+el.style.borderRight = &apos;2px&apos;;
+el.style.margin = &apos;3px&apos;;
 </code></pre><p>一般情况下，浏览器会优化这个，只发生一次重排。但是，如果在这期间有其他代码请求布局信息，会导致浏览器三次重排。一个更高效的方法就是，使用 cssText，只修改一次 DOM：</p>
-<pre><code><span class="reserved">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);
-el.style.cssText += <span class="string">"border-left:1px;border-right:2px;margin:3px;"</span>;
+<pre><code>var el = document.getElementById(&quot;header&quot;);
+el.style.cssText += &quot;border-left:1px;border-right:2px;margin:3px;&quot;;
 </code></pre><p>另一个方法是修改元素的 class 名称，这种方法更清晰，更易维护，但是会带来轻微的性能营销，因为改变类时需要检查及联样式。</p>
-<pre><code><span class="reserved">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);
-el.className = <span class="string">"active"</span>;
-</code></pre><h3 id="批量修改_DOM">批量修改 DOM</h3><p>当需要对 DOM 元素进行一连串的操作时，可以先让元素脱离文档流，然后对其应用多重改变，再把元素加入文档流。第一步和第三步会触发两次重排，如果不这么做，第二步做的任何修改都会触发一次重排。</p>
+<pre><code>var el = document.getElementById(&quot;header&quot;);
+el.className = &quot;active&quot;;
+</code></pre><h3 id="u6279_u91CF_u4FEE_u6539_DOM"><a href="#u6279_u91CF_u4FEE_u6539_DOM" class="headerlink" title="批量修改 DOM"></a>批量修改 DOM</h3><p>当需要对 DOM 元素进行一连串的操作时，可以先让元素脱离文档流，然后对其应用多重改变，再把元素加入文档流。第一步和第三步会触发两次重排，如果不这么做，第二步做的任何修改都会触发一次重排。</p>
 <p>那么怎么才能让元素脱离文档流哪？ 有三种基本方法：</p>
 <ol>
 <li>隐藏元素，应用修改，重新显示</li>
@@ -38,54 +38,54 @@ el.className = <span class="string">"active"</span>;
 <li>创建一个需要修改节点的镜像，然后修改镜像，再用镜像替换原节点</li>
 </ol>
 <p>比如我们需要向列表中添加一些项，如下</p>
-<pre><code><span class="xml"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url1"</span>&gt;</span>Name1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url2"</span>&gt;</span>Name2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+<pre><code>&lt;ul id=&quot;test&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;url1&quot;&gt;Name1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;url2&quot;&gt;Name2&lt;/a&gt;&lt;/li&gt;
+&lt;ul&gt;
 
 var data = [
-    </span><span class="expression">{<span class="variable">url</span>: <span class="string">"url1"</span>, <span class="variable">name</span>: <span class="string">"Name1"</span>}</span><span class="xml">,
-    </span><span class="expression">{<span class="variable">url</span>: <span class="string">"url2"</span>, <span class="variable">name</span>: <span class="string">"Name2"</span>}</span><span class="xml">
-]</span>
+    {url: &quot;url1&quot;, name: &quot;Name1&quot;},
+    {url: &quot;url2&quot;, name: &quot;Name2&quot;}
+]
 </code></pre><p>我们写一个添加的函数</p>
-<pre><code><span class="function"><span class="keyword">function</span> <span class="title">appendDataToElement</span><span class="params">(to, data)</span></span>{
-    <span class="keyword">var</span> link, li, item;
-    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++){
+<pre><code>function appendDataToElement(to, data){
+    var link, li, item;
+    for(var i = 0, len = data.length; i &lt; len; i++){
         item = data[i];
-        link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);
+        link = document.createElement(&apos;a&apos;);
         link.href = item.url;
-        link.appendChild(<span class="built_in">document</span>.createTextNode(item.name));
-        li = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);
+        link.appendChild(document.createTextNode(item.name));
+        li = document.createElement(&quot;li&quot;);
         li.appendChild(link);
         to.appendChild(li);
     }
 }
 
-<span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);
+var ul = document.getElementById(&quot;test&quot;);
 appendDataToElement(ul, data);
 </code></pre><p>如果使用这种方法， data 数组中的每一个新条目被增加到 DOM 树中都会导致重绘，我们可以此用第一种方法，改变需要重排元素的 display 属性，从而使其脱离文档流，添加完成后，在修改 display 属性，使其添加回文档流中，代码如下：</p>
-<pre><code>var <span class="variable">ul =</span> document.getElementById(<span class="string">"test"</span>);
-ul.style.<span class="variable">display =</span> <span class="string">"none"</span>;
+<pre><code>var ul = document.getElementById(&quot;test&quot;);
+ul.style.display = &quot;none&quot;;
 appendDataToElementById(ul, data);
-ul.style.<span class="variable">display =</span> <span class="string">"block"</span>
+ul.style.display = &quot;block&quot;
 </code></pre><p>第二种减少重排的方法就是使用文档片段，代码如下：</p>
-<pre><code><span class="reserved">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment();
+<pre><code>var fragment = document.createDocumentFragment();
 appendDataToElement(fragment, data);
-<span class="reserved">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);
+var ul = document.getElementById(&quot;test&quot;);
 ul.appendChild(fragment);
 </code></pre><p>第三种方式，需要为原节点创建一个镜像，添加完成后，再替换原来的DOM节点，代码如下：</p>
-<pre><code>var ul = document.getElementById(<span class="string">"test"</span>);
-var <span class="built_in">clone</span>Ul = ul.cloneNode(<span class="literal">true</span>);
-appendDataToElement(<span class="built_in">clone</span>Ul, data);
-ul.parentNode.replaceChild(<span class="built_in">clone</span>Ul,ul);
+<pre><code>var ul = document.getElementById(&quot;test&quot;);
+var cloneUl = ul.cloneNode(true);
+appendDataToElement(cloneUl, data);
+ul.parentNode.replaceChild(cloneUl,ul);
 </code></pre><p>推荐使用第二种方案，它操作DOM的次数最少。</p>
-<h3 id="缓存布局信息">缓存布局信息</h3><p>我们在用定时器写动画的时候，经常会出现这种写法：</p>
-<pre><code>var es = <span class="keyword">el</span>.style;
-es.<span class="keyword">left</span> = <span class="number">1</span> + <span class="keyword">el</span>.offsetLeft + <span class="string">"px"</span>;
-es.top = <span class="number">1</span> + <span class="keyword">el</span>.offsetTop + <span class="string">"px"</span>;
+<h3 id="u7F13_u5B58_u5E03_u5C40_u4FE1_u606F"><a href="#u7F13_u5B58_u5E03_u5C40_u4FE1_u606F" class="headerlink" title="缓存布局信息"></a>缓存布局信息</h3><p>我们在用定时器写动画的时候，经常会出现这种写法：</p>
+<pre><code>var es = el.style;
+es.left = 1 + el.offsetLeft + &quot;px&quot;;
+es.top = 1 + el.offsetTop + &quot;px&quot;;
 </code></pre><p>前面说过，这种写法会使浏览器强制重排获取正确的属性值，每次 ＋1 都会触发重排，我们可以将移动信息做缓存，如下</p>
-<pre><code>var <span class="variable">es =</span> el.style, <span class="variable">positionNum =</span> el.offsetLeft;
-es.<span class="variable">left =</span> ++positionNum;
+<pre><code>var es = el.style, positionNum = el.offsetLeft;
+es.left = ++positionNum;
 </code></pre><p>这样，我们就避免了，多次重排!</p>
 </div><div class="tags"><a href="/tags/Css/">Css</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/10/24/20151024_type-script-anders-hejlsberg/" class="pre"><i class="icon-previous">参加与大师面对面活动后的小心思</i></a><a href="/2015/04/19/20150419_learn-sass-basesyntax/" class="next">Sass系列之基本语法<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/09/01/20150901_Repaints-and Reflows/';

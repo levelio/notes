@@ -1,36 +1,36 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>js中的this | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js中的this</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">js中的this</h1><div class="post-meta">2015-12-05 | <span class="categories">分类于<a href="/categories/javascript/"> javascript</a></span></div><span data-disqus-identifier="2015/12/05/20151205_js-this/" class="disqus-comment-count"></span><div class="post-content"><p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
-<h2 id="this">this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
 <li>作为对象的方法被调用</li>
 <li>作为普通数调用</li>
 <li>构造函数中调用</li>
 </ol>
 <a id="more"></a>
-<h3 id="作为对象的方法调用">作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
-<pre><code><span class="built_in">window</span>.saying = <span class="string">"大家都别吵了，给我赵日天一个面子！"</span>;
-    <span class="keyword">var</span> obj = {
-        saying: <span class="string">"我赵日天第一个表示不服！！"</span>,
-        getSaying: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
-            <span class="keyword">return</span> <span class="keyword">this</span>.saying;
+<h3 id="u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528"><a href="#u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528" class="headerlink" title="作为对象的方法调用"></a>作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
+<pre><code>window.saying = &quot;大家都别吵了，给我赵日天一个面子！&quot;;
+    var obj = {
+        saying: &quot;我赵日天第一个表示不服！！&quot;,
+        getSaying: function () {
+            return this.saying;
         }
     };
-<span class="built_in">console</span>.log(obj.getSaying());   <span class="comment">//我赵日天第一个表示不服！！</span>
-</code></pre><h3 id="作为普通函数调用">作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
-<pre><code><span class="keyword">var</span> getSaying2 = obj.getSaying;
-<span class="built_in">console</span>.log(getSaying2());   <span class="comment">//大家都别吵了，给我赵日天一个面子！</span>
+console.log(obj.getSaying());   //我赵日天第一个表示不服！！
+</code></pre><h3 id="u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528"><a href="#u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
+<pre><code>var getSaying2 = obj.getSaying;
+console.log(getSaying2());   //大家都别吵了，给我赵日天一个面子！
 </code></pre><p>当调用 obj.getSaying 时，getSaying 方法是作为 obj 对象的属性被调用的，this 指向 obj。</p>
 <p>当通过另一个变量 getSaying2 来引用 obj.getSaying 并调用时，是普通函数调用，this 指向 window 对象。</p>
 <p>这点经常会引发一个错误，比如，我们每次写 document.getElementById 会觉得太长了，可不可以替换成成一个短一些的函数，如下</p>
-<pre><code><span class="keyword">var</span> getId = <span class="built_in">document</span>.getElementById;
-getId(<span class="string">"box"</span>);   <span class="comment">//Error</span>
+<pre><code>var getId = document.getElementById;
+getId(&quot;box&quot;);   //Error
 </code></pre><p>这段代码会报错，因为 document.getElementById 方法内部需要用到 this。这个 this 本来应该指向 document 的，但我们通过引用的方式，再调用就成了普通函数调用了 this 指向了 window 而不是 document。</p>
 <p>我们可以通过apply 和 call 改变 this 的指向来修复。</p>
-<h3 id="作为构造函数调用">作为构造函数调用</h3><p>javascript 中没有类，但是可以从构造器中创建对象，并且提供了 new 运算符，使得看起来更像是在创建类。基本上除了一些内置函数外，大部分函数都可以当作构造函数使用，构造函数和普通函数一模一样，区别就在于被调用的方式。当用 new 运算符调用函数时，该函数就是构造函数，并会返回一个对象，通常情况下，其中的 this 指向的就是这个构造函数返回的那个对象。</p>
-<pre><code><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
-    <span class="keyword">this</span>.name = name;
+<h3 id="u4F5C_u4E3A_u6784_u9020_u51FD_u6570_u8C03_u7528"><a href="#u4F5C_u4E3A_u6784_u9020_u51FD_u6570_u8C03_u7528" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h3><p>javascript 中没有类，但是可以从构造器中创建对象，并且提供了 new 运算符，使得看起来更像是在创建类。基本上除了一些内置函数外，大部分函数都可以当作构造函数使用，构造函数和普通函数一模一样，区别就在于被调用的方式。当用 new 运算符调用函数时，该函数就是构造函数，并会返回一个对象，通常情况下，其中的 this 指向的就是这个构造函数返回的那个对象。</p>
+<pre><code>var Person = function(name){
+    this.name = name;
 }    
-<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">"赵日天"</span>);
-<span class="built_in">console</span>.log(obj.name); <span class="comment">// 赵日天</span>
+var obj = new Person(&quot;赵日天&quot;);
+console.log(obj.name); // 赵日天
 </code></pre></div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/12/04/20151204_use-shadowsocks/" class="next">拥抱自由shadowsocks<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/12/05/20151205_js-this/';
 var disqus_title = 'js中的this';
