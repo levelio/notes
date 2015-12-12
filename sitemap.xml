@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imhzq.com/about/index.html</loc>
+    <lastmod>2015-12-12T16:14:01.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
     <lastmod>2015-12-12T16:12:01.000Z</lastmod>
   </url>
@@ -64,11 +69,6 @@
   <url>
     <loc>http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/</loc>
     <lastmod>2015-12-12T15:12:21.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://imhzq.com/about/index.html</loc>
-    <lastmod>2015-11-19T08:46:08.000Z</lastmod>
   </url>
   
   <url>
