@@ -1,46 +1,48 @@
-extends base
-
-block title
-  title= page.title + " | " + config.title
-
-block content
-  .post.post-page
-    h1.post-title= page.title
-    .post-meta= page.date.format(config.date_format) + " | "
-      if page.categories.length > 0
-        span.categories= __('belongsto')
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= " " + category.name
-    if theme.duoshuo
-      span.ds-thread-count(data-thread-key=page.path)
-    if theme.disqus
-      span.disqus-comment-count(data-disqus-identifier=page.path)
-    if page.toc
-      div(class="clear")
-        div(id="toc" class="toc-article")
-          div(class="toc-title")= __('contents')
-          != toc(page.content)
-    .post-content
-      != page.content
-    if page.tags
-      .tags
-        for tag in page.tags.toArray()
-          a(href=url_for(tag.path))= tag.name
-    include _partial/post-nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-
-    include _partial/comments
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>js中的this | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js中的this</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">js中的this</h1><div class="post-meta">2015-12-05 | <span class="categories">分类于<a href="/categories/javascript/"> javascript</a></span></div><span data-disqus-identifier="2015/12/05/20151205_js-this/" class="disqus-comment-count"></span><div class="post-content"><p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
+<h2 id="this">this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
+<ol>
+<li>作为对象的方法被调用</li>
+<li>作为普通数调用</li>
+<li>构造函数中调用</li>
+</ol>
+<a id="more"></a>
+<h3 id="作为对象的方法调用">作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
+<pre><code><span class="built_in">window</span>.saying = <span class="string">"大家都别吵了，给我赵日天一个面子！"</span>;
+    <span class="keyword">var</span> obj = {
+        saying: <span class="string">"我赵日天第一个表示不服！！"</span>,
+        getSaying: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+            <span class="keyword">return</span> <span class="keyword">this</span>.saying;
+        }
+    };
+<span class="built_in">console</span>.log(obj.getSaying());   <span class="comment">//我赵日天第一个表示不服！！</span>
+</code></pre><h3 id="作为普通函数调用">作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
+<pre><code><span class="keyword">var</span> getSaying2 = obj.getSaying;
+<span class="built_in">console</span>.log(getSaying2());   <span class="comment">//大家都别吵了，给我赵日天一个面子！</span>
+</code></pre><p>当调用 obj.getSaying 时，getSaying 方法是作为 obj 对象的属性被调用的，this 指向 obj。</p>
+<p>当通过另一个变量 getSaying2 来引用 obj.getSaying 并调用时，是普通函数调用，this 指向 window 对象。</p>
+<p>这点经常会引发一个错误，比如，我们每次写 document.getElementById 会觉得太长了，可不可以替换成成一个短一些的函数，如下</p>
+<pre><code><span class="keyword">var</span> getId = <span class="built_in">document</span>.getElementById;
+getId(<span class="string">"box"</span>);   <span class="comment">//Error</span>
+</code></pre><p>这段代码会报错，因为 document.getElementById 方法内部需要用到 this。这个 this 本来应该指向 document 的，但我们通过引用的方式，再调用就成了普通函数调用了 this 指向了 window 而不是 document。</p>
+<p>我们可以通过apply 和 call 改变 this 的指向来修复。</p>
+<h3 id="作为构造函数调用">作为构造函数调用</h3><p>javascript 中没有类，但是可以从构造器中创建对象，并且提供了 new 运算符，使得看起来更像是在创建类。基本上除了一些内置函数外，大部分函数都可以当作构造函数使用，构造函数和普通函数一模一样，区别就在于被调用的方式。当用 new 运算符调用函数时，该函数就是构造函数，并会返回一个对象，通常情况下，其中的 this 指向的就是这个构造函数返回的那个对象。</p>
+<pre><code><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
+    <span class="keyword">this</span>.name = name;
+}    
+<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">"赵日天"</span>);
+<span class="built_in">console</span>.log(obj.name); <span class="comment">// 赵日天</span>
+</code></pre></div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/12/04/20151204_use-shadowsocks/" class="next">拥抱自由shadowsocks<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+var disqus_identifier = '2015/12/05/20151205_js-this/';
+var disqus_title = 'js中的this';
+var disqus_url = 'http://imhzq.com/2015/12/05/20151205_js-this/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//imhzq.disqus.com/count.js" async="async"></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://imhzq.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/梯子/">梯子</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/javascript/" style="font-size: 15px;">javascript</a><a href="/tags/前端/" style="font-size: 15px;">前端</a><a href="/tags/生活/" style="font-size: 15px;">生活</a><a href="/tags/CSS/" style="font-size: 15px;">CSS</a><a href="/tags/Css/" style="font-size: 15px;">Css</a><a href="/tags/HTML5/" style="font-size: 15px;">HTML5</a><a href="/tags/生活/" style="font-size: 15px;">-生活</a><a href="/tags/Sass/" style="font-size: 15px;">Sass</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/20151205_js-this/">js中的this</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/20151109_Event-delegation/">事件委托</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151101_new-tag-from-html5/">HTML5新增元素介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_cascading-and-inheritance/">CSS的层叠、特殊性和继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_way-use-void-in-js/">为什么要用href=javascript:void(0);</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/24/20151024_type-script-anders-hejlsberg/">参加与大师面对面活动后的小心思</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/20150901_Repaints-and Reflows/">重排与重绘</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//imhzq.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/" rel="nofollow">ICEDOM.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*newDate();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-62344719-1','auto');ga('send','pageview');</script></div></body></html>

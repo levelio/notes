@@ -1,46 +1,177 @@
-extends base
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>Sass系列之基本语法 | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Sass系列之基本语法</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Sass系列之基本语法</h1><div class="post-meta">2015-04-19 | <span class="categories">分类于<a href="/categories/CSS/"> CSS</a></span></div><span data-disqus-identifier="2015/04/19/20150419_learn-sass-basesyntax/" class="disqus-comment-count"></span><div class="post-content"><h2 id="sass_文件类型">sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
+<p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
+<pre><code><span class="id">#body</span>
+  <span class="attribute">background</span>: <span class="hexcolor">#fff</span>
+  <span class="id">#title</span>
+    <span class="attribute">margin</span>: <span class="number">0</span> <span class="attribute">auto</span>
+</code></pre><p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
+<pre><code><span class="id">#body</span>{
+    <span class="attribute">background</span>: <span class="hexcolor">#fff</span>;
+    <span class="id">#title</span>{
+    <span class="attribute">margin</span>: <span class="number">0</span> auto; 
+    }
+}
+</code></pre><p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
+<pre><code><span class="comment">//将 style.scss 转换为 style.sass</span>
+sass-convert style<span class="class">.scss</span> style.sass
+</code></pre><p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
+<a id="more"></a>
+<h2 id="编译">编译</h2><h3 id="sass_编译">sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css</p>
+<pre><code><span class="comment">//将 style.scss 编译成 style.css</span>
+sass style<span class="class">.scss</span> style.css
+</code></pre><p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
+<p>当然有，我们可以使用 compass 或者 gulp、grunt 来实现这项功能。</p>
+<p>gulp 和 grunt 是前端开发的脚手架，我们会在另外的文章里详细讲解，这里我们先简单介绍下 compass。</p>
+<h3 id="通过_compass_编译_sass">通过 compass 编译 sass</h3><p>我们现在安装 compass, 和 sass 一样，我们通过 gem 来安装 compass</p>
+<pre><code>gem <span class="keyword">install</span> compass
+</code></pre><p>通过 compass 初始化项目</p>
+<pre><code><span class="comment">//learn-sass 是要创建的项目文件夹</span>
+compass <span class="keyword">create</span> learn-sass
+</code></pre><p>打开我们的文件夹，文件结构就是这样的</p>
+<p>learn-sass<br><br>    &nbsp;&nbsp;|- .sass-cache<br><br>    &nbsp;&nbsp;|- sass<br><br>    &nbsp;&nbsp;|- stylesheets<br><br>    &nbsp;&nbsp;|- config.rb<br></p>
+<p><code>.sass-cache</code> 是 sass 编译缓存存放的地方</p>
+<p><code>sass</code> 存放的就是我们编写的 <em>.scss 和 </em>.sass 文件</p>
+<p><code>stylesheets</code> 里面是 compass 帮我们将 sass 文件夹内的 <em>.sass 和 </em>.scss 文件编译成的 css 文件</p>
+<p><code>config.rb</code> 里面是 compass 的配置信息，具体说明，我会在另外一篇文章中详细介绍</p>
+<p>执行 <code>compass watch</code> 后，修改 sass 中的文件，compass 会自动帮我们生成 css 到 stylesheets 文件夹中</p>
+<h2 id="基本语法">基本语法</h2><h3 id="变量声明">变量声明</h3><p>是的，css 中，可以像其他语言一样声明变量了，声明方式以 $ 符开头</p>
+<pre><code><span class="comment">//声明</span>
+<span class="variable">$titleColor</span><span class="value">: <span class="hexcolor">#0f0</span>;</span>
+<span class="variable">$titleWidth</span><span class="value">: <span class="number">16px</span>;</span>
 
-block title
-  title= page.title + " | " + config.title
+<span class="comment">//使用</span>
+<span class="class">.title</span>{
+    <span class="attribute">background</span><span class="value">: <span class="variable">$titleColor</span>;</span>
+    <span class="attribute">width</span><span class="value">: <span class="variable">$titleWidth</span>;</span>
+}
+</code></pre><p>这样我们就可以把常用的数值，声明成变量，让我们的项目结构清晰易维护</p>
+<h3 id="@import">@import</h3><p>通常我们会把所有的变量，统一的放在一个 <code>_variables.scss</code> 文件中，然后在用到的地方中通过 @import “variables.scss” 的方式来引用这些变量, 我们可以省略</p>
+<pre><code><span class="at_rule">@<span class="keyword">import</span> <span class="string">"variables"</span></span>;
+</code></pre><p>大家肯定已经想到了 css 中的 @import 功能，这个和那个又有什么区别哪</p>
+<p>css 中的 @import 必须放在代码最前面，并且会阻塞浏览器，性能不优，我们尽量避免使用， sass 中重新定义了 @import 可以在任何地方使用。 那我们如果真的想用 css 自己的 @import 时，我们可以用以下方式表示使用原生的</p>
+<ol>
+<li>当@import 后边跟的文件名时 ＊.css时</li>
+<li>当@import 后边跟的是 <a href="http://开头的字符串时" target="_blank" rel="external">http://开头的字符串时</a></li>
+<li>当@import 后面跟的是 url() 函数时</li>
+<li>当@import 后面跟的时 media queries 的时候</li>
+</ol>
+<h3 id="注释">注释</h3><p>sass 中可以使用 css 原生的注释，也可以使用 双斜线这种注释方式，具体区别如下 </p>
+<pre><code><span class="comment">/* 这种注释方式会出现在生成的 css代码中 */</span>
+<span class="comment">// 这种注释方式不会出现在生成的 css代码中</span>
+</code></pre><h3 id="嵌套">嵌套</h3><p>sass 提供了两种嵌套方式，分别是属性嵌套和选择器的嵌套，能极大的降低选择器和属性的重复书写，如下</p>
+<pre><code><span class="id">#header</span>{
+    <span class="attribute">width</span>:<span class="number">20px</span>;
+    <span class="attribute">height</span>:<span class="number">300px</span>;
+    <span class="tag">title</span>{
+        <span class="tag">font</span>:{ <span class="comment">//属性嵌套使用 :</span>
+            <span class="attribute">size</span>:<span class="number">18px</span>;
+            <span class="attribute">weight</span>: normal;
+        }
+        <span class="keyword">&amp;</span><span class="pseudo">:hover</span>{    <span class="comment">//&amp; 符号在 sass 中表示父级选择器，这里就是 title</span>
+            <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
+        }
+    }
+}
+</code></pre><p>编译后</p>
+<pre><code><span class="id">#header</span><span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">20px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">300px</span></span></span>;
+<span class="rule">}</span></span>
+<span class="id">#header</span> <span class="tag">title</span><span class="rules">{
+    <span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">18px</span></span></span>;
+    <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> normal</span></span>;
+<span class="rule">}</span></span>
+<span class="id">#header</span> <span class="tag">title</span><span class="pseudo">:hover</span><span class="rules">{
+    <span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#fff</span></span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>对比一下，是不是可以少写很多的代码了那</p>
+<h3 id="函数">函数</h3><p>刚才我们讲了变量，变量的操作有两种，一种是直接变量操作，一种是通过函数操作</p>
+<pre><code><span class="variable">$titleWidth</span><span class="value">:<span class="number">24px</span> + <span class="number">5</span>;</span> <span class="comment">//sass 变量支持基本的算数运算，&gt;= &lt;= &lt; &gt; == != ()</span>
+</code></pre><p>函数操作，一种是通过 sass 内部定义的函数，称作 functions，第二种是可重用的代码块，称作 mixin，我们主要讲 mixin 这种方式</p>
+<pre><code><span class="comment">//定义 mixin</span>
+<span class="variable">@mixin</span> col-<span class="number">12</span>{
+    <span class="attribute">width</span>:<span class="number">100%</span>;
+}
 
-block content
-  .post.post-page
-    h1.post-title= page.title
-    .post-meta= page.date.format(config.date_format) + " | "
-      if page.categories.length > 0
-        span.categories= __('belongsto')
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= " " + category.name
-    if theme.duoshuo
-      span.ds-thread-count(data-thread-key=page.path)
-    if theme.disqus
-      span.disqus-comment-count(data-disqus-identifier=page.path)
-    if page.toc
-      div(class="clear")
-        div(id="toc" class="toc-article")
-          div(class="toc-title")= __('contents')
-          != toc(page.content)
-    .post-content
-      != page.content
-    if page.tags
-      .tags
-        for tag in page.tags.toArray()
-          a(href=url_for(tag.path))= tag.name
-    include _partial/post-nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
+<span class="comment">//调用</span>
+.title{
+    <span class="variable">@include</span> <span class="function">col-12</span>();
+}
 
-    include _partial/comments
+<span class="comment">//编译后生成</span>
+.title{
+    <span class="attribute">width</span>: <span class="number">100%</span>;
+}
+</code></pre><p>当然，既然是函数，我们可以传入参数值</p>
+<pre><code><span class="comment">//定义带参数的 mixin</span>
+<span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>){</span>
+    <span class="attribute">width</span><span class="value">: <span class="variable">$width</span>;</span>
+}
+
+<span class="comment">//调用方式和无参是一样的</span>
+<span class="class">.title</span>{
+    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> col</span>(<span class="number">100%</span>);</span>
+}
+</code></pre><p>参数默认值也是有的哦</p>
+<pre><code><span class="comment">//@定义带参数有默认值的 mixin</span>
+<span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>:<span class="number">100%</span>){</span>   <span class="comment">//参数后跟 : 指定默认值</span>
+    <span class="attribute">width</span> <span class="value">: <span class="variable">$width</span>
+}</span>
+</code></pre><h3 id="继承">继承</h3><p>sass 通过 @extent 可以继承其他选择器的样式</p>
+<pre><code><span class="class">.content</span>{
+    <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
+    <span class="attribute">float</span>:left;
+}
+
+<span class="class">.left</span>{
+    <span class="variable">@extent</span> .content; <span class="comment">//通过 @extent 继承 .content 选择器的样式</span>
+    <span class="attribute">width</span>:<span class="number">30%</span>;
+}
+
+<span class="comment">//编译后</span>
+<span class="class">.content</span>, <span class="class">.left</span> {
+    <span class="attribute">color</span>:<span class="hexcolor">#fff</span>;
+    <span class="attribute">float</span>:left;
+}
+
+<span class="class">.left</span>{
+    <span class="attribute">width</span>: <span class="number">30%</span>;
+}
+</code></pre><p>@extent 不能继承选择器序列，可以用 %声明样式，来表示这是个只继承的样式</p>
+<pre><code><span class="comment">//选择器序列</span>
+<span class="class">.left</span> <span class="class">.name</span>{
+    <span class="attribute">width</span><span class="value">:<span class="number">200px</span>;</span>
+}
+
+<span class="class">.right</span>{
+    <span class="at_rule">@extent<span class="preprocessor"> .left</span><span class="preprocessor"> .name</span>;</span> <span class="comment">//这会报语法错误，不能继承选择器序列</span>
+}
+
+<span class="comment">// %</span>
+<span class="variable">$title</span>{
+    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span>
+}
+
+<span class="class">.left</span>{
+    <span class="at_rule">@extent <span class="variable">$title</span>;</span>
+}
+<span class="comment">//编译后</span>
+<span class="class">.left</span>{
+    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span> 
+}
+</code></pre><h2 id="最后">最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
+</div><div class="tags"><a href="/tags/Css/">Css</a><a href="/tags/Sass/">Sass</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/09/01/20150901_Repaints-and Reflows/" class="pre"><i class="icon-previous">重排与重绘</i></a><a href="/2015/04/17/20150417_learn-sass-step/" class="next">Sass系列之安装<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+var disqus_identifier = '2015/04/19/20150419_learn-sass-basesyntax/';
+var disqus_title = 'Sass系列之基本语法';
+var disqus_url = 'http://imhzq.com/2015/04/19/20150419_learn-sass-basesyntax/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//imhzq.disqus.com/count.js" async="async"></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://imhzq.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/梯子/">梯子</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/javascript/" style="font-size: 15px;">javascript</a><a href="/tags/前端/" style="font-size: 15px;">前端</a><a href="/tags/生活/" style="font-size: 15px;">生活</a><a href="/tags/CSS/" style="font-size: 15px;">CSS</a><a href="/tags/Css/" style="font-size: 15px;">Css</a><a href="/tags/HTML5/" style="font-size: 15px;">HTML5</a><a href="/tags/生活/" style="font-size: 15px;">-生活</a><a href="/tags/Sass/" style="font-size: 15px;">Sass</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/20151205_js-this/">js中的this</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/20151109_Event-delegation/">事件委托</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151101_new-tag-from-html5/">HTML5新增元素介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_cascading-and-inheritance/">CSS的层叠、特殊性和继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_way-use-void-in-js/">为什么要用href=javascript:void(0);</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/24/20151024_type-script-anders-hejlsberg/">参加与大师面对面活动后的小心思</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/01/20150901_Repaints-and Reflows/">重排与重绘</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//imhzq.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><div id="footer">© <a href="/" rel="nofollow">ICEDOM.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*newDate();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-62344719-1','auto');ga('send','pageview');</script></div></body></html>
