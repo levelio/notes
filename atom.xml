@@ -4,7 +4,7 @@
   <subtitle><![CDATA[ICEDOM]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-12T15:10:45.000Z</updated>
+  <updated>2015-12-12T15:42:05.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -18,12 +18,11 @@
     <title><![CDATA[HTML5新增元素介绍]]></title>
     <link href="http://imhzq.com/2015/12/12/20151101_new-tag-from-html5/"/>
     <id>http://imhzq.com/2015/12/12/20151101_new-tag-from-html5/</id>
-    <published>2015-12-12T15:10:45.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <published>2015-12-12T15:42:05.000Z</published>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！下面来简单介绍下他们：</p>
 <h3 id="section"><a href="#section" class="headerlink" title="section"></a>section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
 <h3 id="article"><a href="#article" class="headerlink" title="article"></a>article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>
-<a id="more"></a>
 <h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><p><code>main</code> 元素呈现了文档 <code>body</code> 或应用的主体部分，这部分内容在文档中应该是独一无二的，在一个文档中不能出现一个以上的 <code>main</code>,不能是以下元素的继承 <code>article</code>,<code>aside</code>,<code>footer</code>,<code>header</code>,<code>nav</code>。</p>
 <h3 id="aside"><a href="#aside" class="headerlink" title="aside"></a>aside</h3><p><code>aside</code> 元素代表与了一些与页面其他部分关联性不是那么大的内容，比如广告。</p>
 <h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p><code>header</code> 代表了一组介绍性或者导航性质的辅助内容，可能包含标题元素，也可以包含其他元素，像logo、分节头部、搜索表单等。<code>header</code> 不是分节元素，不会引入分节到大纲中。</p>
@@ -48,9 +47,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！下面来简单介绍下他们：</p>
-<h3 id="section"><a href="#section" class="headerlink" title="section"></a>section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
-<h3 id="article"><a href="#article" class="headerlink" title="article"></a>article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>]]>
-    
+<h3 id="section"><a href="#section" class="headerlin]]>
     </summary>
     
       <category term="HTML5" scheme="http://imhzq.com/tags/HTML5/"/>
@@ -66,7 +63,7 @@
     <link href="http://imhzq.com/2015/12/05/20151205_js-this/"/>
     <id>http://imhzq.com/2015/12/05/20151205_js-this/</id>
     <published>2015-12-04T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
@@ -74,7 +71,6 @@
 <li>作为普通数调用</li>
 <li>构造函数中调用</li>
 </ol>
-<a id="more"></a>
 <h3 id="u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528"><a href="#u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528" class="headerlink" title="作为对象的方法调用"></a>作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.saying = <span class="string">"大家都别吵了，给我赵日天一个面子！"</span>;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;</span><br><span class="line">        saying: <span class="string">"我赵日天第一个表示不服！！"</span>,</span><br><span class="line">        getSaying: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.saying;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.getSaying());   <span class="comment">//我赵日天第一个表示不服！！</span></span><br></pre></td></tr></table></figure>
 <h3 id="u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528"><a href="#u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
@@ -90,13 +86,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
-<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
-<ol>
-<li>作为对象的方法被调用</li>
-<li>作为普通数调用</li>
-<li>构造函数中调用</li>
-</ol>]]>
-    
+<h2 id="this"><a href="#this" class="headerlink" title="]]>
     </summary>
     
       <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
@@ -112,13 +102,12 @@
     <link href="http://imhzq.com/2015/12/04/20151204_use-shadowsocks/"/>
     <id>http://imhzq.com/2015/12/04/20151204_use-shadowsocks/</id>
     <published>2015-12-03T16:00:00.000Z</published>
-    <updated>2015-12-12T15:12:21.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>从 2013 年开始用 <a href="http://jproxy.io/" target="_blank" rel="external">jproxy</a> 已经3年了，最终她也没能逃过魔掌:( ，感谢 <a href="http://weibo.com/xiaojay#_rnd1449301836815" target="_blank" rel="external">xiaojay</a> 大大期间不断的维护！</p>
 <p>Google 不能访问就好像断网了一样难受，回想那几个小时简直痛不欲生啊！用百度简直想吐，竞价排名去死吧！思来想去，一不做二不休，自己搭个⬆吧！</p>
 <h2 id="u8D2D_u4E70_VPS"><a href="#u8D2D_u4E70_VPS" class="headerlink" title="购买 VPS"></a>购买 VPS</h2><p>选来选去，还是选了<a href="https://bandwagonhost.com/index.php" target="_blank" rel="external">搬瓦工</a>，买了$19.99 一年的套餐，配置如下：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RAM</span>: <span class="string">256MB</span></span><br><span class="line"><span class="attribute">Disk</span>: <span class="string">10GB SSD</span></span><br><span class="line"><span class="attribute">Bandwidth</span>: <span class="string">550GB</span></span><br></pre></td></tr></table></figure></p>
 <p>对了，在搬瓦工的主页右键显示网页源码，里面有段注释：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Try this promo code: IAMSMART5C48JJ --&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>购买的时候，可以加进去。我试了，最大的优惠额度是 5%，支付的时候可以用支付宝支付～</p>
-<a id="more"></a>
 <h2 id="u8BBE_u7F6E_u4E3B_u673A"><a href="#u8BBE_u7F6E_u4E3B_u673A" class="headerlink" title="设置主机"></a>设置主机</h2><p>进入主机控制面板</p>
 <h3 id="u66F4_u6362_u7CFB_u7EDF"><a href="#u66F4_u6362_u7CFB_u7EDF" class="headerlink" title="更换系统"></a>更换系统</h3><p>选择 Install new OS，更换新系统，我选择的是  centos-6-x86_64-minimal 内存占用只有 7m 左右，毕竟内存只有 256m，能少占点就少占点:-)</p>
 <h3 id="u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801"><a href="#u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801" class="headerlink" title="获取ROOT用户密码"></a>获取ROOT用户密码</h3><p>选择 Root Password modification 就可以过的 root 用户密码了，ssh登陆进去<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@<span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span> -p <span class="number">3000</span></span><br></pre></td></tr></table></figure></p>
@@ -140,12 +129,7 @@
 <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>打开 Google ，熟悉的页面又出来了，终于有网了！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>从 2013 年开始用 <a href="http://jproxy.io/">jproxy</a> 已经3年了，最终她也没能逃过魔掌:( ，感谢 <a href="http://weibo.com/xiaojay#_rnd1449301836815">xiaojay</a> 大大期间不断的维护！</p>
-<p>Google 不能访问就好像断网了一样难受，回想那几个小时简直痛不欲生啊！用百度简直想吐，竞价排名去死吧！思来想去，一不做二不休，自己搭个⬆吧！</p>
-<h2 id="u8D2D_u4E70_VPS"><a href="#u8D2D_u4E70_VPS" class="headerlink" title="购买 VPS"></a>购买 VPS</h2><p>选来选去，还是选了<a href="https://bandwagonhost.com/index.php">搬瓦工</a>，买了$19.99 一年的套餐，配置如下：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RAM</span>: <span class="string">256MB</span></span><br><span class="line"><span class="attribute">Disk</span>: <span class="string">10GB SSD</span></span><br><span class="line"><span class="attribute">Bandwidth</span>: <span class="string">550GB</span></span><br></pre></td></tr></table></figure></p>
-<p>对了，在搬瓦工的主页右键显示网页源码，里面有段注释：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Try this promo code: IAMSMART5C48JJ --&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>购买的时候，可以加进去。我试了，最大的优惠额度是 5%，支付的时候可以用支付宝支付～</p>]]>
-    
+    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>从 2013 年开始用 <a href="http://jproxy.io/" target="_bla]]>
     </summary>
     
       <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
@@ -159,7 +143,7 @@
     <link href="http://imhzq.com/2015/11/09/20151109_Event-delegation/"/>
     <id>http://imhzq.com/2015/11/09/20151109_Event-delegation/</id>
     <published>2015-11-08T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，此时对每一个富交互应用的网页来说都是一个拥堵的时刻。事件绑定占用了处理事件，而且，浏览器需要跟踪每个事件处理器，这也会占用更多的内存。</p>
 <p>一种简单的 DOM 事件处理技术就是事件委托。</p>
 <p>根据 DOM 标准，每个事件都要经历三个阶段</p>
@@ -168,7 +152,6 @@
 <li>到达目标</li>
 <li>冒泡 </li>
 </ol>
-<a id="more"></a>
 <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/646E5068-FD77-4934-8981-04596183F3F1.png" alt="img"></p>
 <p>对事件委托来说，冒泡就够了，比如说我们想要给下面这段代码中每个 a 标签增加一个点击事件</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"links"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -180,15 +163,7 @@
 <p>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，此时对每一个富交互应用的网页来说都是一个拥堵的时刻。事件绑定占用了处理事件，而且，浏览器需要跟踪每个事件处理器，这也会占用更多的内存。</p>
-<p>一种简单的 DOM 事件处理技术就是事件委托。</p>
-<p>根据 DOM 标准，每个事件都要经历三个阶段</p>
-<ol>
-<li>捕获（IE不支持）</li>
-<li>到达目标</li>
-<li>冒泡 </li>
-</ol>]]>
-    
+    <![CDATA[<p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，]]>
     </summary>
     
       <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
@@ -204,7 +179,7 @@
     <link href="http://imhzq.com/2015/11/08/20151108_simplifying-css-selectors/"/>
     <id>http://imhzq.com/2015/11/08/20151108_simplifying-css-selectors/</id>
     <published>2015-11-07T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700_u53F3_u8FB9_u4F18_u5148" class="headerlink" title="最右边优先"></a>最右边优先</h2><p>我最初的觉得 CSS 选择符一定也是从左到右匹配规则的，就像下面这个例子</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#header</span> <span class="tag">li</span><span class="rules">&#123; <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; &#125;</span></span><br></pre></td></tr></table></figure>
 <p>先找到 id 为 header 的元素，然后把这个样式应用到子元素 li 上。我们知道只有一个 id 为 header 的元素，并且它只有几个 li 元素，这个选择符应该是相当高效的才对。</p>
@@ -212,7 +187,6 @@
 <blockquote>
 <p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
 </blockquote>
-<a id="more"></a>
 <h2 id="u5982_u4F55_u7F16_u5199_u9AD8_u6548_u7684CSS_u9009_u62E9_u7B26"><a href="#u5982_u4F55_u7F16_u5199_u9AD8_u6548_u7684CSS_u9009_u62E9_u7B26" class="headerlink" title="如何编写高效的CSS选择符"></a>如何编写高效的CSS选择符</h2><h3 id="u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219"><a href="#u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219" class="headerlink" title="避免使用通配规则"></a>避免使用通配规则</h3><p>除了传统意义的通配符外，相邻兄弟选择符、子选择符、后代选择符和属性选择符都应该避免使用，推荐使用 ID、类和标签选择器</p>
 <h3 id="u4E0D_u8981_u9650_u5B9A_ID__u9009_u62E9_u7B26"><a href="#u4E0D_u8981_u9650_u5B9A_ID__u9009_u62E9_u7B26" class="headerlink" title="不要限定 ID 选择符"></a>不要限定 ID 选择符</h3><p>在页面中一个指定的 ID 只对应一个元素，没有必要添加额外的选择符</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="id">#header</span><span class="rules">&#123;&#125;</span> <span class="comment">/* 这样是没必要的，应该简化为 #header */</span></span><br></pre></td></tr></table></figure>
@@ -223,14 +197,7 @@
 <h3 id="u8D28_u7591_u5B50_u9009_u62E9_u7B26_u7684_u6240_u6709_u7528_u9014"><a href="#u8D28_u7591_u5B50_u9009_u62E9_u7B26_u7684_u6240_u6709_u7528_u9014" class="headerlink" title="质疑子选择符的所有用途"></a>质疑子选择符的所有用途</h3><p>检查所有使用子选择符的地方，然后尽可能用具体的类取代它们。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700_u53F3_u8FB9_u4F18_u5148" class="headerlink" title="最右边优先"></a>最右边优先</h2><p>我最初的觉得 CSS 选择符一定也是从左到右匹配规则的，就像下面这个例子</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#header</span> <span class="tag">li</span><span class="rules">&#123; <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; &#125;</span></span><br></pre></td></tr></table></figure>
-<p>先找到 id 为 header 的元素，然后把这个样式应用到子元素 li 上。我们知道只有一个 id 为 header 的元素，并且它只有几个 li 元素，这个选择符应该是相当高效的才对。</p>
-<p>事实上 <em>CSS 选择符是从右到左进行匹配的。</em> 那么回头看上面那个看似高效的的选择符实际上开销相当高，浏览器必须遍历页面上每个 li 元素并确定其父元素的 id 是否是 header。</p>
-<blockquote>
-<p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
-</blockquote>]]>
-    
+    <![CDATA[<h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700_u53F3_u8FB9_u4F18_u5148" class="headerlink" title="最右边优先"></a>最右边优先</h2><p>我最初的觉得 CSS]]>
     </summary>
     
       <category term="CSS" scheme="http://imhzq.com/tags/CSS/"/>
@@ -246,21 +213,17 @@
     <link href="http://imhzq.com/2015/11/07/20151107_talk-line-height/"/>
     <id>http://imhzq.com/2015/11/07/20151107_talk-line-height/</id>
     <published>2015-11-06T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
 <h2 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.<span class="built_in">box</span>&#123;</span><br><span class="line">    <span class="variable">height</span>: <span class="number">300</span>px;</span><br><span class="line">    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;</span><br><span class="line">&#125;</span><br><span class="line">p&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">16</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">100</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;</span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>起初，我一直不能明白 20px 的 line-height 减去 100px 的 font-size，得到上下两个半行间距各为 -40px，最后 span 元素的 inline-box 应该是 20px 啊，那为啥 p 元素的 line-box 远远大于这个值啊，难道是内容区将其撑开了？百思不得其姐啊！</p>
 <p>又仔细翻阅了下权威指南相关介绍，啊！我果然还是太年轻了，这里我天真的以为两个负的半行间距会导致 span 元素的 inline-box 下沉,然而并不会，我做了个简单的效果图：</p>
 <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1-2.png" alt="demo2"></p>
 <p>这里可以清楚的看到，蓝色框为 20px 高的 行内框，在元素内容区<code>垂直居中</code>。因为行框定义为行中最高行内框的顶端到行中最低行内框的底端之间的距离，所以蓝色框的顶部到黄色框的底部之间的距离，就是行框的高度了，也就是绿色框的高度了。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-size 时发生了什么。</p>
-<h2 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.<span class="built_in">box</span>&#123;</span><br><span class="line">    <span class="variable">height</span>: <span class="number">300</span>px;</span><br><span class="line">    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;</span><br><span class="line">&#125;</span><br><span class="line">p&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">16</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">100</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;</span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>]]>
-    
+    <![CDATA[<h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>最近研究 line-height 的时候，一直想不明白如果 line-height 小于 font-si]]>
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
@@ -276,7 +239,7 @@
     <link href="http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/"/>
     <id>http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/</id>
     <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title="层叠"></a>层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。层叠给每个规则分配一个权重,如下:</p>
 <ul>
 <li>作者样式表: 网站开发者的编写，被视为最重要的样式表。</li>
@@ -292,7 +255,6 @@
 <li>浏览器/用户代理的默认样式表</li>
 </ol>
 <p>根据优先级覆盖样式，如果优先级相同，则后者覆盖前者。</p>
-<a id="more"></a>
 <h2 id="u7279_u6B8A_u6027"><a href="#u7279_u6B8A_u6027" class="headerlink" title="特殊性"></a>特殊性</h2><p>为了方便计算选择器之间的权重，我们引入特殊性这个概念，通常我们会给每种选择器分配一个数字。然后，将规则的每种选择器的值加在一起，计算出规则的权重。通常来说，如果一个特定选择器中的选择器少于10个，那我们就能以10为基数计算特殊性。</p>
 <p>选择器的特殊性分成 4 个等级：a，b，c，d。</p>
 <ul>
@@ -367,22 +329,7 @@
 <p>继承来的样式的权重为 0,任何直接设置的样式都可以覆盖。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title="层叠"></a>层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。层叠给每个规则分配一个权重,如下:</p>
-<ul>
-<li>作者样式表: 网站开发者的编写，被视为最重要的样式表。</li>
-<li>用户样式表: 用户通过浏览器自定义的样式，这些样式表的权重要比网站开发者的样式表低一级。</li>
-<li>浏览器/用户代理应用的样式: 浏览器或用户代理默认的样式，这些可以随意覆盖是最低级的。</li>
-</ul>
-<p>按照上面的分析，咱们就有了以下排序(权重由高到低):</p>
-<ol>
-<li>标有 !important 的用户样式表</li>
-<li>标有 !important 的作者样式表</li>
-<li>作者样式表</li>
-<li>用户样式表</li>
-<li>浏览器/用户代理的默认样式表</li>
-</ol>
-<p>根据优先级覆盖样式，如果优先级相同，则后者覆盖前者。</p>]]>
-    
+    <![CDATA[<h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title="层叠"></a>层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</cod]]>
     </summary>
     
       <category term="CSS" scheme="http://imhzq.com/tags/CSS/"/>
@@ -447,7 +394,7 @@
     <link href="http://imhzq.com/2015/09/01/20150901_Repaints-and%20Reflows/"/>
     <id>http://imhzq.com/2015/09/01/20150901_Repaints-and Reflows/</id>
     <published>2015-08-31T16:00:00.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
 <p>DOM树： 表示页面结构</p>
 <p>渲染树： 表示 DOM 节点如何显示</p>
@@ -462,7 +409,6 @@
 <li>元素内容发生变化（引起盒子模型发生变化）</li>
 </ol>
 <h2 id="u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8"><a href="#u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8" class="headerlink" title="减少重排和重绘"></a>减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
-<a id="more"></a>
 <h3 id="u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0"><a href="#u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0" class="headerlink" title="渲染树队列的队列与刷新"></a>渲染树队列的队列与刷新</h3><p>大多数浏览器都会优化这个队列，通过批量执行等方式来优化重排过程，然而你可能会不经意间强制要求浏览器放弃优化，立即执行队列并刷新。</p>
 <p>调用下面这些方法时，浏览器为了能返回正确的数据，会立即触发重排：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">offsetTop, offsetLeft, offsetWidth, offsetHeight</span><br><span class="line">scrollTop, scrollLeft, scrollWidth, scrollHeight</span><br><span class="line">clientTop, clientLift, clientWidth, clientHeight</span><br><span class="line">getComputedStyle()</span><br></pre></td></tr></table></figure></p>
 <h3 id="u4F18_u5316_u4EE3_u7801"><a href="#u4F18_u5316_u4EE3_u7801" class="headerlink" title="优化代码"></a>优化代码</h3><p>考虑这个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);</span><br><span class="line">el.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">el.style.borderRight = <span class="string">'2px'</span>;</span><br><span class="line">el.style.margin = <span class="string">'3px'</span>;</span><br></pre></td></tr></table></figure></p>
@@ -495,18 +441,7 @@
     <![CDATA[<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构：</p>
 <p>DOM树： 表示页面结构</p>
 <p>渲染树： 表示 DOM 节点如何显示</p>
-<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
-<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
-<h2 id="u4F55_u65F6_u91CD_u6392"><a href="#u4F55_u65F6_u91CD_u6392" class="headerlink" title="何时重排"></a>何时重排</h2><ol>
-<li>页面渲染器初始化的时候</li>
-<li>浏览器窗口发生尺寸变化时</li>
-<li>删除或添加新的可见 DOM 元素</li>
-<li>元素的位置改变</li>
-<li>元素的盒子模型发生变化</li>
-<li>元素内容发生变化（引起盒子模型发生变化）</li>
-</ol>
-<h2 id="u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8"><a href="#u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8" class="headerlink" title="减少重排和重绘"></a>减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>]]>
-    
+<p>每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素]]>
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
@@ -522,7 +457,7 @@
     <link href="http://imhzq.com/2015/04/19/20150419_learn-sass-basesyntax/"/>
     <id>http://imhzq.com/2015/04/19/20150419_learn-sass-basesyntax/</id>
     <published>2015-04-19T06:08:15.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="sass__u6587_u4EF6_u7C7B_u578B"><a href="#sass__u6587_u4EF6_u7C7B_u578B" class="headerlink" title="sass 文件类型"></a>sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
 <p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#body</span></span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="hexcolor">#fff</span></span><br><span class="line">#title</span><br><span class="line">    margin: <span class="number">0</span> auto</span></span><br></pre></td></tr></table></figure>
@@ -531,7 +466,6 @@
 <p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 style.scss 转换为 style.sass</span></span><br><span class="line">sass-convert style<span class="class">.scss</span> style.sass</span><br></pre></td></tr></table></figure>
 <p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
-<a id="more"></a>
 <h2 id="u7F16_u8BD1"><a href="#u7F16_u8BD1" class="headerlink" title="编译"></a>编译</h2><h3 id="sass__u7F16_u8BD1"><a href="#sass__u7F16_u8BD1" class="headerlink" title="sass 编译"></a>sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 style.scss 编译成 style.css</span></span><br><span class="line">sass style<span class="class">.scss</span> style.css</span><br></pre></td></tr></table></figure></p>
 <p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
 <p>当然有，我们可以使用 compass 或者 gulp、grunt 来实现这项功能。</p>
@@ -581,15 +515,7 @@
 <h2 id="u6700_u540E"><a href="#u6700_u540E" class="headerlink" title="最后"></a>最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="sass__u6587_u4EF6_u7C7B_u578B"><a href="#sass__u6587_u4EF6_u7C7B_u578B" class="headerlink" title="sass 文件类型"></a>sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
-<p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#body</span></span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="hexcolor">#fff</span></span><br><span class="line">#title</span><br><span class="line">    margin: <span class="number">0</span> auto</span></span><br></pre></td></tr></table></figure>
-<p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="hexcolor">#fff</span>;</span></span><br><span class="line">    <span class="id">#title</span>&#123;</span><br><span class="line">        <span class="attribute">margin</span><span class="value">: <span class="number">0</span> auto;</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 style.scss 转换为 style.sass</span></span><br><span class="line">sass-convert style<span class="class">.scss</span> style.sass</span><br></pre></td></tr></table></figure>
-<p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>]]>
-    
+    <![CDATA[<h2 id="sass__u6587_u4EF6_u7C7B_u578B"><a href="#sass__u6587_u4EF6_u7C7B_u578B" class="headerlink" title="sass 文件类型"></a>sass 文件类型</h2><p>sa]]>
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
@@ -607,10 +533,9 @@
     <link href="http://imhzq.com/2015/04/17/20150417_learn-sass-step/"/>
     <id>http://imhzq.com/2015/04/17/20150417_learn-sass-step/</id>
     <published>2015-04-17T09:13:05.000Z</published>
-    <updated>2015-12-12T15:10:45.000Z</updated>
+    <updated>2015-12-12T15:42:05.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4EC0_u4E48_u662F_Sass"><a href="#u4EC0_u4E48_u662F_Sass" class="headerlink" title="什么是 Sass"></a>什么是 Sass</h2><p><a href="http://sass-lang.com/" target="_blank" rel="external">Sass</a> 对 CSS3 的语法进行了扩充，增加了新的规则、变量、函数、选择器、继承等特性，让 css 看起来更像一门语言，这种特性也被称作“css预编译”，我们通过它可以用编程的思路去写样式，然后通过编译生成我们需要的样式表文件。</p>
 <p>当然，类似的还有 Less、stylus 等，关键还是找到趁手的。</p>
-<a id="more"></a>
 <h2 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h2><h3 id="u5B89_u88C5_Ruby__u8FD0_u884C_u73AF_u5883"><a href="#u5B89_u88C5_Ruby__u8FD0_u884C_u73AF_u5883" class="headerlink" title="安装 Ruby 运行环境"></a>安装 Ruby 运行环境</h3><p>因为 Sass 引擎是用 Ruby 编写的，所以我们安装 Sass 前，需要先安装 Ruby 运行环境，既然要安装 Ruby，那么我们先来安装 RVM 吧，RVM 和 NVM 概念差不多，RVM 是 Ruby 的版本管理工具</p>
 <p>我们通过下面命令来安装 RVM<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="operator">-s</span>SL https://get.rvm.io | bash <span class="operator">-s</span> stable</span><br></pre></td></tr></table></figure></p>
 <p>安装完成后，我们用下面的命令列出可以安装的 Ruby 版本</p>
@@ -621,9 +546,7 @@
 <p>我们的 Sass 安装就完成了，下节我们就可以愉快的使用 Sass 了。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="u4EC0_u4E48_u662F_Sass"><a href="#u4EC0_u4E48_u662F_Sass" class="headerlink" title="什么是 Sass"></a>什么是 Sass</h2><p><a href="http://sass-lang.com/">Sass</a> 对 CSS3 的语法进行了扩充，增加了新的规则、变量、函数、选择器、继承等特性，让 css 看起来更像一门语言，这种特性也被称作“css预编译”，我们通过它可以用编程的思路去写样式，然后通过编译生成我们需要的样式表文件。</p>
-<p>当然，类似的还有 Less、stylus 等，关键还是找到趁手的。</p>]]>
-    
+    <![CDATA[<h2 id="u4EC0_u4E48_u662F_Sass"><a href="#u4EC0_u4E48_u662F_Sass" class="headerlink" title="什么是 Sass"></a>什么是 Sass</h2><p><a href="http://sa]]>
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>

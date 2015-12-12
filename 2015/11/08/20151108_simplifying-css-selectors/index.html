@@ -5,7 +5,6 @@
 <blockquote>
 <p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
 </blockquote>
-<a id="more"></a>
 <h2 id="u5982_u4F55_u7F16_u5199_u9AD8_u6548_u7684CSS_u9009_u62E9_u7B26"><a href="#u5982_u4F55_u7F16_u5199_u9AD8_u6548_u7684CSS_u9009_u62E9_u7B26" class="headerlink" title="如何编写高效的CSS选择符"></a>如何编写高效的CSS选择符</h2><h3 id="u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219"><a href="#u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219" class="headerlink" title="避免使用通配规则"></a>避免使用通配规则</h3><p>除了传统意义的通配符外，相邻兄弟选择符、子选择符、后代选择符和属性选择符都应该避免使用，推荐使用 ID、类和标签选择器</p>
 <h3 id="u4E0D_u8981_u9650_u5B9A_ID__u9009_u62E9_u7B26"><a href="#u4E0D_u8981_u9650_u5B9A_ID__u9009_u62E9_u7B26" class="headerlink" title="不要限定 ID 选择符"></a>不要限定 ID 选择符</h3><p>在页面中一个指定的 ID 只对应一个元素，没有必要添加额外的选择符</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="id">#header</span><span class="rules">&#123;&#125;</span> <span class="comment">/* 这样是没必要的，应该简化为 #header */</span></span><br></pre></td></tr></table></figure>
