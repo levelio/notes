@@ -4,7 +4,7 @@
   <subtitle><![CDATA[ICEDOM]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-12T15:42:05.000Z</updated>
+  <updated>2015-12-12T16:07:10.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://imhzq.com/2015/12/05/20151205_js-this/"/>
     <id>http://imhzq.com/2015/12/05/20151205_js-this/</id>
     <published>2015-12-04T16:00:00.000Z</published>
-    <updated>2015-12-12T15:42:05.000Z</updated>
+    <updated>2015-12-12T16:07:10.000Z</updated>
     <content type="html"><![CDATA[<p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
@@ -45,7 +45,7 @@
 <h2 id="this"><a href="#this" class="headerlink" title="]]>
     </summary>
     
-      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+      <category term="Javascript" scheme="http://imhzq.com/tags/Javascript/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -98,7 +98,7 @@
     <link href="http://imhzq.com/2015/11/09/20151109_Event-delegation/"/>
     <id>http://imhzq.com/2015/11/09/20151109_Event-delegation/</id>
     <published>2015-11-08T16:00:00.000Z</published>
-    <updated>2015-12-12T15:42:05.000Z</updated>
+    <updated>2015-12-12T16:07:10.000Z</updated>
     <content type="html"><![CDATA[<p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，此时对每一个富交互应用的网页来说都是一个拥堵的时刻。事件绑定占用了处理事件，而且，浏览器需要跟踪每个事件处理器，这也会占用更多的内存。</p>
 <p>一种简单的 DOM 事件处理技术就是事件委托。</p>
 <p>根据 DOM 标准，每个事件都要经历三个阶段</p>
@@ -121,7 +121,7 @@
     <![CDATA[<p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，]]>
     </summary>
     
-      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+      <category term="Javascript" scheme="http://imhzq.com/tags/Javascript/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -134,7 +134,7 @@
     <link href="http://imhzq.com/2015/11/08/20151108_simplifying-css-selectors/"/>
     <id>http://imhzq.com/2015/11/08/20151108_simplifying-css-selectors/</id>
     <published>2015-11-07T16:00:00.000Z</published>
-    <updated>2015-12-12T15:47:31.000Z</updated>
+    <updated>2015-12-12T16:06:20.000Z</updated>
     <content type="html"><![CDATA[<p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
 <h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700_u53F3_u8FB9_u4F18_u5148" class="headerlink" title="最右边优先"></a>最右边优先</h2><p>我最初的觉得 CSS 选择符一定也是从左到右匹配规则的，就像下面这个例子</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#header</span> <span class="tag">li</span><span class="rules">&#123; <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; &#125;</span></span><br></pre></td></tr></table></figure>
@@ -154,7 +154,7 @@
 <h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700]]>
     </summary>
     
-      <category term="CSS" scheme="http://imhzq.com/tags/CSS/"/>
+      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -194,7 +194,7 @@
     <link href="http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/"/>
     <id>http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/</id>
     <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T15:57:17.000Z</updated>
+    <updated>2015-12-12T16:06:51.000Z</updated>
     <content type="html"><![CDATA[<p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p>
 <p>使用这种方式，常出现在元素是 a 标签，但是又不想让其打开或刷新网页，比如导航列表里面的当前选中项 <code>&lt;a href=&quot;javascript:;&quot; class=&quot;curr&quot;&gt;1&lt;/a&gt;</code>。</p>
 <p>那么究竟为什么这么写呢，<code>href=&quot;javascript:void(0);&quot;</code> 和 <code>herf=&quot;javascript:;&quot;</code> 有什么区别？另外好像 <code>href=&quot;javascript:&quot;</code>这样写也可以啊！</p>
@@ -211,7 +211,7 @@
     <![CDATA[<p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p]]>
     </summary>
     
-      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+      <category term="Javascript" scheme="http://imhzq.com/tags/Javascript/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -224,7 +224,7 @@
     <link href="http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/"/>
     <id>http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/</id>
     <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T15:51:00.000Z</updated>
+    <updated>2015-12-12T16:06:08.000Z</updated>
     <content type="html"><![CDATA[<p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。</p>
 <h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title="层叠"></a>层叠</h2><p>层叠给每个规则分配一个权重,如下:</p>
 <ul>
@@ -319,7 +319,7 @@
 <h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title]]>
     </summary>
     
-      <category term="CSS" scheme="http://imhzq.com/tags/CSS/"/>
+      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
