@@ -4,7 +4,7 @@
   <subtitle><![CDATA[ICEDOM]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-12T09:11:01.000Z</updated>
+  <updated>2015-12-12T13:32:09.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://imhzq.com/2015/12/05/20151205_js-this/"/>
     <id>http://imhzq.com/2015/12/05/20151205_js-this/</id>
     <published>2015-12-04T16:00:00.000Z</published>
-    <updated>2015-12-12T09:11:01.000Z</updated>
+    <updated>2015-12-12T13:32:09.000Z</updated>
     <content type="html"><![CDATA[<p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
@@ -29,15 +29,8 @@
 </ol>
 <a id="more"></a>
 <h3 id="u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528"><a href="#u4F5C_u4E3A_u5BF9_u8C61_u7684_u65B9_u6CD5_u8C03_u7528" class="headerlink" title="作为对象的方法调用"></a>作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
-<pre><code>window.saying = &quot;大家都别吵了，给我赵日天一个面子！&quot;;
-    var obj = {
-        saying: &quot;我赵日天第一个表示不服！！&quot;,
-        getSaying: function () {
-            return this.saying;
-        }
-    };
-console.log(obj.getSaying());   //我赵日天第一个表示不服！！
-</code></pre><h3 id="u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528"><a href="#u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.saying = <span class="string">"大家都别吵了，给我赵日天一个面子！"</span>;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;</span><br><span class="line">        saying: <span class="string">"我赵日天第一个表示不服！！"</span>,</span><br><span class="line">        getSaying: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.saying;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj.getSaying());   <span class="comment">//我赵日天第一个表示不服！！</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528"><a href="#u4F5C_u4E3A_u666E_u901A_u51FD_u6570_u8C03_u7528" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
 <pre><code>var getSaying2 = obj.getSaying;
 console.log(getSaying2());   //大家都别吵了，给我赵日天一个面子！
 </code></pre><p>当调用 obj.getSaying 时，getSaying 方法是作为 obj 对象的属性被调用的，this 指向 obj。</p>
