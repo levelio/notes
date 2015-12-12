@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/</loc>
+    <lastmod>2015-12-12T15:57:17.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://imhzq.com/2015/04/10/20150410_first-article/</loc>
     <lastmod>2015-12-12T15:54:37.000Z</lastmod>
   </url>
@@ -59,11 +64,6 @@
   <url>
     <loc>http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/</loc>
     <lastmod>2015-12-12T15:12:21.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/</loc>
-    <lastmod>2015-12-12T15:10:45.000Z</lastmod>
   </url>
   
   <url>
