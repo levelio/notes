@@ -276,7 +276,7 @@
     <link href="http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/"/>
     <id>http://imhzq.com/2015/11/02/20151102_cascading-and-inheritance/</id>
     <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T14:56:02.000Z</updated>
+    <updated>2015-12-12T15:03:46.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u5C42_u53E0"><a href="#u5C42_u53E0" class="headerlink" title="层叠"></a>层叠</h2><p>在一个样式表中要查找同一个元素，我们可以通过多种规则找到。CSS 通过一个成为<code>层叠</code>的过程处理这种冲突。层叠给每个规则分配一个权重,如下:</p>
 <ul>
 <li>作者样式表: 网站开发者的编写，被视为最重要的样式表。</li>
@@ -360,9 +360,9 @@
 </table>
 <p>根据基数覆盖，如果基数相同，则后者覆盖前者。</p>
 <p>比如,下面这段代码,最后的颜色是灰色：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#content div#main-content h2&#123; color: gray; &#125;    //100*2 + 1*2 = 202  </span><br><span class="line">#content #main-content&gt;h2&#123; color: blue; &#125;       //100*2 + 1 = 201</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#content</span> <span class="tag">div</span><span class="id">#main-content</span> <span class="tag">h2</span><span class="rules">&#123; <span class="rule"><span class="attribute">color</span>:<span class="value"> gray</span></span>; &#125;</span>    <span class="comment">/* 100*2 + 1*2 = 202 */</span>  </span><br><span class="line"><span class="id">#content</span> <span class="id">#main-content</span>&gt;<span class="tag">h2</span><span class="rules">&#123; <span class="rule"><span class="attribute">color</span>:<span class="value"> blue</span></span>; &#125;</span>       <span class="comment">/* 100*2 + 1 = 201 */</span></span><br></pre></td></tr></table></figure>
 <h2 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h2><p>应用样式的元素的后代会继承样式的某些属性，比如字号、颜色等。假如你设置了以下代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123; font-size: 20px;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;标题&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;标题&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123; font-size: 20px;&#125;</span><br><span class="line">   </span><br><span class="line"><span class="tag">&lt;<span class="title">h1</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>你会发现，h1 和 h2 元素并未继承 20px 的大小，因为浏览器默认样式覆盖了它。</p>
 <p>继承来的样式的权重为 0,任何直接设置的样式都可以覆盖。</p>
 ]]></content>
@@ -398,7 +398,7 @@
     <link href="http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/"/>
     <id>http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/</id>
     <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T14:56:02.000Z</updated>
+    <updated>2015-12-12T15:01:19.000Z</updated>
     <content type="html"><![CDATA[<p>###为什么<br>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p>
 <p>使用这种方式，常出现在元素是 a 标签，但是又不想让其打开或刷新网页，比如导航列表里面的当前选中项 <code>&lt;a href=&quot;javascript:;&quot; class=&quot;curr&quot;&gt;1&lt;/a&gt;</code>。</p>
 <p>那么究竟为什么这么写呢，<code>href=&quot;javascript:void(0);&quot;</code> 和 <code>herf=&quot;javascript:;&quot;</code> 有什么区别？另外好像 <code>href=&quot;javascript:&quot;</code>这样写也可以啊！</p>
