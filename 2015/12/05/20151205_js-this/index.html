@@ -22,7 +22,7 @@
 
 	<meta name="keywords" content="javascript,前端," />
 
-  <title> 事件委托 // ICEDOM </title>
+  <title> js中的this // ICEDOM </title>
 </head>
 
 <body>
@@ -111,7 +111,7 @@
           
           
             
-              事件委托
+              js中的this
             
           
         </h1>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time">
           
-            发表于 2015-11-08
+            发表于 2015-12-04
           
         </span>
 
@@ -143,8 +143,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/11/09/20151109_Event-delegation/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/09/20151109_Event-delegation/"></span>
+            <a href="/2015/12/05/20151205_js-this/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/05/20151205_js-this/"></span>
             </a>
           </span>
           
@@ -159,82 +159,40 @@
         
 
         
-          <p>我们经常会遇到给一堆元素绑定事件的情况，比如说给每个 li 中的 a 元素添加 onclik 事件，每一个 a 都要绑定多次事件处理器，这会影响页面性能，每绑定一个页面处理器都是有代价的，访问的 DOM 元素越多，应用程序就越慢。特别是事件绑定通常发生在 onload 时，此时对每一个富交互应用的网页来说都是一个拥堵的时刻。事件绑定占用了处理事件，而且，浏览器需要跟踪每个事件处理器，这也会占用更多的内存。</p>
-<p>一种简单的 DOM 事件处理技术就是事件委托。</p>
-<p>根据 DOM 标准，每个事件都要经历三个阶段</p>
+          <p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
+<h2 id="this">this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
 <ol>
-<li>捕获（IE不支持）</li>
-<li>到达目标</li>
-<li>冒泡 </li>
+<li>作为对象的方法被调用</li>
+<li>作为普通数调用</li>
+<li>构造函数中调用</li>
 </ol>
 <a id="more"></a>
-<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/646E5068-FD77-4934-8981-04596183F3F1.png" alt="img"></p>
-<p>对事件委托来说，冒泡就够了，比如说我们想要给下面这段代码中每个 a 标签增加一个点击事件</p>
-<pre><code><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"links"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</code></pre><p>可以把 onclick 事件绑定在 ul 元素上，然后通过 event.target 获得当前冒泡事件对象，再根据业务逻辑判断是否是目标元素的点击事件</p>
-<pre><code><span class="keyword">var</span> <span class="keyword">list</span> = document.getElementById(<span class="string">"links"</span>);
-<span class="keyword">var</span> handler = function (<span class="keyword">e</span>){
-    <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
-    <span class="keyword">e</span>.preventDefault();
-    <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
-    <span class="keyword">if</span>(target.nodeName !== <span class="string">"A"</span>) <span class="keyword">return</span>;
-    console.<span class="literal">log</span>(target.nodeName + <span class="string">": "</span> + target.textContent);
-};
-
-<span class="keyword">if</span>(<span class="keyword">list</span>.addEventListener){
-    <span class="keyword">list</span>.addEventListener(<span class="string">"click"</span>, handler, false);
-}<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">list</span>.attachEvent){
-    <span class="keyword">list</span>.attachEvent(<span class="string">"onclick"</span>, handler);
-}<span class="keyword">else</span>{
-    <span class="keyword">list</span>[<span class="string">"onclick"</span>] = handler;
-}
-</code></pre><p>我们可以简单的封装个函数：</p>
-<pre><code><span class="comment">/**
-     *
-     * @param dom 委托对象
-     * @param nodeName 目标元素 nodeName
-     * @param type 事件类型
-     * @param cb 事件执行函数
-     */</span>
-    function delegation(dom,nodeName, <span class="keyword">type</span>, cb){
-        <span class="keyword">var</span> handler = function(<span class="keyword">e</span>){
-            <span class="keyword">e</span> = <span class="keyword">e</span> || <span class="keyword">window</span>.event;
-            <span class="keyword">var</span> target = <span class="keyword">e</span>.target || <span class="keyword">e</span>.srcElement;
-            <span class="keyword">if</span>(target.nodeName !== nodeName.toUpperCase()) <span class="keyword">return</span>;
-            cb(<span class="keyword">e</span>);
-            <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">e</span>.preventDefault === 'function'){
-                <span class="keyword">e</span>.preventDefault();
-                <span class="keyword">e</span>.stopPropagation();
-            }<span class="keyword">else</span>{
-                <span class="keyword">e</span>.returnValue = false;
-                <span class="keyword">e</span>.cancelBubble = true;
-            }
-        };
-
-        <span class="keyword">if</span>(dom.addEventListener){
-            dom.addEventListener(<span class="keyword">type</span>, handler,false);
-        }<span class="keyword">else</span> <span class="keyword">if</span>(dom.attachEvent){
-            dom.attachEvent(<span class="string">"on"</span> + <span class="keyword">type</span>, handler);
-        }<span class="keyword">else</span>{
-            dom[<span class="string">"on"</span> + <span class="keyword">type</span>] = handler;
+<h3 id="作为对象的方法调用">作为对象的方法调用</h3><p>当函数作为对象的方法调用时，this 指向该对象</p>
+<pre><code><span class="built_in">window</span>.saying = <span class="string">"大家都别吵了，给我赵日天一个面子！"</span>;
+    <span class="keyword">var</span> obj = {
+        saying: <span class="string">"我赵日天第一个表示不服！！"</span>,
+        getSaying: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+            <span class="keyword">return</span> <span class="keyword">this</span>.saying;
         }
-
-        <span class="keyword">return</span> handler;
-    }
-</code></pre><p>使用起来，直接调用</p>
-<pre><code><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementById(<span class="string">"links"</span>);
-delegation(links, <span class="string">"a"</span>, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>{
-    <span class="keyword">var</span> target = e.target || e.srcElement;
-    <span class="built_in">console</span>.log(target.nodeName + <span class="string">":"</span> + target.textContent);
-});
-</code></pre><p>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
-
+    };
+<span class="built_in">console</span>.log(obj.getSaying());   <span class="comment">//我赵日天第一个表示不服！！</span>
+</code></pre><h3 id="作为普通函数调用">作为普通函数调用</h3><p>普通函数中的 this 总是指向全局对象，在浏览器中就是 window 对象。</p>
+<pre><code><span class="keyword">var</span> getSaying2 = obj.getSaying;
+<span class="built_in">console</span>.log(getSaying2());   <span class="comment">//大家都别吵了，给我赵日天一个面子！</span>
+</code></pre><p>当调用 obj.getSaying 时，getSaying 方法是作为 obj 对象的属性被调用的，this 指向 obj。</p>
+<p>当通过另一个变量 getSaying2 来引用 obj.getSaying 并调用时，是普通函数调用，this 指向 window 对象。</p>
+<p>这点经常会引发一个错误，比如，我们每次写 document.getElementById 会觉得太长了，可不可以替换成成一个短一些的函数，如下</p>
+<pre><code><span class="keyword">var</span> getId = <span class="built_in">document</span>.getElementById;
+getId(<span class="string">"box"</span>);   <span class="comment">//Error</span>
+</code></pre><p>这段代码会报错，因为 document.getElementById 方法内部需要用到 this。这个 this 本来应该指向 document 的，但我们通过引用的方式，再调用就成了普通函数调用了 this 指向了 window 而不是 document。</p>
+<p>我们可以通过apply 和 call 改变 this 的指向来修复。</p>
+<h3 id="作为构造函数调用">作为构造函数调用</h3><p>javascript 中没有类，但是可以从构造器中创建对象，并且提供了 new 运算符，使得看起来更像是在创建类。基本上除了一些内置函数外，大部分函数都可以当作构造函数使用，构造函数和普通函数一模一样，区别就在于被调用的方式。当用 new 运算符调用函数时，该函数就是构造函数，并会返回一个对象，通常情况下，其中的 this 指向的就是这个构造函数返回的那个对象。</p>
+<pre><code><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
+    <span class="keyword">this</span>.name = name;
+}    
+<span class="keyword">var</span> obj = <span class="keyword">new</span> Person(<span class="string">"赵日天"</span>);
+<span class="built_in">console</span>.log(obj.name); <span class="comment">// 赵日天</span>
+</code></pre>
         
       </div>
     
@@ -259,13 +217,11 @@ delegation(links, <span class="string">"a"</span>, <span class="string">"click"<
           <div class="post-nav">
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a>
-              
             </div>
 
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a>
+                <a href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a>
               
             </div>
           </div>
@@ -361,7 +317,7 @@ delegation(links, <span class="string">"a"</span>, <span class="string">"click"<
         <div class="post-toc">
           
           
-            <p class="post-toc-empty">此文章未包含目录</p>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作为对象的方法调用"><span class="nav-number">1.1.</span> <span class="nav-text">作为对象的方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为普通函数调用"><span class="nav-number">1.2.</span> <span class="nav-text">作为普通函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为构造函数调用"><span class="nav-number">1.3.</span> <span class="nav-text">作为构造函数调用</span></a></li></ol></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -918,8 +874,8 @@ delegation(links, <span class="string">"a"</span>, <span class="string">"click"<
 
     <script type="text/javascript">
       var disqus_shortname = 'imhzq';
-      var disqus_identifier = '2015/11/09/20151109_Event-delegation/';
-      var disqus_url = 'http://imhzq.com/2015/11/09/20151109_Event-delegation/';
+      var disqus_identifier = '2015/12/05/20151205_js-this/';
+      var disqus_url = 'http://imhzq.com/2015/12/05/20151205_js-this/';
 
       (function(){
         var dsq = document.createElement('script');

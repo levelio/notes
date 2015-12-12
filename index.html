@@ -134,6 +134,113 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/05/20151205_js-this/">
+                js中的this
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            发表于 2015-12-04
+          
+        </span>
+
+        
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <a href="/categories/javascript/">javascript</a>
+
+                
+                
+
+              
+            </span>
+          
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/12/05/20151205_js-this/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/05/20151205_js-this/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          
+            <p>javascript 的 this 虽然和其他语言一样总是指向一个对象，但是具体指向哪个对象是在运行时基于执行环境动态绑定的，并不是函数被声明时的环境。</p>
+<h2 id="this">this</h2><p>因为 with 和 eval 不常使用，这里不再讨论。实际应用中，this 的指向情况大致可分为：</p>
+<ol>
+<li>作为对象的方法被调用</li>
+<li>作为普通数调用</li>
+<li>构造函数中调用</li>
+</ol>
+            <div class="post-more-link text-center">
+              <a class="btn" href="/2015/12/05/20151205_js-this/#more">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/javascript/">
+                #javascript
+              </a>
+            
+              <a href="/tags/前端/">
+                #前端
+              </a>
+            
+          </div>
+        
+
+        
+
+        
+        
+          <div class="post-eof"></div>
+        
+      </div>
+    
+  </div>
+
+
+  
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/04/20151204_use-shadowsocks/">
                 拥抱自由shadowsocks
               </a>
@@ -154,7 +261,7 @@
             <span class="post-category">
               &nbsp; | &nbsp; 分类于
               
-                <a href="/categories/生活/">生活</a>
+                <a href="/categories/梯子/">梯子</a>
 
                 
                 
@@ -1099,127 +1206,6 @@ span{
 
 
   
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/04/19/20150419_learn-sass-basesyntax/">
-                Sass系列之基本语法
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            发表于 2015-04-19
-          
-        </span>
-
-        
-          
-            <span class="post-category">
-              &nbsp; | &nbsp; 分类于
-              
-                <a href="/categories/CSS/">CSS</a>
-
-                
-                
-
-              
-            </span>
-          
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/04/19/20150419_learn-sass-basesyntax/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/19/20150419_learn-sass-basesyntax/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h2 id="sass_文件类型">sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
-<p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
-<pre><code><span class="id">#body</span>
-  <span class="attribute">background</span>: <span class="hexcolor">#fff</span>
-  <span class="id">#title</span>
-    <span class="attribute">margin</span>: <span class="number">0</span> <span class="attribute">auto</span>
-</code></pre><p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
-<pre><code><span class="id">#body</span>{
-    <span class="attribute">background</span>: <span class="hexcolor">#fff</span>;
-    <span class="id">#title</span>{
-    <span class="attribute">margin</span>: <span class="number">0</span> auto; 
-    }
-}
-</code></pre><p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
-<pre><code><span class="comment">//将 style.scss 转换为 style.sass</span>
-sass-convert style<span class="class">.scss</span> style.sass
-</code></pre><p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
-            <div class="post-more-link text-center">
-              <a class="btn" href="/2015/04/19/20150419_learn-sass-basesyntax/#more">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-        
-      </div>
-    
-
-    
-      <div class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/Css/">
-                #Css
-              </a>
-            
-              <a href="/tags/Sass/">
-                #Sass
-              </a>
-            
-              <a href="/tags/前端/">
-                #前端
-              </a>
-            
-          </div>
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
-  </div>
-
-
-  
 
           </div>
 
@@ -1252,7 +1238,7 @@ sass-convert style<span class="class">.scss</span> style.sass
       <p class="site-description motion-element">突然想到你，笑了笑自己</p>
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </div>
         <div class="site-state-item site-state-tags">
