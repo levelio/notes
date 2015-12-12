@@ -4,17 +4,11 @@
 <p>###JavaScript: 协议的 URI</p>
 <p>经过一番激烈的搜索后，看到如下解释：</p>
 <p>当用户点击一个以 javascript: 协议开头的 URI 时，浏览器会对冒号后面的代码进行求值，然后把求值的结果显示在页面上，这时页面基本上是一大片空白，这通常不是我们想要的。只有当这段代码的求值结果是 undefined 的时候，浏览器才不会去做这件傻事，所以我们经常会用 void 运算符来实现这个需求。像下面这样：</p>
-<pre><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;
-  这个链接点击之后不会做任何事情，如果去掉 void()，
-  点击之后整个页面会被替换成一个字符 0。
-&lt;/a&gt;
-&lt;a href=&quot;javascript:void(document.body.style.backgroundColor=&apos;green&apos;);&quot;&gt;
-  点击这个链接会让页面背景变成绿色。
-&lt;/a&gt;
-</code></pre><p>焕然大悟啊！<code>void(0)</code>、<code>&quot;&quot;</code>都只是用来返回 <code>undefined</code> 用的，因为 js 分号可以省略，就有了 <code>href=&quot;javascript:&quot;</code> 这样的写法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:void(0);"</span>&gt;</span></span><br><span class="line">  这个链接点击之后不会做任何事情，如果去掉 void()，</span><br><span class="line">  点击之后整个页面会被替换成一个字符 0。</span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:void(document.body.style.backgroundColor='green');"</span>&gt;</span></span><br><span class="line">  点击这个链接会让页面背景变成绿色。</span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>焕然大悟啊！<code>void(0)</code>、<code>&quot;&quot;</code>都只是用来返回 <code>undefined</code> 用的，因为 js 分号可以省略，就有了 <code>href=&quot;javascript:&quot;</code> 这样的写法。</p>
 <p>那又有疑问了，为啥不直接用 <code>undefined</code>？原因是担心拿到的 <code>undefined</code> 可能不是 <code>undefined</code>，可能是被人重新赋值过的全局变量！</p>
-<pre><code>window.undefined = {};
-</code></pre><p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.undefined = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
 </div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/11/02/20151102_cascading-and-inheritance/" class="pre"><i class="icon-previous">CSS的层叠、特殊性和继承</i></a><a href="/2015/10/24/20151024_type-script-anders-hejlsberg/" class="next">参加与大师面对面活动后的小心思<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/11/02/20151102_way-use-void-in-js/';
 var disqus_title = '为什么要用href=javascript:void(0);';

@@ -9,70 +9,12 @@
 <a id="more"></a>
 <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/646E5068-FD77-4934-8981-04596183F3F1.png" alt="img"></p>
 <p>对事件委托来说，冒泡就够了，比如说我们想要给下面这段代码中每个 a 标签增加一个点击事件</p>
-<pre><code>&lt;ul id=&quot;links&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item3&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item4&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;item5&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>可以把 onclick 事件绑定在 ul 元素上，然后通过 event.target 获得当前冒泡事件对象，再根据业务逻辑判断是否是目标元素的点击事件</p>
-<pre><code>var list = document.getElementById(&quot;links&quot;);
-var handler = function (e){
-    e = e || window.event;
-    e.preventDefault();
-    var target = e.target || e.srcElement;
-    if(target.nodeName !== &quot;A&quot;) return;
-    console.log(target.nodeName + &quot;: &quot; + target.textContent);
-};
-
-if(list.addEventListener){
-    list.addEventListener(&quot;click&quot;, handler, false);
-}else if(list.attachEvent){
-    list.attachEvent(&quot;onclick&quot;, handler);
-}else{
-    list[&quot;onclick&quot;] = handler;
-}
-</code></pre><p>我们可以简单的封装个函数：</p>
-<pre><code>/**
-     *
-     * @param dom 委托对象
-     * @param nodeName 目标元素 nodeName
-     * @param type 事件类型
-     * @param cb 事件执行函数
-     */
-    function delegation(dom,nodeName, type, cb){
-        var handler = function(e){
-            e = e || window.event;
-            var target = e.target || e.srcElement;
-            if(target.nodeName !== nodeName.toUpperCase()) return;
-            cb(e);
-            if(typeof e.preventDefault === &apos;function&apos;){
-                e.preventDefault();
-                e.stopPropagation();
-            }else{
-                e.returnValue = false;
-                e.cancelBubble = true;
-            }
-        };
-
-        if(dom.addEventListener){
-            dom.addEventListener(type, handler,false);
-        }else if(dom.attachEvent){
-            dom.attachEvent(&quot;on&quot; + type, handler);
-        }else{
-            dom[&quot;on&quot; + type] = handler;
-        }
-
-        return handler;
-    }
-</code></pre><p>使用起来，直接调用</p>
-<pre><code>var links = document.getElementById(&quot;links&quot;);
-delegation(links, &quot;a&quot;, &quot;click&quot;, function(e){
-    var target = e.target || e.srcElement;
-    console.log(target.nodeName + &quot;:&quot; + target.textContent);
-});
-</code></pre><p>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"links"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>item5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以把 onclick 事件绑定在 ul 元素上，然后通过 event.target 获得当前冒泡事件对象，再根据业务逻辑判断是否是目标元素的点击事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">"links"</span>);</span><br><span class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e = e || <span class="built_in">window</span>.event;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    <span class="keyword">var</span> target = e.target || e.srcElement;</span><br><span class="line">    <span class="keyword">if</span>(target.nodeName !== <span class="string">"A"</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(target.nodeName + <span class="string">": "</span> + target.textContent);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(list.addEventListener)&#123;</span><br><span class="line">    list.addEventListener(<span class="string">"click"</span>, handler, <span class="literal">false</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(list.attachEvent)&#123;</span><br><span class="line">    list.attachEvent(<span class="string">"onclick"</span>, handler);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    list[<span class="string">"onclick"</span>] = handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以简单的封装个函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     *</span><br><span class="line">     * @param dom 委托对象</span><br><span class="line">     * @param nodeName 目标元素 nodeName</span><br><span class="line">     * @param type 事件类型</span><br><span class="line">     * @param cb 事件执行函数</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">delegation</span>(<span class="params">dom,nodeName, type, cb</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            e = e || <span class="built_in">window</span>.event;</span><br><span class="line">            <span class="keyword">var</span> target = e.target || e.srcElement;</span><br><span class="line">            <span class="keyword">if</span>(target.nodeName !== nodeName.toUpperCase()) <span class="keyword">return</span>;</span><br><span class="line">            cb(e);</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">typeof</span> e.preventDefault === <span class="string">'function'</span>)&#123;</span><br><span class="line">                e.preventDefault();</span><br><span class="line">                e.stopPropagation();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                e.returnValue = <span class="literal">false</span>;</span><br><span class="line">                e.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(dom.addEventListener)&#123;</span><br><span class="line">            dom.addEventListener(type, handler,<span class="literal">false</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(dom.attachEvent)&#123;</span><br><span class="line">            dom.attachEvent(<span class="string">"on"</span> + type, handler);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            dom[<span class="string">"on"</span> + type] = handler;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> handler;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>使用起来，直接调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> links = <span class="built_in">document</span>.getElementById(<span class="string">"links"</span>);</span><br><span class="line">delegation(links, <span class="string">"a"</span>, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> target = e.target || e.srcElement;</span><br><span class="line">    <span class="built_in">console</span>.log(target.nodeName + <span class="string">":"</span> + target.textContent);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>去除一些冗长的浏览器兼容代码后，就会变的干净许多！</p>
 </div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/12/04/20151204_use-shadowsocks/" class="pre"><i class="icon-previous">拥抱自由shadowsocks</i></a><a href="/2015/11/08/20151108_simplifying-css-selectors/" class="next">CSS选择器优化<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/11/09/20151109_Event-delegation/';
 var disqus_title = '事件委托';

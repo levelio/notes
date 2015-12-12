@@ -1,33 +1,21 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="telephone=no" name="format-detection"/><meta name="description" content="突然想到你，笑了笑自己"/><title>Sass系列之基本语法 | ICEDOM</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"/><link rel="stylesheet" type="text/css" href="/css/pure-min.css"/><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"/><link rel="stylesheet" type="text/css" href="/css/style.css"/><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"/><link rel="alternate" type="application/atom+xml" href="/atom.xml"/></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Sass系列之基本语法</h1><a id="logo" href="/">ICEDOM</a><p class="description">ICEDOM</p></div><div id="nav-menu"><a href="/" class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Sass系列之基本语法</h1><div class="post-meta">2015-04-19 | <span class="categories">分类于<a href="/categories/CSS/"> CSS</a></span></div><span data-disqus-identifier="2015/04/19/20150419_learn-sass-basesyntax/" class="disqus-comment-count"></span><div class="post-content"><h2 id="sass__u6587_u4EF6_u7C7B_u578B"><a href="#sass__u6587_u4EF6_u7C7B_u578B" class="headerlink" title="sass 文件类型"></a>sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
 <p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
-<pre><code>#body
-  background: #fff
-  #title
-    margin: 0 auto
-</code></pre><p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
-<pre><code>#body{
-    background: #fff;
-    #title{
-    margin: 0 auto; 
-    }
-}
-</code></pre><p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
-<pre><code>//将 style.scss 转换为 style.sass
-sass-convert style.scss style.sass
-</code></pre><p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#body&#10;    background: #fff&#10;#title&#10;    margin: 0 auto</span><br></pre></td></tr></table></figure>
+<p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#body&#123;&#10;    background: #fff;&#10;    #title&#123;&#10;        margin: 0 auto; &#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#23558; style.scss &#36716;&#25442;&#20026; style.sass&#10;sass-convert style.scss style.sass</span><br></pre></td></tr></table></figure>
+<p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
 <a id="more"></a>
-<h2 id="u7F16_u8BD1"><a href="#u7F16_u8BD1" class="headerlink" title="编译"></a>编译</h2><h3 id="sass__u7F16_u8BD1"><a href="#sass__u7F16_u8BD1" class="headerlink" title="sass 编译"></a>sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css</p>
-<pre><code>//将 style.scss 编译成 style.css
-sass style.scss style.css
-</code></pre><p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
+<h2 id="u7F16_u8BD1"><a href="#u7F16_u8BD1" class="headerlink" title="编译"></a>编译</h2><h3 id="sass__u7F16_u8BD1"><a href="#sass__u7F16_u8BD1" class="headerlink" title="sass 编译"></a>sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#23558; style.scss &#32534;&#35793;&#25104; style.css&#10;sass style.scss style.css</span><br></pre></td></tr></table></figure></p>
+<p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
 <p>当然有，我们可以使用 compass 或者 gulp、grunt 来实现这项功能。</p>
 <p>gulp 和 grunt 是前端开发的脚手架，我们会在另外的文章里详细讲解，这里我们先简单介绍下 compass。</p>
 <h3 id="u901A_u8FC7_compass__u7F16_u8BD1_sass"><a href="#u901A_u8FC7_compass__u7F16_u8BD1_sass" class="headerlink" title="通过 compass 编译 sass"></a>通过 compass 编译 sass</h3><p>我们现在安装 compass, 和 sass 一样，我们通过 gem 来安装 compass</p>
-<pre><code>gem install compass
-</code></pre><p>通过 compass 初始化项目</p>
-<pre><code>//learn-sass 是要创建的项目文件夹
-compass create learn-sass
-</code></pre><p>打开我们的文件夹，文件结构就是这样的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install compass</span><br></pre></td></tr></table></figure>
+<p>通过 compass 初始化项目</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//learn-sass &#26159;&#35201;&#21019;&#24314;&#30340;&#39033;&#30446;&#25991;&#20214;&#22841;&#10;compass create learn-sass</span><br></pre></td></tr></table></figure>
+<p>打开我们的文件夹，文件结构就是这样的</p>
 <p>learn-sass<br><br>    &nbsp;&nbsp;|- .sass-cache<br><br>    &nbsp;&nbsp;|- sass<br><br>    &nbsp;&nbsp;|- stylesheets<br><br>    &nbsp;&nbsp;|- config.rb<br></p>
 <p><code>.sass-cache</code> 是 sass 编译缓存存放的地方</p>
 <p><code>sass</code> 存放的就是我们编写的 <em>.scss 和 </em>.sass 文件</p>
@@ -35,19 +23,11 @@ compass create learn-sass
 <p><code>config.rb</code> 里面是 compass 的配置信息，具体说明，我会在另外一篇文章中详细介绍</p>
 <p>执行 <code>compass watch</code> 后，修改 sass 中的文件，compass 会自动帮我们生成 css 到 stylesheets 文件夹中</p>
 <h2 id="u57FA_u672C_u8BED_u6CD5"><a href="#u57FA_u672C_u8BED_u6CD5" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="u53D8_u91CF_u58F0_u660E"><a href="#u53D8_u91CF_u58F0_u660E" class="headerlink" title="变量声明"></a>变量声明</h3><p>是的，css 中，可以像其他语言一样声明变量了，声明方式以 $ 符开头</p>
-<pre><code>//声明
-$titleColor: #0f0;
-$titleWidth: 16px;
-
-//使用
-.title{
-    background: $titleColor;
-    width: $titleWidth;
-}
-</code></pre><p>这样我们就可以把常用的数值，声明成变量，让我们的项目结构清晰易维护</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#22768;&#26126;&#10;$titleColor: #0f0;&#10;$titleWidth: 16px;&#10;&#10;//&#20351;&#29992;&#10;.title&#123;&#10;    background: $titleColor;&#10;    width: $titleWidth;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以把常用的数值，声明成变量，让我们的项目结构清晰易维护</p>
 <h3 id="@import"><a href="#@import" class="headerlink" title="@import"></a>@import</h3><p>通常我们会把所有的变量，统一的放在一个 <code>_variables.scss</code> 文件中，然后在用到的地方中通过 @import “variables.scss” 的方式来引用这些变量, 我们可以省略</p>
-<pre><code>@import &quot;variables&quot;;
-</code></pre><p>大家肯定已经想到了 css 中的 @import 功能，这个和那个又有什么区别哪</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &#34;variables&#34;;</span><br></pre></td></tr></table></figure>
+<p>大家肯定已经想到了 css 中的 @import 功能，这个和那个又有什么区别哪</p>
 <p>css 中的 @import 必须放在代码最前面，并且会阻塞浏览器，性能不优，我们尽量避免使用， sass 中重新定义了 @import 可以在任何地方使用。 那我们如果真的想用 css 自己的 @import 时，我们可以用以下方式表示使用原生的</p>
 <ol>
 <li>当@import 后边跟的文件名时 ＊.css时</li>
@@ -56,110 +36,24 @@ $titleWidth: 16px;
 <li>当@import 后面跟的时 media queries 的时候</li>
 </ol>
 <h3 id="u6CE8_u91CA"><a href="#u6CE8_u91CA" class="headerlink" title="注释"></a>注释</h3><p>sass 中可以使用 css 原生的注释，也可以使用 双斜线这种注释方式，具体区别如下 </p>
-<pre><code>/* 这种注释方式会出现在生成的 css代码中 */
-// 这种注释方式不会出现在生成的 css代码中
-</code></pre><h3 id="u5D4C_u5957"><a href="#u5D4C_u5957" class="headerlink" title="嵌套"></a>嵌套</h3><p>sass 提供了两种嵌套方式，分别是属性嵌套和选择器的嵌套，能极大的降低选择器和属性的重复书写，如下</p>
-<pre><code>#header{
-    width:20px;
-    height:300px;
-    title{
-        font:{ //属性嵌套使用 :
-            size:18px;
-            weight: normal;
-        }
-        &amp;:hover{    //&amp; 符号在 sass 中表示父级选择器，这里就是 title
-            color:#fff;
-        }
-    }
-}
-</code></pre><p>编译后</p>
-<pre><code>#header{
-    width:20px;
-    height:300px;
-}
-#header title{
-    font-size:18px;
-    font-weight: normal;
-}
-#header title:hover{
-    color:#fff;
-}
-</code></pre><p>对比一下，是不是可以少写很多的代码了那</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* &#36825;&#31181;&#27880;&#37322;&#26041;&#24335;&#20250;&#20986;&#29616;&#22312;&#29983;&#25104;&#30340; css&#20195;&#30721;&#20013; */&#10;// &#36825;&#31181;&#27880;&#37322;&#26041;&#24335;&#19981;&#20250;&#20986;&#29616;&#22312;&#29983;&#25104;&#30340; css&#20195;&#30721;&#20013;</span><br></pre></td></tr></table></figure>
+<h3 id="u5D4C_u5957"><a href="#u5D4C_u5957" class="headerlink" title="嵌套"></a>嵌套</h3><p>sass 提供了两种嵌套方式，分别是属性嵌套和选择器的嵌套，能极大的降低选择器和属性的重复书写，如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#header&#123;&#10;    width:20px;&#10;    height:300px;&#10;    title&#123;&#10;        font:&#123; //&#23646;&#24615;&#23884;&#22871;&#20351;&#29992; :&#10;            size:18px;&#10;            weight: normal;&#10;        &#125;&#10;        &#38;:hover&#123;    //&#38; &#31526;&#21495;&#22312; sass &#20013;&#34920;&#31034;&#29238;&#32423;&#36873;&#25321;&#22120;&#65292;&#36825;&#37324;&#23601;&#26159; title&#10;            color:#fff;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#header&#123;&#10;    width:20px;&#10;    height:300px;&#10;&#125;&#10;#header title&#123;&#10;    font-size:18px;&#10;    font-weight: normal;&#10;&#125;&#10;#header title:hover&#123;&#10;    color:#fff;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对比一下，是不是可以少写很多的代码了那</p>
 <h3 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h3><p>刚才我们讲了变量，变量的操作有两种，一种是直接变量操作，一种是通过函数操作</p>
-<pre><code>$titleWidth:24px + 5; //sass 变量支持基本的算数运算，&gt;= &lt;= &lt; &gt; == != ()
-</code></pre><p>函数操作，一种是通过 sass 内部定义的函数，称作 functions，第二种是可重用的代码块，称作 mixin，我们主要讲 mixin 这种方式</p>
-<pre><code>//定义 mixin
-@mixin col-12{
-    width:100%;
-}
-
-//调用
-.title{
-    @include col-12();
-}
-
-//编译后生成
-.title{
-    width: 100%;
-}
-</code></pre><p>当然，既然是函数，我们可以传入参数值</p>
-<pre><code>//定义带参数的 mixin
-@mixin col ($width){
-    width: $width;
-}
-
-//调用方式和无参是一样的
-.title{
-    @include col(100%);
-}
-</code></pre><p>参数默认值也是有的哦</p>
-<pre><code>//@定义带参数有默认值的 mixin
-@mixin col ($width:100%){   //参数后跟 : 指定默认值
-    width : $width
-}
-</code></pre><h3 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h3><p>sass 通过 @extent 可以继承其他选择器的样式</p>
-<pre><code>.content{
-    color:#fff;
-    float:left;
-}
-
-.left{
-    @extent .content; //通过 @extent 继承 .content 选择器的样式
-    width:30%;
-}
-
-//编译后
-.content, .left {
-    color:#fff;
-    float:left;
-}
-
-.left{
-    width: 30%;
-}
-</code></pre><p>@extent 不能继承选择器序列，可以用 %声明样式，来表示这是个只继承的样式</p>
-<pre><code>//选择器序列
-.left .name{
-    width:200px;
-}
-
-.right{
-    @extent .left .name; //这会报语法错误，不能继承选择器序列
-}
-
-// %
-$title{
-    width:30xp;
-}
-
-.left{
-    @extent $title;
-}
-//编译后
-.left{
-    width:30xp; 
-}
-</code></pre><h2 id="u6700_u540E"><a href="#u6700_u540E" class="headerlink" title="最后"></a>最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$titleWidth:24px + 5; //sass &#21464;&#37327;&#25903;&#25345;&#22522;&#26412;&#30340;&#31639;&#25968;&#36816;&#31639;&#65292;&#62;= &#60;= &#60; &#62; == != ()</span><br></pre></td></tr></table></figure>
+<p>函数操作，一种是通过 sass 内部定义的函数，称作 functions，第二种是可重用的代码块，称作 mixin，我们主要讲 mixin 这种方式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#23450;&#20041; mixin&#10;@mixin col-12&#123;&#10;    width:100%;&#10;&#125;&#10;&#10;//&#35843;&#29992;&#10;.title&#123;&#10;    @include col-12();&#10;&#125;&#10;&#10;//&#32534;&#35793;&#21518;&#29983;&#25104;&#10;.title&#123;&#10;    width: 100%;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，既然是函数，我们可以传入参数值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#23450;&#20041;&#24102;&#21442;&#25968;&#30340; mixin&#10;@mixin col ($width)&#123;&#10;    width: $width;&#10;&#125;&#10;&#10;//&#35843;&#29992;&#26041;&#24335;&#21644;&#26080;&#21442;&#26159;&#19968;&#26679;&#30340;&#10;.title&#123;&#10;    @include col(100%);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>参数默认值也是有的哦</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//@&#23450;&#20041;&#24102;&#21442;&#25968;&#26377;&#40664;&#35748;&#20540;&#30340; mixin&#10;@mixin col ($width:100%)&#123;   //&#21442;&#25968;&#21518;&#36319; : &#25351;&#23450;&#40664;&#35748;&#20540;&#10;    width : $width&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h3><p>sass 通过 @extent 可以继承其他选择器的样式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.content&#123;&#10;    color:#fff;&#10;    float:left;&#10;&#125;&#10;&#10;.left&#123;&#10;    @extent .content; //&#36890;&#36807; @extent &#32487;&#25215; .content &#36873;&#25321;&#22120;&#30340;&#26679;&#24335;&#10;    width:30%;&#10;&#125;&#10;&#10;//&#32534;&#35793;&#21518;&#10;.content, .left &#123;&#10;    color:#fff;&#10;    float:left;&#10;&#125;&#10;&#10;.left&#123;&#10;    width: 30%;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>@extent 不能继承选择器序列，可以用 %声明样式，来表示这是个只继承的样式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#36873;&#25321;&#22120;&#24207;&#21015;&#10;.left .name&#123;&#10;    width:200px;&#10;&#125;&#10;&#10;.right&#123;&#10;    @extent .left .name; //&#36825;&#20250;&#25253;&#35821;&#27861;&#38169;&#35823;&#65292;&#19981;&#33021;&#32487;&#25215;&#36873;&#25321;&#22120;&#24207;&#21015;&#10;&#125;&#10;&#10;// &#10;$title&#123;&#10;    width:30xp;&#10;&#125;&#10;&#10;.left&#123;&#10;    @extent $title;&#10;&#125;&#10;//&#32534;&#35793;&#21518;&#10;.left&#123;&#10;    width:30xp; &#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u6700_u540E"><a href="#u6700_u540E" class="headerlink" title="最后"></a>最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
 </div><div class="tags"><a href="/tags/Css/">Css</a><a href="/tags/Sass/">Sass</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/09/01/20150901_Repaints-and Reflows/" class="pre"><i class="icon-previous">重排与重绘</i></a><a href="/2015/04/17/20150417_learn-sass-step/" class="next">Sass系列之安装<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/04/19/20150419_learn-sass-basesyntax/';
 var disqus_title = 'Sass系列之基本语法';

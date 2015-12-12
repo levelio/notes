@@ -81,14 +81,10 @@
 </table>
 <p>根据基数覆盖，如果基数相同，则后者覆盖前者。</p>
 <p>比如,下面这段代码,最后的颜色是灰色：</p>
-<pre><code>#content div#main-content h2{ color: gray; }    //100*2 + 1*2 = 202  
-#content #main-content&gt;h2{ color: blue; }       //100*2 + 1 = 201
-</code></pre><h2 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h2><p>应用样式的元素的后代会继承样式的某些属性，比如字号、颜色等。假如你设置了以下代码</p>
-<pre><code>body{ font-size: 20px;}
-
-&lt;h1&gt;标题&lt;/h1&gt;
-&lt;h2&gt;标题&lt;/h2&gt;
-</code></pre><p>你会发现，h1 和 h2 元素并未继承 20px 的大小，因为浏览器默认样式覆盖了它。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#content div#main-content h2&#123; color: gray; &#125;    //100*2 + 1*2 = 202  </span><br><span class="line">#content #main-content&gt;h2&#123; color: blue; &#125;       //100*2 + 1 = 201</span><br></pre></td></tr></table></figure>
+<h2 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h2><p>应用样式的元素的后代会继承样式的某些属性，比如字号、颜色等。假如你设置了以下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123; font-size: 20px;&#125;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;标题&lt;/h1&gt;</span><br><span class="line">&lt;h2&gt;标题&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+<p>你会发现，h1 和 h2 元素并未继承 20px 的大小，因为浏览器默认样式覆盖了它。</p>
 <p>继承来的样式的权重为 0,任何直接设置的样式都可以覆盖。</p>
 </div><div class="tags"><a href="/tags/CSS/">CSS</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/11/02/20151101_new-tag-from-html5/" class="pre"><i class="icon-previous">HTML5新增元素介绍</i></a><a href="/2015/11/02/20151102_way-use-void-in-js/" class="next">为什么要用href=javascript:void(0);<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/11/02/20151102_cascading-and-inheritance/';

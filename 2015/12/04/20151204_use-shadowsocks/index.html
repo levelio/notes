@@ -10,9 +10,7 @@ Bandwidth: 550GB
 <a id="more"></a>
 <h2 id="u8BBE_u7F6E_u4E3B_u673A"><a href="#u8BBE_u7F6E_u4E3B_u673A" class="headerlink" title="设置主机"></a>设置主机</h2><p>进入主机控制面板</p>
 <h3 id="u66F4_u6362_u7CFB_u7EDF"><a href="#u66F4_u6362_u7CFB_u7EDF" class="headerlink" title="更换系统"></a>更换系统</h3><p>选择 Install new OS，更换新系统，我选择的是  centos-6-x86_64-minimal 内存占用只有 7m 左右，毕竟内存只有 256m，能少占点就少占点:-)</p>
-<h3 id="u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801"><a href="#u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801" class="headerlink" title="获取ROOT用户密码"></a>获取ROOT用户密码</h3><p>选择 Root Password modification 就可以过的 root 用户密码了，ssh登陆进去</p>
-<pre><code>ssh root@1.1.1.1 -p 3000
-</code></pre><p>修改 root 用户密码，创建新用户等等～</p>
+<h3 id="u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801"><a href="#u83B7_u53D6ROOT_u7528_u6237_u5BC6_u7801" class="headerlink" title="获取ROOT用户密码"></a>获取ROOT用户密码</h3><p>选择 Root Password modification 就可以过的 root 用户密码了，ssh登陆进去<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@1.1.1.1 -p 3000</span><br></pre></td></tr></table></figure><br>修改 root 用户密码，创建新用户等等～</p>
 <h3 id="u4F7F_u7528_u642C_u74E6_u5DE5_u7684Shadowsocks_Server"><a href="#u4F7F_u7528_u642C_u74E6_u5DE5_u7684Shadowsocks_Server" class="headerlink" title="使用搬瓦工的Shadowsocks Server"></a>使用搬瓦工的Shadowsocks Server</h3><p>选择 Shadowsocks Server，安装 shadowsocks 服务，下载对应的 <a href="https://github.com/shadowsocks" target="_blank" rel="external">shadowscoks客户端</a>,配置上相关参数即可，相当简单！</p>
 <h3 id="u4F7F_u7528_shadowsocks-libev"><a href="#u4F7F_u7528_shadowsocks-libev" class="headerlink" title="使用 shadowsocks-libev"></a>使用 shadowsocks-libev</h3><p>shadowsocks-libev 是一个 shadowsocks 协议的轻量级实现，是 shadowsocks-android, shadowsocks-ios 以及 shadowsocks-openwrt 的上游项目。其具有以下特点：</p>
 <ol>
@@ -22,44 +20,13 @@ Bandwidth: 550GB
 <li>跨平台，适用于所有常见硬件平台，已测试通过的包括 x86，ARM 和 MIPS。也适用于大部分 POSIX 的操作系统或平台，包括 Linux，OS X 和 gwin 等。</li>
 <li>协议及配置兼容，完全兼容 shadowsocks 协议，且兼容标准实现中的 JSON 风格配置文件，可与任意实现的 shadowsocks 端或服务端搭配使用。</li>
 </ol>
-<h4 id="u5B89_u88C5_u5FC5_u8981_u7EC4_u4EF6"><a href="#u5B89_u88C5_u5FC5_u8981_u7EC4_u4EF6" class="headerlink" title="安装必要组件"></a>安装必要组件</h4><pre><code>centos: yum install build-essential autoconf libtool openssl-devel gcc -y
-        yum install git -y
-</code></pre><h4 id="u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev"><a href="#u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev" class="headerlink" title="下载及编译 shadowsocks-libev"></a>下载及编译 shadowsocks-libev</h4><pre><code>git clone https://github.com/madeye/shadowsocks-libev.git
-cd shadowsocks-libev
-./configure
-make &amp;&amp; make install
-</code></pre><h4 id="u521B_u5EFA_ssconfig-json__u6587_u4EF6"><a href="#u521B_u5EFA_ssconfig-json__u6587_u4EF6" class="headerlink" title="创建 ssconfig.json 文件"></a>创建 ssconfig.json 文件</h4><pre><code>{
-    &quot;server&quot;:&quot;servier_ip&quot;,   # 服务器IP
-    &quot;server_port&quot;:65000,     # ss服务器所使用的端口号，建议改到30000-60000
-    &quot;password&quot;:&quot;password&quot;,   # ss服务器密码，轻易不要分享
-    &quot;timeout&quot;:60,            # 超时时间，建议设置为60
-    &quot;method&quot;:&quot;aes-256-cfb&quot;   # 加密方式，需要和客户端配合设置
-}
-</code></pre><h4 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h4><pre><code>/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid
-</code></pre><p>这时候，打开客户端，设置相关参数就可以了，之后，可以用非 ROOT 用户运行 ss</p>
-<pre><code># 创建 hzq 用户
-useradd hzq
-# 为hzq创建密码
-passwd hzq
-&gt; 输入两次密码
-# 切换用户至hzq
-su - hzq
-# 在主目录创建第一个配置文件，配置格式请参考`使用配置文件运行`一节
-vim ~/ssconfig.json
-
-# 保存完毕即可立即运行
-/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid
-
-# 设置开启自启动
-# 我们先切换至root用户
-su - root
-
-# 接着在启动脚本里加入启动命令
-# 指定ss以用户hzq的权限运行
-# 执行下面的命令时一定注意文件路径是否正确
-echo &quot;su - hzq -c \&quot;/usr/local/bin/ss-server -c /home/hzq/config1.json -f /tmp/ss1.pid\&quot;&quot; &gt;&gt; /etc/rc.local
-</code></pre><h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><pre><code>打开 Google ，熟悉的页面又出来了，终于有网了！
-</code></pre></div><div class="tags"><a href="/tags/生活/">生活</a></div><div class="post-nav"><a href="/2015/12/05/20151205_js-this/" class="pre"><i class="icon-previous">js中的this</i></a><a href="/2015/11/09/20151109_Event-delegation/" class="next">事件委托<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+<h4 id="u5B89_u88C5_u5FC5_u8981_u7EC4_u4EF6"><a href="#u5B89_u88C5_u5FC5_u8981_u7EC4_u4EF6" class="headerlink" title="安装必要组件"></a>安装必要组件</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centos: yum install build-essential autoconf libtool openssl-devel gcc -y&#10;        yum install git -y</span><br></pre></td></tr></table></figure>
+<h4 id="u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev"><a href="#u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev" class="headerlink" title="下载及编译 shadowsocks-libev"></a>下载及编译 shadowsocks-libev</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/madeye/shadowsocks-libev.git&#10;cd shadowsocks-libev&#10;./configure&#10;make &#38;&#38; make install</span><br></pre></td></tr></table></figure>
+<h4 id="u521B_u5EFA_ssconfig-json__u6587_u4EF6"><a href="#u521B_u5EFA_ssconfig-json__u6587_u4EF6" class="headerlink" title="创建 ssconfig.json 文件"></a>创建 ssconfig.json 文件</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        "server":"servier_ip",   # 服务器IP</span><br><span class="line">        "server_port":65000,     # ss服务器所使用的端口号，建议改到30000-60000</span><br><span class="line">        "password":"password",   # ss服务器密码，轻易不要分享</span><br><span class="line">        "timeout":60,            # 超时时间，建议设置为60</span><br><span class="line">        "method":"aes-256-cfb"   # 加密方式，需要和客户端配合设置</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid</span><br></pre></td></tr></table></figure>
+<p>这时候，打开客户端，设置相关参数就可以了，之后，可以用非 ROOT 用户运行 ss<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#21019;&#24314; hzq &#29992;&#25143;&#10;useradd hzq&#10;# &#20026;hzq&#21019;&#24314;&#23494;&#30721;&#10;passwd hzq&#10;&#62; &#36755;&#20837;&#20004;&#27425;&#23494;&#30721;&#10;# &#20999;&#25442;&#29992;&#25143;&#33267;hzq&#10;su - hzq&#10;# &#22312;&#20027;&#30446;&#24405;&#21019;&#24314;&#31532;&#19968;&#20010;&#37197;&#32622;&#25991;&#20214;&#65292;&#37197;&#32622;&#26684;&#24335;&#35831;&#21442;&#32771;`&#20351;&#29992;&#37197;&#32622;&#25991;&#20214;&#36816;&#34892;`&#19968;&#33410;&#10;vim ~/ssconfig.json&#10;&#10;# &#20445;&#23384;&#23436;&#27605;&#21363;&#21487;&#31435;&#21363;&#36816;&#34892;&#10;/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid&#10;&#10;# &#35774;&#32622;&#24320;&#21551;&#33258;&#21551;&#21160;&#10;# &#25105;&#20204;&#20808;&#20999;&#25442;&#33267;root&#29992;&#25143;&#10;su - root&#10;&#10;# &#25509;&#30528;&#22312;&#21551;&#21160;&#33050;&#26412;&#37324;&#21152;&#20837;&#21551;&#21160;&#21629;&#20196;&#10;# &#25351;&#23450;ss&#20197;&#29992;&#25143;hzq&#30340;&#26435;&#38480;&#36816;&#34892;&#10;# &#25191;&#34892;&#19979;&#38754;&#30340;&#21629;&#20196;&#26102;&#19968;&#23450;&#27880;&#24847;&#25991;&#20214;&#36335;&#24452;&#26159;&#21542;&#27491;&#30830;&#10;echo &#34;su - hzq -c \&#34;/usr/local/bin/ss-server -c /home/hzq/config1.json -f /tmp/ss1.pid\&#34;&#34; &#62;&#62; /etc/rc.local</span><br></pre></td></tr></table></figure></p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>打开 Google ，熟悉的页面又出来了，终于有网了！</p>
+</div><div class="tags"><a href="/tags/生活/">生活</a></div><div class="post-nav"><a href="/2015/12/05/20151205_js-this/" class="pre"><i class="icon-previous">js中的this</i></a><a href="/2015/11/09/20151109_Event-delegation/" class="next">事件委托<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/12/04/20151204_use-shadowsocks/';
 var disqus_title = '拥抱自由shadowsocks';
 var disqus_url = 'http://imhzq.com/2015/12/04/20151204_use-shadowsocks/';
