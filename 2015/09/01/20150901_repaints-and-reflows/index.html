@@ -36,7 +36,7 @@
 <p>前面说过，这种写法会使浏览器强制重排获取正确的属性值，每次 ＋1 都会触发重排，我们可以将移动信息做缓存，如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> es = el.style, positionNum = el.offsetLeft;</span><br><span class="line">es.left = ++positionNum;</span><br></pre></td></tr></table></figure>
 <p>这样，我们就避免了，多次重排!</p>
-</div><div class="tags"><a href="/tags/Css/">Css</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/10/24/20151024_type-script-anders-hejlsberg/" class="pre"><i class="icon-previous">参加与大师面对面活动后的小心思</i></a><a href="/2015/04/19/20150419_learn-sass-basesyntax/" class="next">Sass系列之基本语法<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+</div><div class="tags"><a href="/tags/Css/">Css</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/10/24/20151024_type-script-anders-hejlsberg/" class="pre"><i class="icon-previous">参加与大师面对面活动后的小心思</i></a><a href="/2015/05/11/20150511_impromptu-poetry/" class="next">即兴小诗<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/09/01/20150901_repaints-and-reflows/';
 var disqus_title = '重排与重绘';
 var disqus_url = 'http://imhzq.com/2015/09/01/20150901_repaints-and-reflows/';
