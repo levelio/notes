@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[ICEDOM]]></title>
-  <subtitle><![CDATA[ICEDOM]]></subtitle>
+  <subtitle><![CDATA[感受编程中所蕴含的大智慧，体会乐与怒的程序人生中值得回味的一幕幕]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
   <updated>2015-12-14T17:44:46.000Z</updated>
@@ -493,7 +493,7 @@
     <link href="http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/"/>
     <id>http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/</id>
     <published>2015-10-23T16:00:00.000Z</published>
-    <updated>2015-12-12T15:12:21.000Z</updated>
+    <updated>2015-12-14T17:46:16.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/IMG_0078.JPG" alt="小心思"></p>
 ]]></content>
     <summary type="html">
@@ -501,7 +501,7 @@
 ]]>
     </summary>
     
-      <category term="-生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="Emotion" scheme="http://imhzq.com/categories/Emotion/"/>
     
