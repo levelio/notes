@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imhzq.com/2015/12/08/20151207_image-type/</loc>
+    <lastmod>2015-12-14T17:32:45.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
+    <lastmod>2015-12-14T17:32:45.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://imhzq.com/2015/12/06/20151206_js-call-apply/</loc>
-    <lastmod>2015-12-14T15:32:10.000Z</lastmod>
+    <lastmod>2015-12-14T17:32:45.000Z</lastmod>
   </url>
   
   <url>
@@ -19,11 +29,6 @@
   <url>
     <loc>http://imhzq.com/about/index.html</loc>
     <lastmod>2015-12-12T16:14:01.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
-    <lastmod>2015-12-12T16:12:01.000Z</lastmod>
   </url>
   
   <url>
