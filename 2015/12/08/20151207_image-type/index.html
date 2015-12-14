@@ -11,13 +11,15 @@
 <p>gif和png8会限制调色板做多只能包含 256 种颜色，这不是说只可以从 256 中定义好的颜色中选择，而是你可以从 1600w＋的颜色中选择你需要的颜色，但是一个图片只能包含 256 种颜色。</p>
 <h2 id="u9694_u884C_u626B_u63CF"><a href="#u9694_u884C_u626B_u63CF" class="headerlink" title="隔行扫描"></a>隔行扫描</h2><p>当网速比较慢的时候，大图会随着下载进度逐行显示。为了提高用户体验，部分图像格式支持对那些连续采样的图像进行隔行扫描。隔行扫描(又被称作渐进式图片)可以让用户在图片下载完成前，看到一个模糊的版本，从而在用户心理上消除页面加载缓慢的感觉。具体可以参考张鑫旭大大的这篇博文 <a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
 <h1 id="u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027"><a href="#u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027" class="headerlink" title="不同格式图像的特性"></a>不同格式图像的特性</h1><p>看完上面的资料后，咱们来看看gif、jpeg和 png 这 3种格式的区别。</p>
-<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>gif是一种调色板图片格式，只能包含256种颜色。</p>
+<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><hr>
+<p>gif是一种调色板图片格式，只能包含256种颜色。</p>
 <h3 id="u900F_u660E"><a href="#u900F_u660E" class="headerlink" title="透明"></a>透明</h3><p>gif 允许一个二进制类型的透明，要没每个像素要么是完全透明要么就是完全不透明。透明也会占用一个调色板条目，也就只剩下255种颜色可选了。</p>
 <h3 id="u52A8_u753B"><a href="#u52A8_u753B" class="headerlink" title="动画"></a>动画</h3><p>gif 格式支持动画。</p>
 <h3 id="u65E0_u635F"><a href="#u65E0_u635F" class="headerlink" title="无损"></a>无损</h3><p>gif也是无损的，也就是说你可以打开任意一个 gif 文件，做一些修改，保存关闭时不会损失任何质量。</p>
 <h3 id="u9010_u884C_u626B_u63CF"><a href="#u9010_u884C_u626B_u63CF" class="headerlink" title="逐行扫描"></a>逐行扫描</h3><p>生成GIF会使用一个LZW压缩算法来减小文件大小，当压缩gif时，会从上到下一行一行的对像素进行扫描。这种情况下，当图片在水平方向有很多重复颜色时，可以获得更好的压缩效果。</p>
 <h3 id="u9694_u884C_u626B_u63CF-1"><a href="#u9694_u884C_u626B_u63CF-1" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>gif支持可选的隔行扫描，由于gif有256色的限制，所以不适合显示照片。gif更适合显示图形，但是png8才是显示图形最佳格式。所以，只有当使用动画时才应该使用 gif。</p>
-<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><p>jpeg是一种有损压缩格式，用户可以设置自定义质量级别，这个级别决定了有多少信息会被丢弃。质量级别从0～100，但是就算设置为100，也同样会有一定程度的质量损耗。</p>
+<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><hr>
+<p>jpeg是一种有损压缩格式，用户可以设置自定义质量级别，这个级别决定了有多少信息会被丢弃。质量级别从0～100，但是就算设置为100，也同样会有一定程度的质量损耗。</p>
 <p>当你要对图片进行多项编辑操作室，最好使用无损的图像格式来保存中间结果，然后在完成所有操作后，另存为jpeg格式，否则，你将会在每次保存都丢失一些质量。</p>
 <p>有些操作是无损的：</p>
 <ol>
@@ -29,7 +31,8 @@
 </ol>
 <h3 id="u900F_u660E_u548C_u52A8_u753B"><a href="#u900F_u660E_u548C_u52A8_u753B" class="headerlink" title="透明和动画"></a>透明和动画</h3><p>jpeg不支持透明和动画</p>
 <h3 id="u9694_u884C_u626B_u63CF-2"><a href="#u9694_u884C_u626B_u63CF-2" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>渐进式jpeg<a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
-<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><p>为了弥补gif格式的缺点，并规避 LZW 算法的专利问题，PNG应运而生。</p>
+<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><hr>
+<p>为了弥补gif格式的缺点，并规避 LZW 算法的专利问题，PNG应运而生。</p>
 <h3 id="PNG8"><a href="#PNG8" class="headerlink" title="PNG8"></a>PNG8</h3><p>调色板PNG的别称</p>
 <h3 id="PNG24"><a href="#PNG24" class="headerlink" title="PNG24"></a>PNG24</h3><p>真色彩PNG的别称，但是不包括 alpha 通道</p>
 <h3 id="PNG32"><a href="#PNG32" class="headerlink" title="PNG32"></a>PNG32</h3><p>真色彩PNG的别称，包括 alpha 通道</p>
@@ -45,36 +48,18 @@
 <li>当图片颜色<code>略微</code>超过256，可以在不损耗人和可见质量的前提下，将图片转化为png8格式。令人惊奇的是，有时候，就算你剥离了 1000种以上的颜色，都不会注意到图片中的所发生的变化</li>
 <li>当大色块变得不能接受的时候，比如包含很色颜色的图像或软件菜单的截图，这时候png更好。</li>
 </ol>
-<h2 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h2><p>WebP最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片档在网络上的发送时间。2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能。但目前只有 chrome 和 opera 浏览器支持原生 WebP 格式。</p>
-<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><h2 id="GIF-1"><a href="#GIF-1" class="headerlink" title="GIF"></a>GIF</h2><h3 id="u4F18_u70B9_3A"><a href="#u4F18_u70B9_3A" class="headerlink" title="优点:"></a>优点:</h3><ul>
-<li>动画</li>
-<li>无损</li>
-</ul>
-<h3 id="u7F3A_u70B9_uFF1A"><a href="#u7F3A_u70B9_uFF1A" class="headerlink" title="缺点："></a>缺点：</h3><ul>
-<li>256色</li>
-<li>压缩比不如 png8（颜色少的小图虽然压缩比比 png8高，但是 sprite 格式的 png 更优）</li>
-<li>不支持透明</li>
-</ul>
-<h2 id="JPEG-1"><a href="#JPEG-1" class="headerlink" title="JPEG"></a>JPEG</h2><h3 id="u4F18_u70B9_uFF1A"><a href="#u4F18_u70B9_uFF1A" class="headerlink" title="优点："></a>优点：</h3><ul>
-<li>真色彩</li>
-<li>压缩比可调<h3 id="u7F3A_u70B9_uFF1A-1"><a href="#u7F3A_u70B9_uFF1A-1" class="headerlink" title="缺点："></a>缺点：</h3></li>
-<li>有损</li>
-<li>不支持透明和动画</li>
-</ul>
-<h2 id="PNG8-1"><a href="#PNG8-1" class="headerlink" title="PNG8"></a>PNG8</h2><h3 id="u4F18_u70B9_uFF1A-1"><a href="#u4F18_u70B9_uFF1A-1" class="headerlink" title="优点："></a>优点：</h3><ul>
-<li>无损</li>
-<li>压缩比高</li>
-<li>支持 alpha 通道<h3 id="u7F3A_u70B9_uFF1A-2"><a href="#u7F3A_u70B9_uFF1A-2" class="headerlink" title="缺点："></a>缺点：</h3></li>
-<li>256色</li>
-</ul>
-<h2 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h2><h3 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h3><ul>
-<li>无损</li>
-<li>真色彩</li>
-<li>支持 alpha 通道<h3 id="u7F3A_u70B9_uFF1A-3"><a href="#u7F3A_u70B9_uFF1A-3" class="headerlink" title="缺点："></a>缺点：</h3></li>
-<li>图片较大</li>
-</ul>
-<h2 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h2><p>这些格式没有孰优孰略，完全看需求：<br>jpeg通常用在颜色复杂、但不要求特别精细的图片上，如照片、宣传图、背景等。<br>png通常用在颜色复杂并且要求特别精细或者有透明需求的图片上，如复杂的logo、图标等。由于无损还可以当做“原图”来存档使用。<br>png8在png的基础上“减去”颜色复杂。<br>gif由于静态部分可以被png8代替，所以通常只用于简单的动画。</p>
-</div><div class="tags"><a href="/tags/前端-图片/">前端 图片</a></div><div class="post-nav"><a href="/2015/12/06/20151206_js-call-apply/" class="next">call和apply<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+<h2 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h2><hr>
+<p>WebP最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片档在网络上的发送时间。2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能。但目前只有 chrome 和 opera 浏览器支持原生 WebP 格式。</p>
+<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><h2 id="GIF-1"><a href="#GIF-1" class="headerlink" title="GIF"></a>GIF</h2><h3 id="u4F18_u70B9_3A"><a href="#u4F18_u70B9_3A" class="headerlink" title="优点:"></a>优点:</h3><p>动画、无损</p>
+<h3 id="u7F3A_u70B9_uFF1A"><a href="#u7F3A_u70B9_uFF1A" class="headerlink" title="缺点："></a>缺点：</h3><p>256色、压缩比不如 png8（颜色少的小图虽然压缩比比 png8高，但是 sprite 格式的 png 更优）、不支持透明</p>
+<h2 id="JPEG-1"><a href="#JPEG-1" class="headerlink" title="JPEG"></a>JPEG</h2><h3 id="u4F18_u70B9_uFF1A"><a href="#u4F18_u70B9_uFF1A" class="headerlink" title="优点："></a>优点：</h3><p>真色彩、压缩比可调</p>
+<h3 id="u7F3A_u70B9_uFF1A-1"><a href="#u7F3A_u70B9_uFF1A-1" class="headerlink" title="缺点："></a>缺点：</h3><p>有损、不支持透明和动画</p>
+<h2 id="PNG8-1"><a href="#PNG8-1" class="headerlink" title="PNG8"></a>PNG8</h2><h3 id="u4F18_u70B9_uFF1A-1"><a href="#u4F18_u70B9_uFF1A-1" class="headerlink" title="优点："></a>优点：</h3><p>无损、压缩比高、支持 alpha 通道</p>
+<h3 id="u7F3A_u70B9_uFF1A-2"><a href="#u7F3A_u70B9_uFF1A-2" class="headerlink" title="缺点："></a>缺点：</h3><p>256色</p>
+<h2 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h2><h3 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h3><p>无损、真色彩、支持 alpha 通道</p>
+<h3 id="u7F3A_u70B9_uFF1A-3"><a href="#u7F3A_u70B9_uFF1A-3" class="headerlink" title="缺点："></a>缺点：</h3><p>图片较大</p>
+<h2 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h2><p>这些格式没有孰优孰略，完全看需求：<br>jpeg通常用在颜色较多、但不要求特别精细的图片上，如照片、宣传图、背景等。<br>png通常用在颜色复杂并且要求特别精细或者有透明需求的图片上，如复杂的logo、图标等。由于无损还可以当做“原图”来存档使用。<br>png8在png的基础上“减去”颜色复杂。<br>gif由于静态部分可以被png8代替，所以通常只用于简单的动画。</p>
+</div><div class="tags"><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/12/06/20151206_js-call-apply/" class="next">call和apply<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/12/08/20151207_image-type/';
 var disqus_title = '图片格式';
 var disqus_url = 'http://imhzq.com/2015/12/08/20151207_image-type/';
@@ -82,7 +67,7 @@ var disqus_url = 'http://imhzq.com/2015/12/08/20151207_image-type/';
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script><script id="dsq-count-scr" src="//imhzq.disqus.com/count.js" async="async"></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://imhzq.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Emotion/">Emotion</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE/">FE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Freedom/">Freedom</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/前端-图片/" style="font-size: 15px;">前端 图片</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/面向对象/" style="font-size: 15px;">面向对象</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/Css/" style="font-size: 15px;">Css</a> <a href="/tags/HTML5/" style="font-size: 15px;">HTML5</a> <a href="/tags/生活/" style="font-size: 15px;">-生活</a> <a href="/tags/Sass/" style="font-size: 15px;">Sass</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/20151207_image-type/">图片格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/20151206_js-call-apply/">call和apply</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/20151205_js-this/">js中的this</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/20151109_Event-delegation/">事件委托</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_way-use-void-in-js/">为什么要用href=javascript:void(0);</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_cascading-and-inheritance/">CSS的层叠、特殊性和继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/01/20151101_new-tag-from-html5/">HTML5新增元素介绍</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//imhzq.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"></div></div></div></div><div id="footer">© <a href="/" rel="nofollow">ICEDOM.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+})();</script><script id="dsq-count-scr" src="//imhzq.disqus.com/count.js" async="async"></script></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://imhzq.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Emotion/">Emotion</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE/">FE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Freedom/">Freedom</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/面向对象/" style="font-size: 15px;">面向对象</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/Css/" style="font-size: 15px;">Css</a> <a href="/tags/HTML5/" style="font-size: 15px;">HTML5</a> <a href="/tags/生活/" style="font-size: 15px;">-生活</a> <a href="/tags/Sass/" style="font-size: 15px;">Sass</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/12/08/20151207_image-type/">图片格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/06/20151206_js-call-apply/">call和apply</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/05/20151205_js-this/">js中的this</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/04/20151204_use-shadowsocks/">拥抱自由shadowsocks</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/09/20151109_Event-delegation/">事件委托</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/08/20151108_simplifying-css-selectors/">CSS选择器优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/07/20151107_talk-line-height/">当line-height小于font-size时发生了什么</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_way-use-void-in-js/">为什么要用href=javascript:void(0);</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/02/20151102_cascading-and-inheritance/">CSS的层叠、特殊性和继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/01/20151101_new-tag-from-html5/">HTML5新增元素介绍</a></li></ul></div><div class="widget"><div class="widget-title">最近评论</div><script type="text/javascript" src="//imhzq.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"></div></div></div></div><div id="footer">© <a href="/" rel="nofollow">ICEDOM.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
 <script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
 <script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
