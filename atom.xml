@@ -4,7 +4,7 @@
   <subtitle><![CDATA[ICEDOM]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-14T17:36:25.000Z</updated>
+  <updated>2015-12-14T17:38:18.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -19,27 +19,27 @@
     <link href="http://imhzq.com/2015/12/08/20151207_image-type/"/>
     <id>http://imhzq.com/2015/12/08/20151207_image-type/</id>
     <published>2015-12-07T16:00:00.000Z</published>
-    <updated>2015-12-14T17:36:25.000Z</updated>
+    <updated>2015-12-14T17:38:18.000Z</updated>
     <content type="html"><![CDATA[<p>网页中充斥着各种图片格式，它们有什么区别？应用场景分别是什么？欢迎收看本期今日xx :-)</p>
 <p>我们常见的图片格式有，gif,png,jpeg,ico这几种，哦对，还有google的 <a href="https://zh.wikipedia.org/wiki/WebP" target="_blank" rel="external">WebP</a>。使用图片也要遵照基本法的，咱们先讲图片法。不同格式图像都有着自己的特点，这些特点决定了我们何时何地如何去使用它们。</p>
-<h2 id="u56FE_u5F62"><a href="#u56FE_u5F62" class="headerlink" title="图形"></a>图形</h2><p>网站的 logo、图标、草图等都属于图形，这些图像通常由连续的线条或其他尖锐的颜色过渡组成，颜色数量相对较少</p>
-<h2 id="u7167_u7247"><a href="#u7167_u7247" class="headerlink" title="照片"></a>照片</h2><p>照片通常包含比较丰富的颜色，并且包含平滑的颜色过渡和渐变。</p>
+<h1 id="u56FE_u5F62"><a href="#u56FE_u5F62" class="headerlink" title="图形"></a>图形</h1><p>网站的 logo、图标、草图等都属于图形，这些图像通常由连续的线条或其他尖锐的颜色过渡组成，颜色数量相对较少</p>
+<h1 id="u7167_u7247"><a href="#u7167_u7247" class="headerlink" title="照片"></a>照片</h1><p>照片通常包含比较丰富的颜色，并且包含平滑的颜色过渡和渐变。</p>
 <p>就图像格式而言，GIF通常用来显示图形，而jpeg更适合显示照片，png两者都合适。</p>
-<h2 id="u50CF_u7D20_u548CRGB"><a href="#u50CF_u7D20_u548CRGB" class="headerlink" title="像素和RGB"></a>像素和RGB</h2><p>图像由像素组成，像素是图像最小的信息单元。有多种颜色模型可以来描述像素，比如 RGB、RGBa等。</p>
-<h3 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h3><p>RGB颜色模型，采用包含红(R)、绿(G)、蓝(B)的数量多少的方式来描述一个像素。R、G、B被称作通道，每种通道的强度范围在 0~255 之间。我们在CSS和HTML中实用的十六禁止的通道值，范围从 00~FF，将强度不同的成分合在一起就组成了不同的颜色。</p>
-<h3 id="RGBa"><a href="#RGBa" class="headerlink" title="RGBa"></a>RGBa</h3><p>RGBa 并非一种截然不同的颜色模型，而是在 RGB 的基础上做了扩展。额外的成分 a 代表 alpha（可变的） 透明，值的范围也是0~255，不同的程序和库会以不同的方式展示比如0～100%。</p>
-<h3 id="u771F_u8272_u5F69_u56FE_u50CF_u548C_u8C03_u8272_u677F_u56FE_u50CF_u683C_u5F0F"><a href="#u771F_u8272_u5F69_u56FE_u50CF_u548C_u8C03_u8272_u677F_u56FE_u50CF_u683C_u5F0F" class="headerlink" title="真色彩图像和调色板图像格式"></a>真色彩图像和调色板图像格式</h3><p>使用RGB颜色模型究竟可以展现 256<em>256</em>256＝16777216 种颜色。可以支持这么多种颜色的图片格式叫真色彩图像格式，比如jpeg和png的真色彩类型。</p>
+<h1 id="u50CF_u7D20_u548CRGB"><a href="#u50CF_u7D20_u548CRGB" class="headerlink" title="像素和RGB"></a>像素和RGB</h1><p>图像由像素组成，像素是图像最小的信息单元。有多种颜色模型可以来描述像素，比如 RGB、RGBa等。</p>
+<h2 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h2><p>RGB颜色模型，采用包含红(R)、绿(G)、蓝(B)的数量多少的方式来描述一个像素。R、G、B被称作通道，每种通道的强度范围在 0~255 之间。我们在CSS和HTML中实用的十六禁止的通道值，范围从 00~FF，将强度不同的成分合在一起就组成了不同的颜色。</p>
+<h2 id="RGBa"><a href="#RGBa" class="headerlink" title="RGBa"></a>RGBa</h2><p>RGBa 并非一种截然不同的颜色模型，而是在 RGB 的基础上做了扩展。额外的成分 a 代表 alpha（可变的） 透明，值的范围也是0~255，不同的程序和库会以不同的方式展示比如0～100%。</p>
+<h2 id="u771F_u8272_u5F69_u56FE_u50CF_u548C_u8C03_u8272_u677F_u56FE_u50CF_u683C_u5F0F"><a href="#u771F_u8272_u5F69_u56FE_u50CF_u548C_u8C03_u8272_u677F_u56FE_u50CF_u683C_u5F0F" class="headerlink" title="真色彩图像和调色板图像格式"></a>真色彩图像和调色板图像格式</h2><p>使用RGB颜色模型究竟可以展现 256<em>256</em>256＝16777216 种颜色。可以支持这么多种颜色的图片格式叫真色彩图像格式，比如jpeg和png的真色彩类型。</p>
 <p>为了在存储图像信息时节省一些空间，有种技术可以将图像中各种不同的颜色提取出来建立一个表，这个表叫做调色板（也叫索引）。有了这个颜色表，就可以通过将调色板中的条目和每个像素重新匹配。达到重绘整个图像的目的。</p>
 <p>gif和png8会限制调色板做多只能包含 256 种颜色，这不是说只可以从 256 中定义好的颜色中选择，而是你可以从 1600w＋的颜色中选择你需要的颜色，但是一个图片只能包含 256 种颜色。</p>
-<h3 id="u9694_u884C_u626B_u63CF"><a href="#u9694_u884C_u626B_u63CF" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>当网速比较慢的时候，大图会随着下载进度逐行显示。为了提高用户体验，部分图像格式支持对那些连续采样的图像进行隔行扫描。隔行扫描(又被称作渐进式图片)可以让用户在图片下载完成前，看到一个模糊的版本，从而在用户心理上消除页面加载缓慢的感觉。具体可以参考张鑫旭大大的这篇博文 <a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
-<h2 id="u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027"><a href="#u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027" class="headerlink" title="不同格式图像的特性"></a>不同格式图像的特性</h2><p>看完上面的资料后，咱们来看看gif、jpeg和 png 这 3种格式的区别。</p>
-<h3 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h3><p>gif是一种调色板图片格式，只能包含256种颜色。</p>
-<h4 id="u900F_u660E"><a href="#u900F_u660E" class="headerlink" title="透明"></a>透明</h4><p>gif 允许一个二进制类型的透明，要没每个像素要么是完全透明要么就是完全不透明。透明也会占用一个调色板条目，也就只剩下255种颜色可选了。</p>
-<h4 id="u52A8_u753B"><a href="#u52A8_u753B" class="headerlink" title="动画"></a>动画</h4><p>gif 格式支持动画。</p>
-<h4 id="u65E0_u635F"><a href="#u65E0_u635F" class="headerlink" title="无损"></a>无损</h4><p>gif也是无损的，也就是说你可以打开任意一个 gif 文件，做一些修改，保存关闭时不会损失任何质量。</p>
-<h4 id="u9010_u884C_u626B_u63CF"><a href="#u9010_u884C_u626B_u63CF" class="headerlink" title="逐行扫描"></a>逐行扫描</h4><p>生成GIF会使用一个LZW压缩算法来减小文件大小，当压缩gif时，会从上到下一行一行的对像素进行扫描。这种情况下，当图片在水平方向有很多重复颜色时，可以获得更好的压缩效果。</p>
-<h4 id="u9694_u884C_u626B_u63CF-1"><a href="#u9694_u884C_u626B_u63CF-1" class="headerlink" title="隔行扫描"></a>隔行扫描</h4><p>gif支持可选的隔行扫描，由于gif有256色的限制，所以不适合显示照片。gif更适合显示图形，但是png8才是显示图形最佳格式。所以，只有当使用动画时才应该使用 gif。</p>
-<h3 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h3><p>jpeg是一种有损压缩格式，用户可以设置自定义质量级别，这个级别决定了有多少信息会被丢弃。质量级别从0～100，但是就算设置为100，也同样会有一定程度的质量损耗。</p>
+<h2 id="u9694_u884C_u626B_u63CF"><a href="#u9694_u884C_u626B_u63CF" class="headerlink" title="隔行扫描"></a>隔行扫描</h2><p>当网速比较慢的时候，大图会随着下载进度逐行显示。为了提高用户体验，部分图像格式支持对那些连续采样的图像进行隔行扫描。隔行扫描(又被称作渐进式图片)可以让用户在图片下载完成前，看到一个模糊的版本，从而在用户心理上消除页面加载缓慢的感觉。具体可以参考张鑫旭大大的这篇博文 <a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
+<h1 id="u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027"><a href="#u4E0D_u540C_u683C_u5F0F_u56FE_u50CF_u7684_u7279_u6027" class="headerlink" title="不同格式图像的特性"></a>不同格式图像的特性</h1><p>看完上面的资料后，咱们来看看gif、jpeg和 png 这 3种格式的区别。</p>
+<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>gif是一种调色板图片格式，只能包含256种颜色。</p>
+<h3 id="u900F_u660E"><a href="#u900F_u660E" class="headerlink" title="透明"></a>透明</h3><p>gif 允许一个二进制类型的透明，要没每个像素要么是完全透明要么就是完全不透明。透明也会占用一个调色板条目，也就只剩下255种颜色可选了。</p>
+<h3 id="u52A8_u753B"><a href="#u52A8_u753B" class="headerlink" title="动画"></a>动画</h3><p>gif 格式支持动画。</p>
+<h3 id="u65E0_u635F"><a href="#u65E0_u635F" class="headerlink" title="无损"></a>无损</h3><p>gif也是无损的，也就是说你可以打开任意一个 gif 文件，做一些修改，保存关闭时不会损失任何质量。</p>
+<h3 id="u9010_u884C_u626B_u63CF"><a href="#u9010_u884C_u626B_u63CF" class="headerlink" title="逐行扫描"></a>逐行扫描</h3><p>生成GIF会使用一个LZW压缩算法来减小文件大小，当压缩gif时，会从上到下一行一行的对像素进行扫描。这种情况下，当图片在水平方向有很多重复颜色时，可以获得更好的压缩效果。</p>
+<h3 id="u9694_u884C_u626B_u63CF-1"><a href="#u9694_u884C_u626B_u63CF-1" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>gif支持可选的隔行扫描，由于gif有256色的限制，所以不适合显示照片。gif更适合显示图形，但是png8才是显示图形最佳格式。所以，只有当使用动画时才应该使用 gif。</p>
+<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><p>jpeg是一种有损压缩格式，用户可以设置自定义质量级别，这个级别决定了有多少信息会被丢弃。质量级别从0～100，但是就算设置为100，也同样会有一定程度的质量损耗。</p>
 <p>当你要对图片进行多项编辑操作室，最好使用无损的图像格式来保存中间结果，然后在完成所有操作后，另存为jpeg格式，否则，你将会在每次保存都丢失一些质量。</p>
 <p>有些操作是无损的：</p>
 <ol>
@@ -49,53 +49,53 @@
 <li>从标准模式切换至渐进模式，反之亦然</li>
 <li>编辑图像的元数据（在优化jpeg图像时极为重要）</li>
 </ol>
-<h4 id="u900F_u660E_u548C_u52A8_u753B"><a href="#u900F_u660E_u548C_u52A8_u753B" class="headerlink" title="透明和动画"></a>透明和动画</h4><p>jpeg不支持透明和动画</p>
-<h4 id="u9694_u884C_u626B_u63CF-2"><a href="#u9694_u884C_u626B_u63CF-2" class="headerlink" title="隔行扫描"></a>隔行扫描</h4><p>渐进式jpeg<a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
-<h3 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h3><p>为了弥补gif格式的缺点，并规避 LZW 算法的专利问题，PNG应运而生。</p>
-<h4 id="PNG8"><a href="#PNG8" class="headerlink" title="PNG8"></a>PNG8</h4><p>调色板PNG的别称</p>
-<h4 id="PNG24"><a href="#PNG24" class="headerlink" title="PNG24"></a>PNG24</h4><p>真色彩PNG的别称，但是不包括 alpha 通道</p>
-<h4 id="PNG32"><a href="#PNG32" class="headerlink" title="PNG32"></a>PNG32</h4><p>真色彩PNG的别称，包括 alpha 通道</p>
-<h4 id="u900F_u660E-1"><a href="#u900F_u660E-1" class="headerlink" title="透明"></a>透明</h4><p>PNG支持完全的 alpha 透明，IE6中会出现问题</p>
-<h4 id="u52A8_u753B-1"><a href="#u52A8_u753B-1" class="headerlink" title="动画"></a>动画</h4><p>有相关实验的实际应用，但还没有跨浏览器的解决方案</p>
-<h4 id="u65E0_u635F-1"><a href="#u65E0_u635F-1" class="headerlink" title="无损"></a>无损</h4><p>与jpeg不，png是一种无损的图像格式：多次编辑不会降低其质量，这使得用真色彩png来保存jpeg的修改过程的中间产物非常合适。</p>
-<h4 id="u9010_u884C_u626B_u63CF-1"><a href="#u9010_u884C_u626B_u63CF-1" class="headerlink" title="逐行扫描"></a>逐行扫描</h4><p>和gif格式一样，相对于那些垂直方向有重复颜色的图像来说，png格式对那些水平方向上有重复颜色的图像压缩比更高。so，sprite水平摆放会获得更小的尺寸。</p>
-<h4 id="u9694_u884C_u626B_u63CF-3"><a href="#u9694_u884C_u626B_u63CF-3" class="headerlink" title="隔行扫描"></a>隔行扫描</h4><p>png支持隔行扫描，并使用了比gif更先进的算法，它允许对真实图像进行更好的“预览”，但是大小会更大些。</p>
-<h4 id="u548C_GIF__u5BF9_u6BD4"><a href="#u548C_GIF__u5BF9_u6BD4" class="headerlink" title="和 GIF 对比"></a>和 GIF 对比</h4><p>除了不支持动画外，调色板png 拥有gif所有的功能。此外，它还支持 alpha 透明，并且通常压缩比更高，文件大小更小。所以 ，应该尽可能的使用 png8替代 gif。</p>
+<h3 id="u900F_u660E_u548C_u52A8_u753B"><a href="#u900F_u660E_u548C_u52A8_u753B" class="headerlink" title="透明和动画"></a>透明和动画</h3><p>jpeg不支持透明和动画</p>
+<h3 id="u9694_u884C_u626B_u63CF-2"><a href="#u9694_u884C_u626B_u63CF-2" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>渐进式jpeg<a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片及其相关</a></p>
+<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><p>为了弥补gif格式的缺点，并规避 LZW 算法的专利问题，PNG应运而生。</p>
+<h3 id="PNG8"><a href="#PNG8" class="headerlink" title="PNG8"></a>PNG8</h3><p>调色板PNG的别称</p>
+<h3 id="PNG24"><a href="#PNG24" class="headerlink" title="PNG24"></a>PNG24</h3><p>真色彩PNG的别称，但是不包括 alpha 通道</p>
+<h3 id="PNG32"><a href="#PNG32" class="headerlink" title="PNG32"></a>PNG32</h3><p>真色彩PNG的别称，包括 alpha 通道</p>
+<h3 id="u900F_u660E-1"><a href="#u900F_u660E-1" class="headerlink" title="透明"></a>透明</h3><p>PNG支持完全的 alpha 透明，IE6中会出现问题</p>
+<h3 id="u52A8_u753B-1"><a href="#u52A8_u753B-1" class="headerlink" title="动画"></a>动画</h3><p>有相关实验的实际应用，但还没有跨浏览器的解决方案</p>
+<h3 id="u65E0_u635F-1"><a href="#u65E0_u635F-1" class="headerlink" title="无损"></a>无损</h3><p>与jpeg不，png是一种无损的图像格式：多次编辑不会降低其质量，这使得用真色彩png来保存jpeg的修改过程的中间产物非常合适。</p>
+<h3 id="u9010_u884C_u626B_u63CF-1"><a href="#u9010_u884C_u626B_u63CF-1" class="headerlink" title="逐行扫描"></a>逐行扫描</h3><p>和gif格式一样，相对于那些垂直方向有重复颜色的图像来说，png格式对那些水平方向上有重复颜色的图像压缩比更高。so，sprite水平摆放会获得更小的尺寸。</p>
+<h3 id="u9694_u884C_u626B_u63CF-3"><a href="#u9694_u884C_u626B_u63CF-3" class="headerlink" title="隔行扫描"></a>隔行扫描</h3><p>png支持隔行扫描，并使用了比gif更先进的算法，它允许对真实图像进行更好的“预览”，但是大小会更大些。</p>
+<h3 id="u548C_GIF__u5BF9_u6BD4"><a href="#u548C_GIF__u5BF9_u6BD4" class="headerlink" title="和 GIF 对比"></a>和 GIF 对比</h3><p>除了不支持动画外，调色板png 拥有gif所有的功能。此外，它还支持 alpha 透明，并且通常压缩比更高，文件大小更小。所以 ，应该尽可能的使用 png8替代 gif。</p>
 <p>有一个例外是颜色数量较少的小图片，gif的压缩率会更高些。但是这种小图一般都被放在 css sprite 中，因为 http 请求的开销已经大大超过节省那点带宽，而且用png保存sprite图像可以获得更高的压缩率。</p>
-<h4 id="u548C_jpeg__u5BF9_u6BD4"><a href="#u548C_jpeg__u5BF9_u6BD4" class="headerlink" title="和 jpeg 对比"></a>和 jpeg 对比</h4><p>当图像中颜色超过 256中时，需要使用真色彩图像格式。jpeg的压缩比更高，而且一般来说，jpeg也是照片存储的实际标准。但由于 jpeg 是有损的，而且在清晰的颜色过渡周围会有大色块，因此下面情况使用PNG更合适：</p>
+<h3 id="u548C_jpeg__u5BF9_u6BD4"><a href="#u548C_jpeg__u5BF9_u6BD4" class="headerlink" title="和 jpeg 对比"></a>和 jpeg 对比</h3><p>当图像中颜色超过 256中时，需要使用真色彩图像格式。jpeg的压缩比更高，而且一般来说，jpeg也是照片存储的实际标准。但由于 jpeg 是有损的，而且在清晰的颜色过渡周围会有大色块，因此下面情况使用PNG更合适：</p>
 <ol>
 <li>当图片颜色<code>略微</code>超过256，可以在不损耗人和可见质量的前提下，将图片转化为png8格式。令人惊奇的是，有时候，就算你剥离了 1000种以上的颜色，都不会注意到图片中的所发生的变化</li>
 <li>当大色块变得不能接受的时候，比如包含很色颜色的图像或软件菜单的截图，这时候png更好。</li>
 </ol>
-<h3 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h3><p>WebP最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片档在网络上的发送时间。2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能。但目前只有 chrome 和 opera 浏览器支持原生 WebP 格式。</p>
-<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><h3 id="GIF-1"><a href="#GIF-1" class="headerlink" title="GIF"></a>GIF</h3><h4 id="u4F18_u70B9_3A"><a href="#u4F18_u70B9_3A" class="headerlink" title="优点:"></a>优点:</h4><ul>
+<h2 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h2><p>WebP最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片档在网络上的发送时间。2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能。但目前只有 chrome 和 opera 浏览器支持原生 WebP 格式。</p>
+<h1 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h1><h2 id="GIF-1"><a href="#GIF-1" class="headerlink" title="GIF"></a>GIF</h2><h3 id="u4F18_u70B9_3A"><a href="#u4F18_u70B9_3A" class="headerlink" title="优点:"></a>优点:</h3><ul>
 <li>动画</li>
 <li>无损</li>
 </ul>
-<h4 id="u7F3A_u70B9_uFF1A"><a href="#u7F3A_u70B9_uFF1A" class="headerlink" title="缺点："></a>缺点：</h4><ul>
+<h3 id="u7F3A_u70B9_uFF1A"><a href="#u7F3A_u70B9_uFF1A" class="headerlink" title="缺点："></a>缺点：</h3><ul>
 <li>256色</li>
 <li>压缩比不如 png8（颜色少的小图虽然压缩比比 png8高，但是 sprite 格式的 png 更优）</li>
 <li>不支持透明</li>
 </ul>
-<h3 id="JPEG-1"><a href="#JPEG-1" class="headerlink" title="JPEG"></a>JPEG</h3><h4 id="u4F18_u70B9_uFF1A"><a href="#u4F18_u70B9_uFF1A" class="headerlink" title="优点："></a>优点：</h4><ul>
+<h2 id="JPEG-1"><a href="#JPEG-1" class="headerlink" title="JPEG"></a>JPEG</h2><h3 id="u4F18_u70B9_uFF1A"><a href="#u4F18_u70B9_uFF1A" class="headerlink" title="优点："></a>优点：</h3><ul>
 <li>真色彩</li>
-<li>压缩比可调<h4 id="u7F3A_u70B9_uFF1A-1"><a href="#u7F3A_u70B9_uFF1A-1" class="headerlink" title="缺点："></a>缺点：</h4></li>
+<li>压缩比可调<h3 id="u7F3A_u70B9_uFF1A-1"><a href="#u7F3A_u70B9_uFF1A-1" class="headerlink" title="缺点："></a>缺点：</h3></li>
 <li>有损</li>
 <li>不支持透明和动画</li>
 </ul>
-<h3 id="PNG8-1"><a href="#PNG8-1" class="headerlink" title="PNG8"></a>PNG8</h3><h4 id="u4F18_u70B9_uFF1A-1"><a href="#u4F18_u70B9_uFF1A-1" class="headerlink" title="优点："></a>优点：</h4><ul>
+<h2 id="PNG8-1"><a href="#PNG8-1" class="headerlink" title="PNG8"></a>PNG8</h2><h3 id="u4F18_u70B9_uFF1A-1"><a href="#u4F18_u70B9_uFF1A-1" class="headerlink" title="优点："></a>优点：</h3><ul>
 <li>无损</li>
 <li>压缩比高</li>
-<li>支持 alpha 通道<h4 id="u7F3A_u70B9_uFF1A-2"><a href="#u7F3A_u70B9_uFF1A-2" class="headerlink" title="缺点："></a>缺点：</h4></li>
+<li>支持 alpha 通道<h3 id="u7F3A_u70B9_uFF1A-2"><a href="#u7F3A_u70B9_uFF1A-2" class="headerlink" title="缺点："></a>缺点：</h3></li>
 <li>256色</li>
 </ul>
-<h3 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h3><h4 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h4><ul>
+<h2 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h2><h3 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h3><ul>
 <li>无损</li>
 <li>真色彩</li>
-<li>支持 alpha 通道<h4 id="u7F3A_u70B9_uFF1A-3"><a href="#u7F3A_u70B9_uFF1A-3" class="headerlink" title="缺点："></a>缺点：</h4></li>
+<li>支持 alpha 通道<h3 id="u7F3A_u70B9_uFF1A-3"><a href="#u7F3A_u70B9_uFF1A-3" class="headerlink" title="缺点："></a>缺点：</h3></li>
 <li>图片较大</li>
 </ul>
-<h3 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h3><p>这些格式没有孰优孰略，完全看需求：<br>jpeg通常用在颜色复杂、但不要求特别精细的图片上，如照片、宣传图、背景等。<br>png通常用在颜色复杂并且要求特别精细或者有透明需求的图片上，如复杂的logo、图标等。由于无损还可以当做“原图”来存档使用。<br>png8在png的基础上“减去”颜色复杂。<br>gif由于静态部分可以被png8代替，所以通常只用于简单的动画。</p>
+<h2 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h2><p>这些格式没有孰优孰略，完全看需求：<br>jpeg通常用在颜色复杂、但不要求特别精细的图片上，如照片、宣传图、背景等。<br>png通常用在颜色复杂并且要求特别精细或者有透明需求的图片上，如复杂的logo、图标等。由于无损还可以当做“原图”来存档使用。<br>png8在png的基础上“减去”颜色复杂。<br>gif由于静态部分可以被png8代替，所以通常只用于简单的动画。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>网页中充斥着各种图片格式，它们有什么区别？应用场景分别是什么？欢迎收看本期今日xx :-)</p>
