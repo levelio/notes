@@ -54,10 +54,10 @@
   
   <entry>
     <title><![CDATA[图片格式]]></title>
-    <link href="http://imhzq.com/2015/12/08/20151207_image-type/"/>
-    <id>http://imhzq.com/2015/12/08/20151207_image-type/</id>
-    <published>2015-12-07T16:00:00.000Z</published>
-    <updated>2015-12-15T04:24:30.000Z</updated>
+    <link href="http://imhzq.com/2015/12/07/20151207_image-type/"/>
+    <id>http://imhzq.com/2015/12/07/20151207_image-type/</id>
+    <published>2015-12-06T16:00:00.000Z</published>
+    <updated>2015-12-15T08:02:06.000Z</updated>
     <content type="html"><![CDATA[<p>作为一个前端，每天与各种各样的图片打交道，那么它们有什么区别？应用场景分别是什么？欢迎收看本期今日xx :-)</p>
 <p>我们常见的图片格式有，gif,png,jpeg,ico这几种，哦对，还有google的 <a href="https://zh.wikipedia.org/wiki/WebP" target="_blank" rel="external">WebP</a>。使用图片也要遵照基本法的，咱们先讲图片法。不同格式图像都有着自己的特点，这些特点决定了我们何时何地如何去使用它们。</p>
 <h1 id="u56FE_u5F62"><a href="#u56FE_u5F62" class="headerlink" title="图形"></a>图形</h1><p>网站的 logo、图标、草图等都属于图形，这些图像通常由连续的线条或其他尖锐的颜色过渡组成，颜色数量相对较少</p>
