@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-15T14:13:43.000Z</updated>
+  <updated>2015-12-15T16:12:55.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -15,11 +15,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[JS反柯里化]]></title>
+    <link href="http://imhzq.com/2015/12/11/20151211_js-uncurrying/"/>
+    <id>http://imhzq.com/2015/12/11/20151211_js-uncurrying/</id>
+    <published>2015-12-10T16:00:00.000Z</published>
+    <updated>2015-12-15T16:12:55.000Z</updated>
+    <content type="html"><![CDATA[<p>之前讲过<a href="http://imhzq.com/2015/12/10/20151210_js-currying/">柯里化</a>，那反柯里化又是啥？顾名思义，反柯里化就是和柯里化反着来，柯里化是分布计算函数，目的是为了缩小适用范围，创建出一个更剧针对性的函数，而反柯里化则恰恰相反，是为了扩大适用范围，创建一个适用范围更广的函数，使本来只有特定对象才能使用的方法，扩展到更多对象，嗯，听起来和call和apply的功能好像一样了,不过反柯里化连 this 都给提取出来了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span>.<span class="title">uncurrying</span> = <span class="title">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="keyword">self</span> = this;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> <span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span>.<span class="title">call</span>.<span class="title">apply</span><span class="params">(self, arguments)</span></span>; <span class="comment">//借用call</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> push  = <span class="keyword">Array</span>.prototype.push.uncurrying();</span><br><span class="line"><span class="keyword">var</span> <span class="keyword">list</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">push(<span class="keyword">list</span>, <span class="number">4</span>);</span><br><span class="line">console.log(<span class="keyword">list</span>);	<span class="comment">//[ 1, 2, 3, 4 ]</span></span><br></pre></td></tr></table></figure>
+<p>这里我们通过 uncurrying 函数，将 Array.prototype.push.call 变成了一个通用的push函数，这样以来 push 函数的功能就和 Array.prototype.push.call 一样了，同样不仅仅能操作Array 对象，其他对象也可以。</p>
+<p>更令人惊讶的是， Function.prototype.call 和 Function.prototype.apply 也能被 uncurrying：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> call = <span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span>.<span class="title">call</span>.<span class="title">uncurrying</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">var</span> apply = <span class="function"><span class="keyword">Function</span>.<span class="title">prototype</span>.<span class="title">apply</span>.<span class="title">uncurrying</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	console.log(this.name);</span><br><span class="line">	console.log(arguments);</span><br><span class="line">&#125;</span><br><span class="line">call(fn, &#123;name: <span class="string">'赵日天'</span>&#125;,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);        <span class="comment">//赵日天 &#123; '0': 1, '1': 2, '2': 3, '3': 4 &#125;</span></span><br><span class="line">apply(fn, &#123;name: <span class="string">'李杀神'</span>&#125;, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]); <span class="comment">//李杀神  &#123; '0': 1, '1': 2, '2': 3, '3': 4 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">list</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">apply([].push, <span class="keyword">list</span>, [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]);</span><br><span class="line">console.log(<span class="keyword">list</span>);	<span class="comment">//[ 1, 2, 3, 4, 5, 6 ]</span></span><br></pre></td></tr></table></figure>
+<p>是不是很炫酷？然而并没有什么卵用，只是使得对函数的调用更像 js 的前身 Scheme 了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>之前讲过<a href="http://imhzq.com/2015/12/10/20151210_js-currying/">柯里化</a>，那反柯里化又是啥？顾名思义，反柯里化就是和柯里化反着来，柯里化是分布计算函数，目的是为了缩小适用范围，创建出一个更剧针对性的函数，]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[JS柯里化]]></title>
     <link href="http://imhzq.com/2015/12/10/20151210_js-currying/"/>
     <id>http://imhzq.com/2015/12/10/20151210_js-currying/</id>
     <published>2015-12-09T16:00:00.000Z</published>
-    <updated>2015-12-15T14:13:43.000Z</updated>
+    <updated>2015-12-15T16:27:50.000Z</updated>
     <content type="html"><![CDATA[<p>柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术。白话文就是：一个currying函数首先接受一些参数，接受了这些参数后，函数不会立即求值，而是继续返回一个新的函数，刚才传入的参数以闭包的方式保存起来，待到真正需要求值的时候，之前传入的所有参数再一起用以求值。talk is cheap，show me the code：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = <span class="built_in">arguments</span>.length; i&lt;len;i++)&#123;</span><br><span class="line">			sum+= <span class="built_in">arguments</span>[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(fn(<span class="number">1</span>));		<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn(<span class="number">2</span>,<span class="number">3</span>));	<span class="comment">//6</span></span><br><span class="line"><span class="built_in">console</span>.log(fn(<span class="number">4</span>));		<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
 <p>这个函数是个简单的求和函数,每次加入数字，都会做一次求和，但是我们其实并不关心这些，我们只关心最后一次的求和，ok，那我们把这些参数保存起来，然后检查argument的长度，当是0的时候，再一起求和：</p>
@@ -29,6 +54,11 @@
 <p>上面这个函数其实就已经是一个柯里化的例子了，现在再回头看看定义～是不是很简单？最后，我们再将上面这个函数重构一下，提出一个公共的 currying 函数：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> args = [];  <span class="comment">//保存参数</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">_fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">arguments</span>.length === <span class="number">0</span>)&#123; </span><br><span class="line">			<span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args); <span class="comment">//调用fn</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			[].push.apply(args, <span class="built_in">arguments</span>); <span class="comment">//将新的参数 push到args 数组中保存</span></span><br><span class="line">			<span class="keyword">return</span> _fn; <span class="comment">//返回函数本身，方便链式操作</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> curryFn = currying(fn);</span><br><span class="line">curryFn(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)(<span class="number">4</span>)(); <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
 <p>至此，我们就完成了一个 currying 函数的编写。</p>
+<h2 id="u603B_u7ED3_u67EF_u91CC_u5316_u7684_u4F5C_u7528"><a href="#u603B_u7ED3_u67EF_u91CC_u5316_u7684_u4F5C_u7528" class="headerlink" title="总结柯里化的作用"></a>总结柯里化的作用</h2><ol>
+<li>延迟计算，这个上面的栗子已经很好的证明了</li>
+<li>参数复用，多次调用同一个参数，并且传递的参数基本上相同，那么来试试柯里化吧</li>
+<li>动态创建函数，部分计算后，返回一个新的函数，这样就避免了重复计算。</li>
+</ol>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术。白话文就是：一个currying函数首先接受一些参数，接受了这些参数后，函数不会立即求值，而是继续返回一个新的函数，刚才传入的参数以闭包的]]>
