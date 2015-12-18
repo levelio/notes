@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-15T16:12:55.000Z</updated>
+  <updated>2015-12-18T15:58:11.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[IE6/7中的inline-block]]></title>
+    <link href="http://imhzq.com/2015/12/12/20151212_css_ie67_inline-block/"/>
+    <id>http://imhzq.com/2015/12/12/20151212_css_ie67_inline-block/</id>
+    <published>2015-12-11T16:00:00.000Z</published>
+    <updated>2015-12-18T15:58:11.000Z</updated>
+    <content type="html"><![CDATA[<p>display:inline-block;在ie6、ie7下只有设置在默认显示方式为inline的元素上才会生效。为什么哪？</p>
+<p>历史原因，早起的IE浏览器在渲染引擎中，如果所有的元素都应用布局的话，IE的性能会受到很大影响，当时IE团队采用了 layout ，只将布局应用在需要的元素上，通过这种办法来减少布局的性能开销， layout 也就是现在常说的 hasLayout，IE8之后更换了引擎，所以这个问题只会出现在 IE6/7中（5.5 不在考虑范围）。</p>
+<p>IE6/7中并不是没有 inline-block，早在IE5.5 中就已经支持了，只是它的 inline-block 比较个性，在 IE6/7 中 display:inline-block 是可以触发 hasLayout 的，触发了 hasLayout 的元素表现出来的特征就是一个独立的矩形容器，可以设置宽高而且不受外部元素的影响，类似于现代浏览器中的 BFC。</p>
+<p>在IE6/7中，如果是 inline 元素，只要触发了 hasLayout 的元素都会表现的像 inline-block，所以下面这两种写法都可以实现效果<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">span</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;&#125;</span> </span><br><span class="line"><span class="tag">span</span><span class="rules">&#123;<span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;&#125;</span> </span><br><span class="line"><span class="comment">/* inline-block 和 zoom 都会触发 haslayout，拥有独立布局，可以设置宽高，此外元素本身是 inline 元素，结果就是表现的和 inline－block 一样 */</span></span><br></pre></td></tr></table></figure></p>
+<p>如果是 block 元素，比如div 这类标签:</p>
+<p>方案1：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>; <span class="comment">/* 触发hasLayout，拥有自身布局，然并卵，你依然不是 inline 元素，该独占一行还是独占一行 */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>方案2：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;   <span class="comment">/* 触发hasLayout，拥有自身布局，可以设置宽高 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>; <span class="comment">/* 强制改成 inline 元素 */</span></span><br><span class="line">    <span class="comment">/* 此时表现就和 inline－block 一样了 */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>方案3:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">zoom</span>:<span class="value"> <span class="number">1</span></span></span>;   <span class="comment">/* 换做 zoom 来触发 hasLayout 效果也一样，拥有自身布局，可以设置宽高 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>; <span class="comment">/* 强制改成 inline 元素 */</span></span><br><span class="line">    <span class="comment">/* 此时表现就和 inline－block 一样了 */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>方案4: 加个 IE6/7 hank做兼容<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block; <span class="comment">/* 兼容 IE6/7 的 inline 元素和 现代浏览器*/</span></span><br><span class="line">    *<span class="attribute">display</span>: inline; <span class="comment">/* IE6/7 的block 元素 */</span></span><br><span class="line">    *<span class="attribute">zoom</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样我们就解决了IE6/7中 block元素 inline-block 依旧换行的问题。虽然现在基本上已经不用再兼容 IE6/7 了，但是挖一挖以前的故事还是挺有趣的 :-)</p>
+<p>​</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>display:inline-block;在ie6、ie7下只有设置在默认显示方式为inline的元素上才会生效。为什么哪？</p>
+<p>历史原因，早起的IE浏览器在渲染引擎中，如果所有的元素都应用布局的话，IE的性能会受到很大影响，当时IE团队采用了 layout ，只]]>
+    </summary>
+    
+      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[JS反柯里化]]></title>
@@ -812,28 +843,6 @@
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[第一篇文章]]></title>
-    <link href="http://imhzq.com/2015/04/10/20150410_first-article/"/>
-    <id>http://imhzq.com/2015/04/10/20150410_first-article/</id>
-    <published>2015-04-09T16:00:00.000Z</published>
-    <updated>2015-12-12T15:54:37.000Z</updated>
-    <content type="html"><![CDATA[<p>折腾来折腾去，总算是有个家了！两个月前搭建起来这个博客，到现在才决心要好好维护下去，真是惭愧啊。</p>
-<p>总之，今后我会在这里记录写生活琐碎、音乐、技术分享等等。</p>
-<p>博客由 <a href="http://hexo.io" target="_blank" rel="external">hexo</a> 驱动，部署于 <a href="https://github.com/Simlesos" target="_blank" rel="external">github</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>折腾来折腾去，总算是有个家了！两个月前搭建起来这个博客，到现在才决心要好好维护下去，真是惭愧啊。</p>
-<p>总之，今后我会在这里记录写生活琐碎、音乐、技术分享等等。</p>
-<p>博客由 <a href="http://hexo.io" target="_blank" ]]>
-    </summary>
-    
-      <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="Emotion" scheme="http://imhzq.com/categories/Emotion/"/>
     
   </entry>
   
