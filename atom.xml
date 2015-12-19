@@ -169,7 +169,7 @@
     <link href="http://imhzq.com/2015/12/07/20151207_image-type/"/>
     <id>http://imhzq.com/2015/12/07/20151207_image-type/</id>
     <published>2015-12-06T16:00:00.000Z</published>
-    <updated>2015-12-15T10:10:19.000Z</updated>
+    <updated>2015-12-19T14:33:56.000Z</updated>
     <content type="html"><![CDATA[<p>作为一个前端，每天与各种各样的图片打交道，那么它们有什么区别？应用场景分别是什么？欢迎收看本期今日xx :-)</p>
 <p>我们常见的图片格式有，gif,png,jpeg,ico这几种，哦对，还有google的 <a href="https://zh.wikipedia.org/wiki/WebP" target="_blank" rel="external">WebP</a>。使用图片也要遵照基本法的，咱们先讲图片法。不同格式图像都有着自己的特点，这些特点决定了我们何时何地如何去使用它们。</p>
 <h1 id="u56FE_u5F62"><a href="#u56FE_u5F62" class="headerlink" title="图形"></a>图形</h1><p>网站的 logo、图标、草图等都属于图形，这些图像通常由连续的线条或其他尖锐的颜色过渡组成，颜色数量相对较少</p>
@@ -228,7 +228,7 @@
 <h3 id="u7F3A_u70B9_uFF1A-1"><a href="#u7F3A_u70B9_uFF1A-1" class="headerlink" title="缺点："></a>缺点：</h3><p>有损、不支持透明和动画</p>
 <h2 id="PNG8-1"><a href="#PNG8-1" class="headerlink" title="PNG8"></a>PNG8</h2><h3 id="u4F18_u70B9_uFF1A-1"><a href="#u4F18_u70B9_uFF1A-1" class="headerlink" title="优点："></a>优点：</h3><p>无损、压缩比高、支持 alpha 通道</p>
 <h3 id="u7F3A_u70B9_uFF1A-2"><a href="#u7F3A_u70B9_uFF1A-2" class="headerlink" title="缺点："></a>缺点：</h3><p>256色</p>
-<h2 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h2><h3 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h3><p>无损、真色彩、支持 alpha 通道</p>
+<h2 id="PNG24/PNG32"><a href="#PNG24/PNG32" class="headerlink" title="PNG24/PNG32"></a>PNG24/PNG32</h2><h3 id="u4F18_u70B9_uFF1A-2"><a href="#u4F18_u70B9_uFF1A-2" class="headerlink" title="优点："></a>优点：</h3><p>无损、真色彩、PNG32支持 alpha 通道、PNG24不支持 alpha 通道</p>
 <h3 id="u7F3A_u70B9_uFF1A-3"><a href="#u7F3A_u70B9_uFF1A-3" class="headerlink" title="缺点："></a>缺点：</h3><p>图片较大</p>
 <h2 id="u5B9E_u9645_u5E94_u7528"><a href="#u5B9E_u9645_u5E94_u7528" class="headerlink" title="实际应用"></a>实际应用</h2><p>这些格式没有孰优孰略，完全看需求：<br>jpeg通常用在颜色较多、但不要求特别精细的图片上，如照片、宣传图、背景等。<br>png通常用在颜色复杂并且要求特别精细或者有透明需求的图片上，如复杂的logo、图标等。由于无损还可以当做“原图”来存档使用。<br>png8在png的基础上“减去”颜色复杂。<br>gif由于静态部分可以被png8代替，所以通常只用于简单的动画。</p>
 ]]></content>
