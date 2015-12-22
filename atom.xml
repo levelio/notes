@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-20T16:04:32.000Z</updated>
+  <updated>2015-12-22T17:40:10.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -13,6 +13,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[String的正则方法和RegExp的正则方法]]></title>
+    <link href="http://imhzq.com/2015/12/14/20151214_js-regex/"/>
+    <id>http://imhzq.com/2015/12/14/20151214_js-regex/</id>
+    <published>2015-12-13T16:00:00.000Z</published>
+    <updated>2015-12-22T17:40:10.000Z</updated>
+    <content type="html"><![CDATA[<p>JS 关于正则这块的函数在String和RegExp对象上都有一些方法,很容易弄混,网上的文章又介绍的特别乱,于是在这里做下总结.</p>
+<h1 id="String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5"><a href="#String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5" class="headerlink" title="String 对象上有关正则的方法"></a>String 对象上有关正则的方法</h1><h2 id="String-prototype-search"><a href="#String-prototype-search" class="headerlink" title="String.prototype.search"></a>String.prototype.search</h2><p>search 方法接受一个正则表达式作为参数,如果传入一个非正则表达式对象,则会使用 new RegExp(obj) 隐式的将其转化为正则表达式对象.</p>
+<p>search 方法会返回正则表达式在字符串中首次匹配的索引,如果没有找到,则返回 -1. 如下面的例子:<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> phone = <span class="string">"18614086288"</span>;</span><br><span class="line"><span class="keyword">var</span> <span class="literal">result</span> = phone.search(/^<span class="number">1</span>\d[<span class="number">10</span>]$/);</span><br><span class="line">console.log(<span class="literal">result</span>);	//<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>这个方法类似于 String.prototype.indexOf,一般用来查找某个字符串是否存在某个模式.</p>
+<h2 id="String-prototype-replace"><a href="#String-prototype-replace" class="headerlink" title="String.prototype.replace"></a>String.prototype.replace</h2><p>replace 这个方法主要用来替换字符串中的一些字串,接收两个参数</p>
+<ol>
+<li>一个将要被替换的字符串和一个替换掉第一个字符串的字符串</li>
+<li>一个正则对象,这个正则匹配的对象将会被第二个参数替换</li>
+</ol>
+<p>这里第一个大家肯定没有问题,我们来详细讲下第二组参数:</p>
+<h3 id="u7B2C_u4E00_u4E2A_u53C2_u6570_u662F_u6B63_u5219_u5BF9_u8C61_2C_u7B2C_u4E8C_u4E2A_u53C2_u6570_u662F_u5B57_u7B26_u4E32"><a href="#u7B2C_u4E00_u4E2A_u53C2_u6570_u662F_u6B63_u5219_u5BF9_u8C61_2C_u7B2C_u4E8C_u4E2A_u53C2_u6570_u662F_u5B57_u7B26_u4E32" class="headerlink" title="第一个参数是正则对象,第二个参数是字符串"></a>第一个参数是正则对象,第二个参数是字符串</h3><p>这种情况下,正则的匹配项将会被被第二个字符串替换,值得注意的地方是,这个字符串中可以包含一些特殊的变量名</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th style="text-align:left">代表的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$</td>
+<td style="text-align:left">转义$,也就是插入一个”$”</td>
+</tr>
+<tr>
+<td>$&amp;</td>
+<td style="text-align:left">插入匹配的整个字串</td>
+</tr>
+<tr>
+<td>&amp;`</td>
+<td style="text-align:left">插入当前匹配子串左边的内容</td>
+</tr>
+<tr>
+<td>&amp;’</td>
+<td style="text-align:left">插入当前匹配子串右边的内容</td>
+</tr>
+<tr>
+<td>$n</td>
+<td style="text-align:left">n是个十进制数,表示插入匹配到的第 n 组</td>
+</tr>
+</tbody>
+</table>
+<p>举个栗子:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"你的名字叫ABC还是DEF"</span>;</span><br><span class="line"><span class="keyword">var</span> result = str.replace(<span class="regexp">/([A-Za-z]+)/g</span>, <span class="string">"( $1 )"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);	<span class="comment">//output: 你的名字叫( ABC )还是( DEF )</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="u7B2C_u4E00_u4E2A_u53C2_u6570_u662F_u6B63_u5219_u5BF9_u8C61_2C_u7B2C_u4E8C_u4E2A_u53C2_u6570_u662F_u51FD_u6570"><a href="#u7B2C_u4E00_u4E2A_u53C2_u6570_u662F_u6B63_u5219_u5BF9_u8C61_2C_u7B2C_u4E8C_u4E2A_u53C2_u6570_u662F_u51FD_u6570" class="headerlink" title="第一个参数是正则对象,第二个参数是函数"></a>第一个参数是正则对象,第二个参数是函数</h3><p>这种情况,是将正则表达式匹配到的子串替换成第二个函数的返回值,这个函数可以接受多个参数</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th style="text-align:left">代表的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>match</td>
+<td style="text-align:left">匹配到的子串</td>
+</tr>
+<tr>
+<td>$1,$2,…,$n</td>
+<td style="text-align:left">表示匹配到的任意多分组的值[倒数第二个参数]</td>
+</tr>
+<tr>
+<td>index</td>
+<td style="text-align:left">表示匹配到的子串,在原字符串中的位置[倒数第一个参数]</td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:left">原字符串</td>
+</tr>
+</tbody>
+</table>
+<p>再来个栗子:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> property = <span class="string">"v-data-model"</span>;</span><br><span class="line"><span class="keyword">var</span> result = property.replace(<span class="regexp">/-(.)/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match, $1, index,input</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $<span class="number">1.</span>toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(result);	<span class="comment">//output: vDataModel</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="String-prototype-match"><a href="#String-prototype-match" class="headerlink" title="String.prototype.match"></a>String.prototype.match</h2><p>这个方法接受一个正则对象做参数,但是有两种情况:</p>
+<ol>
+<li><p>如果这个正则对象是全局匹配,则返回一个匹配到子项的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> property = <span class="string">"v-data-model"</span>;</span><br><span class="line"><span class="keyword">var</span> result = property.match(<span class="regexp">/-(.)/g</span>);   <span class="comment">//这里是全局匹配</span></span><br><span class="line"><span class="built_in">console</span>.log(result);	<span class="comment">//output: ["-d", "-m"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果这个正则对象不是全局匹配,那么它会返回一个结果数组,这个数组的第一项是匹配到的子串,数组的第二项到第n-2项都是匹配的分组,n-1项是匹配到的子串所在原字符串的索引位置,第n项就是原字符串,其实就是和上面介绍的replace方法第二个参数是函数时候的参数一样的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> property = <span class="string">"v-data-model"</span>;</span><br><span class="line"><span class="keyword">var</span> result = property.match(<span class="regexp">/-(.)/</span>);    <span class="comment">//这里不是全局匹配了</span></span><br><span class="line"><span class="built_in">console</span>.log(result);	</span><br><span class="line"><span class="comment">//output: ["-d", "d", index: 1, input: "v-data-model"]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意,这里 match 不论匹配几次都会返回第一个匹配项,并不像 RegExp.exec()一样,第二次执行就会匹配到第二个匹配项!</p>
+<h1 id="RegExp__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5"><a href="#RegExp__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5" class="headerlink" title="RegExp 对象上有关正则的方法"></a>RegExp 对象上有关正则的方法</h1><h2 id="RegExp-prototype-test"><a href="#RegExp-prototype-test" class="headerlink" title="RegExp.prototype.test"></a>RegExp.prototype.test</h2><p>这个方法就比较简单了,test接收一个待匹配项字符串作为参数,如果匹配成功就返回 true,否则返回 false, 比较简单就不多做说明</p>
+<h2 id="RegExp-prototype-exec"><a href="#RegExp-prototype-exec" class="headerlink" title="RegExp.prototype.exec"></a>RegExp.prototype.exec</h2><p>这个方法要和 String.prototype.match 分清, exec 接收一个待匹配的字符串, 会返回一个和 String.prototype.match 不带全局查找时一样的返回值,需要注意的是,当这个正则表达式使用 “g” 标志做全局查找时,可以执行多次方法来查找同一个字符串中的匹配项,没有找到时返回 null ,如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> property = <span class="string">"v-data-model"</span>;</span><br><span class="line"><span class="keyword">var</span> patter = <span class="regexp">/-(.)/g</span>;</span><br><span class="line"><span class="keyword">var</span> result = patter.exec(property);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//output: ["-d", "d", index: 1, input: "v-data-model"]</span></span><br><span class="line"><span class="keyword">var</span> result = patter.exec(property);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//output: ["-m", "m", index: 6, input: "v-data-model"]</span></span><br><span class="line"><span class="keyword">var</span> result = patter.exec(property);</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//output: null</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>JS 关于正则这块的函数在String和RegExp对象上都有一些方法,很容易弄混,网上的文章又介绍的特别乱,于是在这里做下总结.</p>
+<h1 id="String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65]]>
+    </summary>
+    
+      <category term="Javascript" scheme="http://imhzq.com/tags/Javascript/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[文本溢出显示]]></title>
@@ -362,7 +465,7 @@
     <link href="http://imhzq.com/2015/12/04/20151204_use-shadowsocks/"/>
     <id>http://imhzq.com/2015/12/04/20151204_use-shadowsocks/</id>
     <published>2015-12-03T16:00:00.000Z</published>
-    <updated>2015-12-12T15:45:25.000Z</updated>
+    <updated>2015-12-22T16:07:12.000Z</updated>
     <content type="html"><![CDATA[<p>从 2013 年开始用 <a href="http://jproxy.io/" target="_blank" rel="external">jproxy</a> 已经3年了，最终她也没能逃过魔掌:( ，感谢 <a href="http://weibo.com/xiaojay#_rnd1449301836815" target="_blank" rel="external">xiaojay</a> 大大期间不断的维护！Google 不能访问就好像断网了一样难受，回想那几个小时简直痛不欲生啊！用百度简直想吐，竞价排名去死吧！思来想去，一不做二不休，自己搭个⬆吧！</p>
 <h2 id="u8D2D_u4E70_VPS"><a href="#u8D2D_u4E70_VPS" class="headerlink" title="购买 VPS"></a>购买 VPS</h2><p>选来选去，还是选了<a href="https://bandwagonhost.com/index.php" target="_blank" rel="external">搬瓦工</a>，买了$19.99 一年的套餐，配置如下：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">RAM</span>: <span class="string">256MB</span></span><br><span class="line"><span class="attribute">Disk</span>: <span class="string">10GB SSD</span></span><br><span class="line"><span class="attribute">Bandwidth</span>: <span class="string">550GB</span></span><br></pre></td></tr></table></figure></p>
 <p>对了，在搬瓦工的主页右键显示网页源码，里面有段注释：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Try this promo code: IAMSMART5C48JJ --&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -384,7 +487,8 @@
 <h4 id="u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev"><a href="#u4E0B_u8F7D_u53CA_u7F16_u8BD1_shadowsocks-libev" class="headerlink" title="下载及编译 shadowsocks-libev"></a>下载及编译 shadowsocks-libev</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/madeye/shadowsocks-libev.git</span><br><span class="line"><span class="keyword">cd</span> shadowsocks-libev</span><br><span class="line">./configure</span><br><span class="line"><span class="keyword">make</span> &amp;&amp; <span class="keyword">make</span> install</span><br></pre></td></tr></table></figure>
 <h4 id="u521B_u5EFA_ssconfig-json__u6587_u4EF6"><a href="#u521B_u5EFA_ssconfig-json__u6587_u4EF6" class="headerlink" title="创建 ssconfig.json 文件"></a>创建 ssconfig.json 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">"server"</span>:<span class="string">"servier_ip"</span>,   <span class="preprocessor"># 服务器IP</span></span><br><span class="line">        <span class="string">"server_port"</span>:<span class="number">65000</span>,     <span class="preprocessor"># ss服务器所使用的端口号，建议改到<span class="number">30000</span>-<span class="number">60000</span></span></span><br><span class="line">        <span class="string">"password"</span>:<span class="string">"password"</span>,   <span class="preprocessor"># ss服务器密码，轻易不要分享</span></span><br><span class="line">        <span class="string">"timeout"</span>:<span class="number">60</span>,            <span class="preprocessor"># 超时时间，建议设置为<span class="number">60</span></span></span><br><span class="line">        <span class="string">"method"</span>:<span class="string">"aes-256-cfb"</span>   <span class="preprocessor"># 加密方式，需要和客户端配合设置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>ss-server -c ~<span class="regexp">/ssconfig.json -f /</span>tmp<span class="regexp">/ss1.pid</span></span><br></pre></td></tr></table></figure>
-<p>这时候，打开客户端，设置相关参数就可以了，之后，可以用非 ROOT 用户运行 ss<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 创建 hzq 用户</span></span><br><span class="line">useradd hzq</span><br><span class="line"><span class="preprocessor"># 为hzq创建密码</span></span><br><span class="line">passwd hzq</span><br><span class="line">&gt; 输入两次密码</span><br><span class="line"><span class="preprocessor"># 切换用户至hzq</span></span><br><span class="line">su - hzq</span><br><span class="line"><span class="preprocessor"># 在主目录创建第一个配置文件，配置格式请参考`使用配置文件运行`一节</span></span><br><span class="line">vim ~/ssconfig.json</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 保存完毕即可立即运行</span></span><br><span class="line">/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 设置开启自启动</span></span><br><span class="line"><span class="preprocessor"># 我们先切换至root用户</span></span><br><span class="line">su - root</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 接着在启动脚本里加入启动命令</span></span><br><span class="line"><span class="preprocessor"># 指定ss以用户hzq的权限运行</span></span><br><span class="line"><span class="preprocessor"># 执行下面的命令时一定注意文件路径是否正确</span></span><br><span class="line">echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/config1.json -f /tmp/ss1.pid\""</span> &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure></p>
+<p>这时候，打开客户端，设置相关参数就可以了，之后，可以用非 ROOT 用户运行 ss<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 创建 hzq 用户</span></span><br><span class="line">useradd hzq</span><br><span class="line"><span class="preprocessor"># 为hzq创建密码</span></span><br><span class="line">passwd hzq</span><br><span class="line">&gt; 输入两次密码</span><br><span class="line"><span class="preprocessor"># 切换用户至hzq</span></span><br><span class="line">su - hzq</span><br><span class="line"><span class="preprocessor"># 在主目录创建第一个配置文件，配置格式请参考`使用配置文件运行`一节</span></span><br><span class="line">vim ~/ssconfig.json</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 保存完毕即可立即运行</span></span><br><span class="line">/usr/local/bin/ss-server -c ~/ssconfig.json -f /tmp/ss1.pid</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 设置开启自启动</span></span><br><span class="line"><span class="preprocessor"># 我们先切换至root用户</span></span><br><span class="line">su - root</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 接着在启动脚本里加入启动命令</span></span><br><span class="line"><span class="preprocessor"># 指定ss以用户hzq的权限运行</span></span><br><span class="line"><span class="preprocessor"># 执行下面的命令时一定注意文件路径是否正确</span></span><br><span class="line">echo <span class="string">"su - hzq -c \"/usr/local/bin/ss-server -c /home/hzq/config1.json -f /tmp/ss1.pid\""</span> &gt;&gt; /etc/rc.local</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 查看进程</span></span><br><span class="line">ps -ef|grep ss-server</span><br></pre></td></tr></table></figure></p>
+<p>最后来这里 <a href="https://shadowsocks.org/en/download/clients.html" target="_blank" rel="external">下载SS客户端</a> ,按照配置填写参数,从 GFWlist 更新 PAC 文件,重启浏览器.</p>
 <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>打开 Google ，熟悉的页面又出来了，终于有网了！</p>
 ]]></content>
     <summary type="html">
@@ -772,83 +876,6 @@
       <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="Emotion" scheme="http://imhzq.com/categories/Emotion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Sass系列之基本语法]]></title>
-    <link href="http://imhzq.com/2015/04/19/20150419_learn-sass-basesyntax/"/>
-    <id>http://imhzq.com/2015/04/19/20150419_learn-sass-basesyntax/</id>
-    <published>2015-04-19T06:08:15.000Z</published>
-    <updated>2015-12-12T15:53:56.000Z</updated>
-    <content type="html"><![CDATA[<p>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使用时，犹如豆浆和油条双剑合并！</p>
-<h2 id="sass__u6587_u4EF6_u7C7B_u578B"><a href="#sass__u6587_u4EF6_u7C7B_u578B" class="headerlink" title="sass 文件类型"></a>sass 文件类型</h2><p>sass 有两种文件格式,一种是 <code>*.scss</code> 一种是 <code>*.sass</code>,分别代表了两种 sass 的语法,最终编译生成的 css 是一致的。</p>
-<p><code>sass</code> 与 Ruby 的语法很相似,对内容格式有着严格的要求。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#body</span></span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="hexcolor">#fff</span></span><br><span class="line">#title</span><br><span class="line">    margin: <span class="number">0</span> auto</span></span><br></pre></td></tr></table></figure>
-<p><code>scss</code> 则更贴近 css 语法，如何选择，大家各取所爱，但是在同一个文件中请不要出现两种语法，一个文件一种格式。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="hexcolor">#fff</span>;</span></span><br><span class="line">    <span class="id">#title</span>&#123;</span><br><span class="line">        <span class="attribute">margin</span><span class="value">: <span class="number">0</span> auto;</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然这两者也是可以转换的，我们可以使用 sass 内置的 <code>sass-convert</code> 命令来互相转换</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 style.scss 转换为 style.sass</span></span><br><span class="line">sass-convert style<span class="class">.scss</span> style.sass</span><br></pre></td></tr></table></figure>
-<p>在学习过程中，大家可以互相转换，了解学习对应的语法书写方式。</p>
-<h2 id="u7F16_u8BD1"><a href="#u7F16_u8BD1" class="headerlink" title="编译"></a>编译</h2><h3 id="sass__u7F16_u8BD1"><a href="#sass__u7F16_u8BD1" class="headerlink" title="sass 编译"></a>sass 编译</h3><p>我们编写好 sass 文件后，可以用 sass 命令来编译成 css<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 style.scss 编译成 style.css</span></span><br><span class="line">sass style<span class="class">.scss</span> style.css</span><br></pre></td></tr></table></figure></p>
-<p>大家可能会觉得如此麻烦，有没有什么办法能够，编写 sass 后，直接生成对应的 css 文件那</p>
-<p>当然有，我们可以使用 compass 或者 gulp、grunt 来实现这项功能。</p>
-<p>gulp 和 grunt 是前端开发的脚手架，我们会在另外的文章里详细讲解，这里我们先简单介绍下 compass。</p>
-<h3 id="u901A_u8FC7_compass__u7F16_u8BD1_sass"><a href="#u901A_u8FC7_compass__u7F16_u8BD1_sass" class="headerlink" title="通过 compass 编译 sass"></a>通过 compass 编译 sass</h3><p>我们现在安装 compass, 和 sass 一样，我们通过 gem 来安装 compass</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="keyword">install</span> compass</span><br></pre></td></tr></table></figure>
-<p>通过 compass 初始化项目</p>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//learn-sass 是要创建的项目文件夹</span></span><br><span class="line">compass <span class="keyword">create</span> learn-sass</span><br></pre></td></tr></table></figure>
-<p>打开我们的文件夹，文件结构就是这样的</p>
-<p>learn-sass<br><br>    &nbsp;&nbsp;|- .sass-cache<br><br>    &nbsp;&nbsp;|- sass<br><br>    &nbsp;&nbsp;|- stylesheets<br><br>    &nbsp;&nbsp;|- config.rb<br></p>
-<p><code>.sass-cache</code> 是 sass 编译缓存存放的地方</p>
-<p><code>sass</code> 存放的就是我们编写的 <em>.scss 和 </em>.sass 文件</p>
-<p><code>stylesheets</code> 里面是 compass 帮我们将 sass 文件夹内的 <em>.sass 和 </em>.scss 文件编译成的 css 文件</p>
-<p><code>config.rb</code> 里面是 compass 的配置信息，具体说明，我会在另外一篇文章中详细介绍</p>
-<p>执行 <code>compass watch</code> 后，修改 sass 中的文件，compass 会自动帮我们生成 css 到 stylesheets 文件夹中</p>
-<h2 id="u57FA_u672C_u8BED_u6CD5"><a href="#u57FA_u672C_u8BED_u6CD5" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="u53D8_u91CF_u58F0_u660E"><a href="#u53D8_u91CF_u58F0_u660E" class="headerlink" title="变量声明"></a>变量声明</h3><p>是的，css 中，可以像其他语言一样声明变量了，声明方式以 $ 符开头</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="variable">$titleColor</span><span class="value">: <span class="hexcolor">#0f0</span>;</span></span><br><span class="line"><span class="variable">$titleWidth</span><span class="value">: <span class="number">16px</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line"><span class="class">.title</span>&#123;</span><br><span class="line">    <span class="attribute">background</span><span class="value">: <span class="variable">$titleColor</span>;</span></span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="variable">$titleWidth</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们就可以把常用的数值，声明成变量，让我们的项目结构清晰易维护</p>
-<h3 id="@import"><a href="#@import" class="headerlink" title="@import"></a>@import</h3><p>通常我们会把所有的变量，统一的放在一个 <code>_variables.scss</code> 文件中，然后在用到的地方中通过 @import “variables.scss” 的方式来引用这些变量, 我们可以省略</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="string">"variables"</span>;</span></span><br></pre></td></tr></table></figure>
-<p>大家肯定已经想到了 css 中的 @import 功能，这个和那个又有什么区别哪</p>
-<p>css 中的 @import 必须放在代码最前面，并且会阻塞浏览器，性能不优，我们尽量避免使用， sass 中重新定义了 @import 可以在任何地方使用。 那我们如果真的想用 css 自己的 @import 时，我们可以用以下方式表示使用原生的</p>
-<ol>
-<li>当@import 后边跟的文件名时 ＊.css时</li>
-<li>当@import 后边跟的是 <a href="http://开头的字符串时" target="_blank" rel="external">http://开头的字符串时</a></li>
-<li>当@import 后面跟的是 url() 函数时</li>
-<li>当@import 后面跟的时 media queries 的时候</li>
-</ol>
-<h3 id="u6CE8_u91CA"><a href="#u6CE8_u91CA" class="headerlink" title="注释"></a>注释</h3><p>sass 中可以使用 css 原生的注释，也可以使用 双斜线这种注释方式，具体区别如下 </p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 这种注释方式会出现在生成的 css代码中 */</span></span><br><span class="line"><span class="comment">// 这种注释方式不会出现在生成的 css代码中</span></span><br></pre></td></tr></table></figure>
-<h3 id="u5D4C_u5957"><a href="#u5D4C_u5957" class="headerlink" title="嵌套"></a>嵌套</h3><p>sass 提供了两种嵌套方式，分别是属性嵌套和选择器的嵌套，能极大的降低选择器和属性的重复书写，如下</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">20px</span>;</span></span><br><span class="line">    <span class="attribute">height</span><span class="value">:<span class="number">300px</span>;</span></span><br><span class="line">    <span class="tag">title</span>&#123;</span><br><span class="line">        <span class="attribute">font</span><span class="value">:&#123; //属性嵌套使用 :</span><br><span class="line">            size:<span class="number">18px</span>;</span></span><br><span class="line">            weight<span class="value">: normal;</span></span><br><span class="line">        &#125;</span><br><span class="line">        &amp;<span class="pseudo">:hover</span>&#123;    <span class="comment">//&amp; 符号在 sass 中表示父级选择器，这里就是 title</span></span><br><span class="line">            <span class="attribute">color</span><span class="value">:<span class="hexcolor">#fff</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译后<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">20px</span>;</span></span><br><span class="line">    <span class="attribute">height</span><span class="value">:<span class="number">300px</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="id">#header</span> <span class="tag">title</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span><span class="value">:<span class="number">18px</span>;</span></span><br><span class="line">    <span class="attribute">font-weight</span><span class="value">: normal;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="id">#header</span> <span class="tag">title</span><span class="pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">:<span class="hexcolor">#fff</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>对比一下，是不是可以少写很多的代码了那</p>
-<h3 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h3><p>刚才我们讲了变量，变量的操作有两种，一种是直接变量操作，一种是通过函数操作</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$titleWidth</span><span class="value">:<span class="number">24px</span> + <span class="number">5</span>;</span> <span class="comment">//sass 变量支持基本的算数运算，&gt;= &lt;= &lt; &gt; == != ()</span></span><br></pre></td></tr></table></figure>
-<p>函数操作，一种是通过 sass 内部定义的函数，称作 functions，第二种是可重用的代码块，称作 mixin，我们主要讲 mixin 这种方式</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义 mixin</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col-12</span>&#123;</span></span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">100%</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="class">.title</span>&#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> col-12</span>();</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//编译后生成</span></span><br><span class="line"><span class="class">.title</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="number">100%</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当然，既然是函数，我们可以传入参数值</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义带参数的 mixin</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>)&#123;</span></span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="variable">$width</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用方式和无参是一样的</span></span><br><span class="line"><span class="class">.title</span>&#123;</span><br><span class="line">    <span class="at_rule">@<span class="keyword">include</span><span class="preprocessor"> col</span>(<span class="number">100%</span>);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参数默认值也是有的哦</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@定义带参数有默认值的 mixin</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">mixin</span><span class="preprocessor"> col</span> (<span class="variable">$width</span>:<span class="number">100%</span>)&#123;</span>   <span class="comment">//参数后跟 : 指定默认值</span></span><br><span class="line">    <span class="attribute">width</span> <span class="value">: <span class="variable">$width</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="u7EE7_u627F"><a href="#u7EE7_u627F" class="headerlink" title="继承"></a>继承</h3><p>sass 通过 @extent 可以继承其他选择器的样式</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.content</span>&#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">:<span class="hexcolor">#fff</span>;</span></span><br><span class="line">    <span class="attribute">float</span><span class="pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.left</span>&#123;</span><br><span class="line">    <span class="at_rule">@extent<span class="preprocessor"> .content</span>;</span> <span class="comment">//通过 @extent 继承 .content 选择器的样式</span></span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">30%</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//编译后</span></span><br><span class="line"><span class="class">.content</span>, <span class="class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">color</span><span class="value">:<span class="hexcolor">#fff</span>;</span></span><br><span class="line">    <span class="attribute">float</span><span class="pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">: <span class="number">30%</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@extent 不能继承选择器序列，可以用 %声明样式，来表示这是个只继承的样式</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//选择器序列</span></span><br><span class="line"><span class="class">.left</span> <span class="class">.name</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">200px</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.right</span>&#123;</span><br><span class="line">    <span class="at_rule">@extent<span class="preprocessor"> .left</span><span class="preprocessor"> .name</span>;</span> <span class="comment">//这会报语法错误，不能继承选择器序列</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="variable">$title</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class">.left</span>&#123;</span><br><span class="line">    <span class="at_rule">@extent <span class="variable">$title</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译后</span></span><br><span class="line"><span class="class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">width</span><span class="value">:<span class="number">30</span>xp;</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="u6700_u540E"><a href="#u6700_u540E" class="headerlink" title="最后"></a>最后</h2><p>那么，我们今天的基本语法讲完了，就先写到这里吧，其他高级特性，咱们下回再细谈！</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Sass 是对 CSS 的扩展，让 CSS 语言更强大、优雅。 它允许你使用变量、嵌套规则、 mixins、导入等众多功能， 并且完全兼容 CSS 语法。 Sass 有助于保持大型样式表结构良好， 同时也让你能够快速开始小型项目， 特别是在搭配 Compass 样式库一同使]]>
-    </summary>
-    
-      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
-    
-      <category term="Sass" scheme="http://imhzq.com/tags/Sass/"/>
-    
-      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
     
   </entry>
   
