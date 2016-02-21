@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2016-02-21T15:11:25.000Z</updated>
+  <updated>2016-02-21T17:01:53.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[flex简明教程(一)]]></title>
+    <link href="http://imhzq.com/2016/01/05/20160105_css_flex/"/>
+    <id>http://imhzq.com/2016/01/05/20160105_css_flex/</id>
+    <published>2016-01-04T16:00:00.000Z</published>
+    <updated>2016-02-21T17:01:53.000Z</updated>
+    <content type="html"><![CDATA[<p>传统的 css 布局采用盒模型,通过一些列定位属性来布局,但是对于垂直居中,等分这类特殊情况处理起来就比较麻烦,虽然使用负外边距,table-cell等方式也能兼容实现,但是始终是一种 hack.</p>
+<h2 id="u4EC0_u4E48_u662Fflex"><a href="#u4EC0_u4E48_u662Fflex" class="headerlink" title="什么是flex"></a>什么是flex</h2><p>flex 又称弹性盒布局,顾名思义,就是可以根据设定的拉伸和收缩因子拉伸或者收缩空间,写过 android 布局的同学是不是会想起来 <code>android:layout_weight</code>啊~,没错就是一个意思!</p>
+<p>查阅 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex#Browser_compatibility" target="_blank" rel="external">flex浏览器兼容性</a>,IE10+才支持不免有些丧气,不过移动端还是棒棒的~</p>
+<h2 id="flex_u57FA_u672C_u8BED_u6CD5"><a href="#flex_u57FA_u672C_u8BED_u6CD5" class="headerlink" title="flex基本语法"></a>flex基本语法</h2><p>任何一个容器都能成为 flex 弹性盒:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> flex</span></span>;&#125;</span> </span><br><span class="line"><span class="comment">/* or */</span></span><br><span class="line"><span class="tag">span</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> inline-flex</span></span>;&#125;</span> <span class="comment">/* 行内元素也可以哦 */</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就把一个标准盒模型转变为弹性盒模型,其中仍在文档流中的直接子元素则变为 <code>flex item</code>,看下面这个例子:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- flex item：在文档流且为直接子元素 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'display:flex;'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span>&gt;</span>block<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'float:left;'</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">span</span>&gt;</span>inline<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'position:absolute;'</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> <span class="comment">&lt;!-- 不是，绝对定位脱离文档流 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span>inner<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 不是，不是直接子元素 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>我们可以把 flex 的属性分为三类, 方向属性,弹性属性和对齐属性, 这次我们先来讲方向属性</p>
+<h3 id="u65B9_u5411_u5C5E_u6027"><a href="#u65B9_u5411_u5C5E_u6027" class="headerlink" title="方向属性"></a>方向属性</h3><p><code>flex-direction</code>:<br>flex-direction: row | row-reverse | column | column-reverse<br>row: 横向从左到右排列（左对齐）[默认值]。<br>row-reverse: 对齐方式与row相反。<br>column: 纵向从上往下排列（顶对齐）。<br>column-reverse: 对齐方式与column相反。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/7zs2y50j/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<p><code>flex-wrap</code>:<br>flex-wrap: nowrap | warp | wrap-reverse<br>nowrap：flex容器为单行,该情况下flex item可能会溢出容器<br>wrap：flex容器为多行,该情况下flex item溢出的部分会被放置到新行，子项内部会发生断行<br>wrap-reverse：反转 wrap 排列。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/rd276drv/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<p><code>flex-flow</code>:<br>flex-flow: &lt;’flex-direction’ || flex-warp&gt;<br>上面两个属性的缩写形式</p>
+<p><code>order</code>:<br>order: 整数类型, 默认值为 0<br>用整数值来定义排列顺序，数值小的排在前面,可以为负值。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/1vtujpmu/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>传统的 css 布局采用盒模型,通过一些列定位属性来布局,但是对于垂直居中,等分这类特殊情况处理起来就比较麻烦,虽然使用负外边距,table-cell等方式也能兼容实现,但是始终是一种 hack.</p>
+<h2 id="u4EC0_u4E48_u662Fflex"><a ]]>
+    </summary>
+    
+      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[js基于时间的动画]]></title>
@@ -838,25 +868,6 @@
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[参加与大师面对面活动后的小心思]]></title>
-    <link href="http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/"/>
-    <id>http://imhzq.com/2015/10/24/20151024_type-script-anders-hejlsberg/</id>
-    <published>2015-10-23T16:00:00.000Z</published>
-    <updated>2015-12-14T17:46:16.000Z</updated>
-    <content type="html"><![CDATA[<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/IMG_0078.JPG" alt="小心思"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/IMG_0078.JPG" alt="小心思"></p>
-]]>
-    </summary>
-    
-      <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="Emotion" scheme="http://imhzq.com/categories/Emotion/"/>
     
   </entry>
   
