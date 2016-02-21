@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2016-02-21T15:04:06.000Z</updated>
+  <updated>2016-02-21T15:11:25.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://imhzq.com/2016/01/01/20160101_js_animation/"/>
     <id>http://imhzq.com/2016/01/01/20160101_js_animation/</id>
     <published>2015-12-31T16:00:00.000Z</published>
-    <updated>2016-02-21T15:04:06.000Z</updated>
+    <updated>2016-02-21T15:11:25.000Z</updated>
     <content type="html"><![CDATA[<p>说起前端动画,不得不提CSS动画和JS动画,这里简单谈谈这两者.</p>
 <p>CSS动画简单方便,在样式表中就可以管理动画的内容,但相应的可维护性也随之降低;对动画的控制能力不足,比如说拖拽动画等等无法实现;放弃了物理动效的支持,只能通过缓动函数来模拟.<br>相比之JS动画则依托完备的编程语言,可以对动效的设计进行无限的控制,虽然编写起来相比CSS动画来说较为复杂,但可以通过一些第三方库来快速实现,比如 <a href="http://julian.com/research/velocity/" target="_blank" rel="external">VelocityJS</a> . 当然,事物的好坏永远需要按场景区分, CSS动画和JS动画也是如此,比如说一个简单的按钮 hover 效果,无论怎么看CSS动画都是第一选择,但是如果需要控制一个动画工作流,那JS动画一定更适合了. </p>
 <p>有点跑题了…, 回到正文</p>
@@ -32,7 +32,7 @@
 <p>A地和B地相距300m,一辆速度为 5m/s 匀速运动的自行车从A地出发去往B地,请问一分钟后自行车距离A地多远?</p>
 </blockquote>
 <p>我们用时间 时间 <em> 速度 即可得出 5 </em> 60 = 300,也就是300m, 从这个简单的问题中,我们可以发现我们不必去寄人篱下一帧帧的做动效,不必去管帧率的问题,我们可以从动画开始时间到当前时间计算出动画经过的时间,通过 时间 * 速度,计算出当前动画的偏移量,这样就可以保证我们所有性能的平台下动画都是一个速度进行着.下面我们来修改下上面的代码:<br><iframe width="100%" height="300" src="http://jsfiddle.net/rbdk6z79/embedded/js,result/light" frameborder="0" allowfullscreen></iframe></p>
-<p>这里我们改为根据时间来计算偏移量,我的测试环境中弹出的结果应该在 <code>4801</code>,下面我们来看看加入同样阻塞代码后的用时,是不是也增加了1000毫秒那:<br><iframe width="100%" height="300" src="http://jsfiddle.net/seqj7cbx/embedded/js,result/light" frameborder="0" allowfullscreen></iframe><br>我的测试环境弹出的石 <code>4865</code>,可以看出虽然加入了阻塞代码,但是因为我们是按照时间来计算偏移量的,所以动画总时间不会偏差过大,各个平台下动画也不会出现有的快有的慢得情况.</p>
+<p>这里我们改为根据时间来计算偏移量,我的测试环境中弹出的结果应该在 <code>4801</code>,下面我们来看看加入同样阻塞代码后的用时,是不是也增加了1000毫秒那:<br><iframe width="100%" height="300" src="http://jsfiddle.net/2yr24asu/embedded/js,result/light" frameborder="0" allowfullscreen></iframe><br>我的测试环境弹出的石 <code>4865</code>,可以看出虽然加入了阻塞代码,但是因为我们是按照时间来计算偏移量的,所以动画总时间不会偏差过大,各个平台下动画也不会出现有的快有的慢得情况.</p>
 <h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>基于时间的动效能够消除不同设备不同环境下动画帧数不同导致的动效速度不同的问题,推荐所有的动效都应该采用基于时间的方式!</p>
 ]]></content>
     <summary type="html">
