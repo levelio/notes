@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2015-12-28T16:42:31.000Z</updated>
+  <updated>2016-02-21T15:04:06.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -15,11 +15,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[CSS3动画-无法停下的创作欲]]></title>
+    <title><![CDATA[js基于时间的动画]]></title>
+    <link href="http://imhzq.com/2016/01/01/20160101_js_animation/"/>
+    <id>http://imhzq.com/2016/01/01/20160101_js_animation/</id>
+    <published>2015-12-31T16:00:00.000Z</published>
+    <updated>2016-02-21T15:04:06.000Z</updated>
+    <content type="html"><![CDATA[<p>说起前端动画,不得不提CSS动画和JS动画,这里简单谈谈这两者.</p>
+<p>CSS动画简单方便,在样式表中就可以管理动画的内容,但相应的可维护性也随之降低;对动画的控制能力不足,比如说拖拽动画等等无法实现;放弃了物理动效的支持,只能通过缓动函数来模拟.<br>相比之JS动画则依托完备的编程语言,可以对动效的设计进行无限的控制,虽然编写起来相比CSS动画来说较为复杂,但可以通过一些第三方库来快速实现,比如 <a href="http://julian.com/research/velocity/" target="_blank" rel="external">VelocityJS</a> . 当然,事物的好坏永远需要按场景区分, CSS动画和JS动画也是如此,比如说一个简单的按钮 hover 效果,无论怎么看CSS动画都是第一选择,但是如果需要控制一个动画工作流,那JS动画一定更适合了. </p>
+<p>有点跑题了…, 回到正文</p>
+<h2 id="u5173_u952E_u5E27_u52A8_u753B"><a href="#u5173_u952E_u5E27_u52A8_u753B" class="headerlink" title="关键帧动画"></a>关键帧动画</h2><p>假如现在我们有这样一个需求 <code>让一个 div 向右边移动 300px 的距离</code>, 我们来看看下面这种实现<br><iframe width="100%" height="300" src="http://jsfiddle.net/dq7Ldctf/embedded/js,result/light" frameborder="0" allowfullscreen></iframe></p>
+<p>看起来我们实现了这个需求,不过不要急,我们稍稍修改上面代码中的 step 函数,在其中加入这段代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(left == <span class="number">200</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> start = +<span class="keyword">new</span> <span class="built_in">Date</span>;</span><br><span class="line">    <span class="keyword">while</span> ((+<span class="keyword">new</span> <span class="built_in">Date</span> - start) &lt; <span class="number">1000</span>)&#123;&#125; <span class="comment">//阻塞1s</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>大家可以去 jsfiddle 中加入这段代码, 观察后,不难发现这个 div 在 left 值为 200px 的地方停顿了 1000+ms. 大家都知道js是基于事件模型的,我们在 step 函数中 setInterval 其实相当于告诉引擎,帮我在 16.7 毫秒后将这个回调函数加入事件队列,如果引擎空闲就执行,此时我们 while 循环1秒,就会阻塞整个事件队列的运行,也就阻塞了UI线程的渲染,表现出来结果就是我们的div运动停止了1秒多.</p>
+<p>这里虽然是人为的加入了阻塞代码,但是在正常的开发过程中,setInterval 和 setTimeout 根本没法保证按我们要求的在固定的间隔执行事件,此时如果我们的动画还是按照 <code>变化量/帧</code> 的方式来执行,就会出现不同设备中动画执行时间不同的情况,在移动端是重灾区.</p>
+<h2 id="u57FA_u4E8E_u65F6_u95F4_u7684_u52A8_u753B"><a href="#u57FA_u4E8E_u65F6_u95F4_u7684_u52A8_u753B" class="headerlink" title="基于时间的动画"></a>基于时间的动画</h2><p>在讨论上面所述的问题该如何解决之前,不妨先来看看这个数学题:</p>
+<blockquote>
+<p>A地和B地相距300m,一辆速度为 5m/s 匀速运动的自行车从A地出发去往B地,请问一分钟后自行车距离A地多远?</p>
+</blockquote>
+<p>我们用时间 时间 <em> 速度 即可得出 5 </em> 60 = 300,也就是300m, 从这个简单的问题中,我们可以发现我们不必去寄人篱下一帧帧的做动效,不必去管帧率的问题,我们可以从动画开始时间到当前时间计算出动画经过的时间,通过 时间 * 速度,计算出当前动画的偏移量,这样就可以保证我们所有性能的平台下动画都是一个速度进行着.下面我们来修改下上面的代码:<br><iframe width="100%" height="300" src="http://jsfiddle.net/rbdk6z79/embedded/js,result/light" frameborder="0" allowfullscreen></iframe></p>
+<p>这里我们改为根据时间来计算偏移量,我的测试环境中弹出的结果应该在 <code>4801</code>,下面我们来看看加入同样阻塞代码后的用时,是不是也增加了1000毫秒那:<br><iframe width="100%" height="300" src="http://jsfiddle.net/seqj7cbx/embedded/js,result/light" frameborder="0" allowfullscreen></iframe><br>我的测试环境弹出的石 <code>4865</code>,可以看出虽然加入了阻塞代码,但是因为我们是按照时间来计算偏移量的,所以动画总时间不会偏差过大,各个平台下动画也不会出现有的快有的慢得情况.</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>基于时间的动效能够消除不同设备不同环境下动画帧数不同导致的动效速度不同的问题,推荐所有的动效都应该采用基于时间的方式!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>说起前端动画,不得不提CSS动画和JS动画,这里简单谈谈这两者.</p>
+<p>CSS动画简单方便,在样式表中就可以管理动画的内容,但相应的可维护性也随之降低;对动画的控制能力不足,比如说拖拽动画等等无法实现;放弃了物理动效的支持,只能通过缓动函数来模拟.<br>相比之JS]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CSS3动画-深夜恶搞]]></title>
     <link href="http://imhzq.com/2015/12/15/20151215_css_animation/"/>
     <id>http://imhzq.com/2015/12/15/20151215_css_animation/</id>
     <published>2015-12-14T16:00:00.000Z</published>
-    <updated>2015-12-28T16:42:31.000Z</updated>
+    <updated>2016-02-21T15:04:41.000Z</updated>
     <content type="html"><![CDATA[<p>本来只是想复习下 CSS3 动画属性, 但是一上手,就控制不住恶搞的欲望,真是可恶啊!!</p>
 <p>预览地址: <a href="http://sandbox.runjs.cn/show/ih3bfqcc" target="_blank" rel="external">RPG Book</a></p>
 <p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/rpg2.png" alt="RPG Book预览图"></p>
@@ -42,7 +76,7 @@
     <link href="http://imhzq.com/2015/12/14/20151214_js-regex/"/>
     <id>http://imhzq.com/2015/12/14/20151214_js-regex/</id>
     <published>2015-12-13T16:00:00.000Z</published>
-    <updated>2015-12-22T17:40:10.000Z</updated>
+    <updated>2016-02-21T10:41:01.000Z</updated>
     <content type="html"><![CDATA[<p>JS 关于正则这块的函数在String和RegExp对象上都有一些方法,很容易弄混,网上的文章又介绍的特别乱,于是在这里做下总结.</p>
 <h1 id="String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5"><a href="#String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65B9_u6CD5" class="headerlink" title="String 对象上有关正则的方法"></a>String 对象上有关正则的方法</h1><h2 id="String-prototype-search"><a href="#String-prototype-search" class="headerlink" title="String.prototype.search"></a>String.prototype.search</h2><p>search 方法接受一个正则表达式作为参数,如果传入一个非正则表达式对象,则会使用 new RegExp(obj) 隐式的将其转化为正则表达式对象.</p>
 <p>search 方法会返回正则表达式在字符串中首次匹配的索引,如果没有找到,则返回 -1. 如下面的例子:<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> phone = <span class="string">"18614086288"</span>;</span><br><span class="line"><span class="keyword">var</span> <span class="literal">result</span> = phone.search(/^<span class="number">1</span>\d[<span class="number">10</span>]$/);</span><br><span class="line">console.log(<span class="literal">result</span>);	//<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
@@ -132,7 +166,7 @@
 <h1 id="String__u5BF9_u8C61_u4E0A_u6709_u5173_u6B63_u5219_u7684_u65]]>
     </summary>
     
-      <category term="Javascript" scheme="http://imhzq.com/tags/Javascript/"/>
+      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
@@ -823,63 +857,6 @@
       <category term="生活" scheme="http://imhzq.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
       <category term="Emotion" scheme="http://imhzq.com/categories/Emotion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[重排与重绘]]></title>
-    <link href="http://imhzq.com/2015/09/01/20150901_repaints-and-reflows/"/>
-    <id>http://imhzq.com/2015/09/01/20150901_repaints-and-reflows/</id>
-    <published>2015-08-31T16:00:00.000Z</published>
-    <updated>2015-12-12T15:52:28.000Z</updated>
-    <content type="html"><![CDATA[<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构－－DOM树(表示页面结构)、渲染树(表示 DOM 节点如何显示)。每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲染树中受影响的部分失效，并重新构建渲染树，这个过程叫重排。重排完成后，浏览器会根据渲染树，把受影响的部分重新绘制到屏幕上，这个过程叫重绘。</p>
-<p>重排和重绘都是相当消耗性能的操作，它们会导致 Web 页面UI反应吃顿。应当尽量减少重排和重绘。</p>
-<h2 id="u4F55_u65F6_u91CD_u6392"><a href="#u4F55_u65F6_u91CD_u6392" class="headerlink" title="何时重排"></a>何时重排</h2><ol>
-<li>页面渲染器初始化的时候</li>
-<li>浏览器窗口发生尺寸变化时</li>
-<li>删除或添加新的可见 DOM 元素</li>
-<li>元素的位置改变</li>
-<li>元素的盒子模型发生变化</li>
-<li>元素内容发生变化（引起盒子模型发生变化）</li>
-</ol>
-<h2 id="u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8"><a href="#u51CF_u5C11_u91CD_u6392_u548C_u91CD_u7ED8" class="headerlink" title="减少重排和重绘"></a>减少重排和重绘</h2><p>每次重绘和重排都会产生大量消耗，我们在编码时应当避免。</p>
-<h3 id="u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0"><a href="#u6E32_u67D3_u6811_u961F_u5217_u7684_u961F_u5217_u4E0E_u5237_u65B0" class="headerlink" title="渲染树队列的队列与刷新"></a>渲染树队列的队列与刷新</h3><p>大多数浏览器都会优化这个队列，通过批量执行等方式来优化重排过程，然而你可能会不经意间强制要求浏览器放弃优化，立即执行队列并刷新。</p>
-<p>调用下面这些方法时，浏览器为了能返回正确的数据，会立即触发重排：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">offsetTop, offsetLeft, offsetWidth, offsetHeight</span><br><span class="line">scrollTop, scrollLeft, scrollWidth, scrollHeight</span><br><span class="line">clientTop, clientLift, clientWidth, clientHeight</span><br><span class="line">getComputedStyle()</span><br></pre></td></tr></table></figure></p>
-<h3 id="u4F18_u5316_u4EE3_u7801"><a href="#u4F18_u5316_u4EE3_u7801" class="headerlink" title="优化代码"></a>优化代码</h3><p>考虑这个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);</span><br><span class="line">el.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">el.style.borderRight = <span class="string">'2px'</span>;</span><br><span class="line">el.style.margin = <span class="string">'3px'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>一般情况下，浏览器会优化这个，只发生一次重排。但是，如果在这期间有其他代码请求布局信息，会导致浏览器三次重排。一个更高效的方法就是，使用 cssText，只修改一次 DOM：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);</span><br><span class="line">el.style.cssText += <span class="string">"border-left:1px;border-right:2px;margin:3px;"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>另一个方法是修改元素的 class 名称，这种方法更清晰，更易维护，但是会带来轻微的性能营销，因为改变类时需要检查及联样式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);</span><br><span class="line">el.className = <span class="string">"active"</span>;</span><br></pre></td></tr></table></figure></p>
-<h3 id="u6279_u91CF_u4FEE_u6539_DOM"><a href="#u6279_u91CF_u4FEE_u6539_DOM" class="headerlink" title="批量修改 DOM"></a>批量修改 DOM</h3><p>当需要对 DOM 元素进行一连串的操作时，可以先让元素脱离文档流，然后对其应用多重改变，再把元素加入文档流。第一步和第三步会触发两次重排，如果不这么做，第二步做的任何修改都会触发一次重排。</p>
-<p>那么怎么才能让元素脱离文档流哪？ 有三种基本方法：</p>
-<ol>
-<li>隐藏元素，应用修改，重新显示</li>
-<li>使用文档片段 (document fragment) 在当前 DOM 之外构建一个子树，再把它拷贝回文档</li>
-<li>创建一个需要修改节点的镜像，然后修改镜像，再用镜像替换原节点</li>
-</ol>
-<p>比如我们需要向列表中添加一些项，如下</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"test"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url1"</span>&gt;</span>Name1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"url2"</span>&gt;</span>Name2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">var data = [</span><br><span class="line">    </span><span class="expression">&#123;<span class="variable">url</span>: <span class="string">"url1"</span>, <span class="variable">name</span>: <span class="string">"Name1"</span>&#125;</span><span class="xml">,</span><br><span class="line">    </span><span class="expression">&#123;<span class="variable">url</span>: <span class="string">"url2"</span>, <span class="variable">name</span>: <span class="string">"Name2"</span>&#125;</span><span class="xml"></span><br><span class="line">]</span></span><br></pre></td></tr></table></figure>
-<p>我们写一个添加的函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">appendDataToElement</span>(<span class="params">to, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> link, li, item;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++)&#123;</span><br><span class="line">        item = data[i];</span><br><span class="line">        link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">        link.href = item.url;</span><br><span class="line">        link.appendChild(<span class="built_in">document</span>.createTextNode(item.name));</span><br><span class="line">        li = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</span><br><span class="line">        li.appendChild(link);</span><br><span class="line">        to.appendChild(li);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</span><br><span class="line">appendDataToElement(ul, data);</span><br></pre></td></tr></table></figure>
-<p>如果使用这种方法， data 数组中的每一个新条目被增加到 DOM 树中都会导致重绘，我们可以此用第一种方法，改变需要重排元素的 display 属性，从而使其脱离文档流，添加完成后，在修改 display 属性，使其添加回文档流中，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</span><br><span class="line">ul.style.display = <span class="string">"none"</span>;</span><br><span class="line">appendDataToElementById(ul, data);</span><br><span class="line">ul.style.display = <span class="string">"block"</span></span><br></pre></td></tr></table></figure>
-<p>第二种减少重排的方法就是使用文档片段，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">appendDataToElement(fragment, data);</span><br><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</span><br><span class="line">ul.appendChild(fragment);</span><br></pre></td></tr></table></figure>
-<p>第三种方式，需要为原节点创建一个镜像，添加完成后，再替换原来的DOM节点，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</span><br><span class="line"><span class="keyword">var</span> cloneUl = ul.cloneNode(<span class="literal">true</span>);</span><br><span class="line">appendDataToElement(cloneUl, data);</span><br><span class="line">ul.parentNode.replaceChild(cloneUl,ul);</span><br></pre></td></tr></table></figure>
-<p>推荐使用第二种方案，它操作DOM的次数最少。</p>
-<h3 id="u7F13_u5B58_u5E03_u5C40_u4FE1_u606F"><a href="#u7F13_u5B58_u5E03_u5C40_u4FE1_u606F" class="headerlink" title="缓存布局信息"></a>缓存布局信息</h3><p>我们在用定时器写动画的时候，经常会出现这种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> es = el.style;</span><br><span class="line">es.left = <span class="number">1</span> + el.offsetLeft + <span class="string">"px"</span>;</span><br><span class="line">es.top = <span class="number">1</span> + el.offsetTop + <span class="string">"px"</span>;</span><br></pre></td></tr></table></figure></p>
-<p>前面说过，这种写法会使浏览器强制重排获取正确的属性值，每次 ＋1 都会触发重排，我们可以将移动信息做缓存，如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> es = el.style, positionNum = el.offsetLeft;</span><br><span class="line">es.left = ++positionNum;</span><br></pre></td></tr></table></figure>
-<p>这样，我们就避免了，多次重排!</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>浏览器下载完页面中的组件后，会解析并生成两个内部数据结构－－DOM树(表示页面结构)、渲染树(表示 DOM 节点如何显示)。每当DOM元素的几何属性发生变化时（宽高发生变化、内容改编、位置发生变化等等），浏览器就需要重新计算变化元素和受影响的其他元素的几何属性。浏览器会使渲]]>
-    </summary>
-    
-      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
-    
-      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
     
   </entry>
   
