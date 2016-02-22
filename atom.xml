@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2016-02-21T17:01:53.000Z</updated>
+  <updated>2016-02-22T16:44:10.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -15,19 +15,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[flex简明教程(二)]]></title>
+    <link href="http://imhzq.com/2016/01/06/20160106_css_flex2/"/>
+    <id>http://imhzq.com/2016/01/06/20160106_css_flex2/</id>
+    <published>2016-01-05T16:00:00.000Z</published>
+    <updated>2016-02-22T16:44:10.000Z</updated>
+    <content type="html"><![CDATA[<p>接上次flex的文章,这次我们讲 flex 剩下的两种属性-弹性属性和对其属性</p>
+<h2 id="u5F39_u6027_u5C5E_u6027"><a href="#u5F39_u6027_u5C5E_u6027" class="headerlink" title="弹性属性"></a>弹性属性</h2><h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p><code>flex-basis</code>: 数字值,默认值为auto,设置 flex item 主轴(row/column)的最小宽/高,通常配合grow 和 shrink使用</p>
+<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p><code>flex-grow</code>: 数字值,默认值是0,设置扩展因子作为比率分配<code>剩余空间</code>,不能为负值<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/r3oq0xf5/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p><code>flex-shrink</code>:数字值,默认值为1,设置的收缩因子作为比率来收缩<code>超出空间</code><br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/57pa5r1y/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p><code>flex</code>: 这个属性是 flex-grow, flex-shrink, flex-basis 的缩写形式,默认值为 1, 1, 0;</p>
+<h2 id="u5BF9_u9F50_u5C5E_u6027"><a href="#u5BF9_u9F50_u5C5E_u6027" class="headerlink" title="对齐属性"></a>对齐属性</h2><h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p><code>justify-content</code>: 定义主轴上的对齐方式。当弹性盒里一行上的所有子元素都不能伸缩或已经达到其最大值时，这一属性可协助对多余的空间进行分配。当元素溢出某行时，这一属性同样会在对齐上进行控制。<br>justify-content: flex-start(默认值) | flex-end | center | space-between | space-around;<br>flex-start: 左/上对齐<br>flex-end: 右/下对齐<br>center: 居中对齐<br>space-between: flex item 的两端对其<br>space-around: 每个 flex item 的两端间隔相等, 此时flex item之间的间距将是两边flex item距离边框距离的两倍<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/wv3uLgem/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h3><p><code>align-items</code>: 定义辅轴方向上的对其方式.<br>align-items: flex-start | flex-end | center | baseline | stretch(默认值)<br>flex-start：弹性盒子元素的辅轴起始位置的边界紧靠住该行的侧轴起始边界。<br>flex-end：弹性盒子元素的辅轴起始位置的边界紧靠住该行的侧轴结束边界。<br>center：弹性盒子元素在该行的辅轴上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。<br>baseline：如弹性盒子元素的行内轴与辅轴为同一条，则该值与’flex-start’等效。其它情况下，该值将参与基线对齐。<br>stretch：如果指定侧轴大小的属性值为’auto’，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照’min/max-width/height’属性的限制。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/kn9yxLs2/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><p><code>align-self</code>: 定义flex item单独在辅轴方向上的对齐方式。<br>align-self：auto(默认) | flex-start | flex-end | center | baseline | stretch<br>参数和 <code>align-item</code> 一致,只是用来控制单个 flex item对象,可以参考<code>align-item</code></p>
+<h3 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h3><p><code>align-content</code>: 当伸缩容器的辅轴出现多行还有多余空间时，这个属性可以用来调准「伸缩行」在伸缩容器里的对齐方式，这与调准伸缩项目在主轴上对齐方式的 <code>justify-content</code> 属性类似。请注意本属性在只有一行的伸缩容器上没有效果。<br>align-content：flex-start | flex-end | center | space-between | space-around | stretch(默认)<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/pgq68svy/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<p>到这里,flex属性已经讲完了,下一篇我们再来讲讲flex的应用!睡觉~</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>接上次flex的文章,这次我们讲 flex 剩下的两种属性-弹性属性和对其属性</p>
+<h2 id="u5F39_u6027_u5C5E_u6027"><a href="#u5F39_u6027_u5C5E_u6027" class="headerlink" title=]]>
+    </summary>
+    
+      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[flex简明教程(一)]]></title>
-    <link href="http://imhzq.com/2016/01/05/20160105_css_flex/"/>
-    <id>http://imhzq.com/2016/01/05/20160105_css_flex/</id>
+    <link href="http://imhzq.com/2016/01/05/20160105_css_flex1/"/>
+    <id>http://imhzq.com/2016/01/05/20160105_css_flex1/</id>
     <published>2016-01-04T16:00:00.000Z</published>
-    <updated>2016-02-21T17:01:53.000Z</updated>
+    <updated>2016-02-22T16:44:10.000Z</updated>
     <content type="html"><![CDATA[<p>传统的 css 布局采用盒模型,通过一些列定位属性来布局,但是对于垂直居中,等分这类特殊情况处理起来就比较麻烦,虽然使用负外边距,table-cell等方式也能兼容实现,但是始终是一种 hack.</p>
 <h2 id="u4EC0_u4E48_u662Fflex"><a href="#u4EC0_u4E48_u662Fflex" class="headerlink" title="什么是flex"></a>什么是flex</h2><p>flex 又称弹性盒布局,顾名思义,就是可以根据设定的拉伸和收缩因子拉伸或者收缩空间,写过 android 布局的同学是不是会想起来 <code>android:layout_weight</code>啊~,没错就是一个意思!</p>
 <p>查阅 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex#Browser_compatibility" target="_blank" rel="external">flex浏览器兼容性</a>,IE10+才支持不免有些丧气,不过移动端还是棒棒的~</p>
 <h2 id="flex_u57FA_u672C_u8BED_u6CD5"><a href="#flex_u57FA_u672C_u8BED_u6CD5" class="headerlink" title="flex基本语法"></a>flex基本语法</h2><p>任何一个容器都能成为 flex 弹性盒:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> flex</span></span>;&#125;</span> </span><br><span class="line"><span class="comment">/* or */</span></span><br><span class="line"><span class="tag">span</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value"> inline-flex</span></span>;&#125;</span> <span class="comment">/* 行内元素也可以哦 */</span></span><br></pre></td></tr></table></figure></p>
 <p>这样就把一个标准盒模型转变为弹性盒模型,其中仍在文档流中的直接子元素则变为 <code>flex item</code>,看下面这个例子:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- flex item：在文档流且为直接子元素 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'display:flex;'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span>&gt;</span>block<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'float:left;'</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">span</span>&gt;</span>inline<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">'position:absolute;'</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span> <span class="comment">&lt;!-- 不是，绝对定位脱离文档流 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 是 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span>inner<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="comment">&lt;!-- 不是，不是直接子元素 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>我们可以把 flex 的属性分为三类, 方向属性,弹性属性和对齐属性, 这次我们先来讲方向属性</p>
-<h3 id="u65B9_u5411_u5C5E_u6027"><a href="#u65B9_u5411_u5C5E_u6027" class="headerlink" title="方向属性"></a>方向属性</h3><p><code>flex-direction</code>:<br>flex-direction: row | row-reverse | column | column-reverse<br>row: 横向从左到右排列（左对齐）[默认值]。<br>row-reverse: 对齐方式与row相反。<br>column: 纵向从上往下排列（顶对齐）。<br>column-reverse: 对齐方式与column相反。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/7zs2y50j/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
-<p><code>flex-wrap</code>:<br>flex-wrap: nowrap | warp | wrap-reverse<br>nowrap：flex容器为单行,该情况下flex item可能会溢出容器<br>wrap：flex容器为多行,该情况下flex item溢出的部分会被放置到新行，子项内部会发生断行<br>wrap-reverse：反转 wrap 排列。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/rd276drv/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<h3 id="u65B9_u5411_u5C5E_u6027"><a href="#u65B9_u5411_u5C5E_u6027" class="headerlink" title="方向属性"></a>方向属性</h3><p><code>flex-direction</code>: 决定<code>主轴</code>的方向<br>flex-direction: row(默认值) | row-reverse | column | column-reverse<br>row: 横向从左到右排列（左对齐）。<br>row-reverse: 对齐方式与row相反。<br>column: 纵向从上往下排列（顶对齐）。<br>column-reverse: 对齐方式与column相反。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/7zs2y50j/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
+<p><code>flex-wrap</code>:<br>flex-wrap: nowrap(默认值) | warp | wrap-reverse<br>nowrap：flex容器为单行,该情况下flex item可能会溢出容器<br>wrap：flex容器为多行,该情况下flex item溢出的部分会被放置到新行，子项内部会发生断行<br>wrap-reverse：反转 wrap 排列。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/rd276drv/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
 <p><code>flex-flow</code>:<br>flex-flow: &lt;’flex-direction’ || flex-warp&gt;<br>上面两个属性的缩写形式</p>
 <p><code>order</code>:<br>order: 整数类型, 默认值为 0<br>用整数值来定义排列顺序，数值小的排在前面,可以为负值。<br>例子:<br><iframe width="100%" height="300" src="http://jsfiddle.net/1vtujpmu/embedded/result,html,css/light" frameborder="0" allowfullscreen></iframe></p>
 ]]></content>
@@ -820,50 +850,6 @@
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
-    
-      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[HTML5新增元素介绍]]></title>
-    <link href="http://imhzq.com/2015/11/01/20151101_new-tag-from-html5/"/>
-    <id>http://imhzq.com/2015/11/01/20151101_new-tag-from-html5/</id>
-    <published>2015-10-31T16:00:00.000Z</published>
-    <updated>2015-12-12T15:45:25.000Z</updated>
-    <content type="html"><![CDATA[<p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！</p>
-<h3 id="section"><a href="#section" class="headerlink" title="section"></a>section</h3><p><code>section</code> 元素表示一般意义上的区域/章节，，比如内容中的一个专题，一般会与<code>h1</code>~<code>h6</code>等元素搭配使用，以标示文档层级。如果元素内容可以分为几个部分的话，应该使用 <code>article</code> 而不是 <code>section</code>。不要把 <code>section</code> 元素作为一个普通的容器来使用，这种情况下 <code>div</code> 元素比他更合适，特别是仅仅用作美化样式的情况下。通常来说 <code>section</code> 应该出现在文档的框架中。</p>
-<h3 id="article"><a href="#article" class="headerlink" title="article"></a>article</h3><p><code>article</code> 元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，它可能是论坛帖子、文章、博客、用户提交评论或者是其它的独立内容项目。当 <code>article</code> 元素嵌套使用时，则该元素代表与外层元素有关的文章，例如代表博客评论的 <code>article</code> 元素可嵌套在代表博客文章的 <code>article</code> 元素中。</p>
-<h3 id="main"><a href="#main" class="headerlink" title="main"></a>main</h3><p><code>main</code> 元素呈现了文档 <code>body</code> 或应用的主体部分，这部分内容在文档中应该是独一无二的，在一个文档中不能出现一个以上的 <code>main</code>,不能是以下元素的继承 <code>article</code>,<code>aside</code>,<code>footer</code>,<code>header</code>,<code>nav</code>。</p>
-<h3 id="aside"><a href="#aside" class="headerlink" title="aside"></a>aside</h3><p><code>aside</code> 元素代表与了一些与页面其他部分关联性不是那么大的内容，比如广告。</p>
-<h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p><code>header</code> 代表了一组介绍性或者导航性质的辅助内容，可能包含标题元素，也可以包含其他元素，像logo、分节头部、搜索表单等。<code>header</code> 不是分节元素，不会引入分节到大纲中。</p>
-<h3 id="footer"><a href="#footer" class="headerlink" title="footer"></a>footer</h3><p><code>footer</code> 元素表示最近的一个章节内容或者根节点元素的页脚。一个页脚通常包含该章节坐着、版权数据或者文档相关的链接信息。</p>
-<h3 id="nav"><a href="#nav" class="headerlink" title="nav"></a>nav</h3><p><code>nav</code> 代表一个含有多个超链接的区域。</p>
-<h3 id="figure"><a href="#figure" class="headerlink" title="figure"></a>figure</h3><p><code>figure</code> 代表一个独立的内容流，常与 <code>figcaption</code> 元素一起出现。</p>
-<h3 id="figcaption"><a href="#figcaption" class="headerlink" title="figcaption"></a>figcaption</h3><p><code>figcaption</code> 用作 <code>figure</code> 的标题，类似于表格的 <code>caption</code> 元素。</p>
-<h3 id="template"><a href="#template" class="headerlink" title="template"></a>template</h3><p><code>template</code> 元素是一种机制，允许包含加载页面时不渲染，但又可以随后通过 Javascript 实力化的客户端内容，就像我们这样做一样<code>script type=&quot;text/temple&quot;</code>。</p>
-<h3 id="audio__26amp_3B_video"><a href="#audio__26amp_3B_video" class="headerlink" title="audio &amp; video"></a>audio &amp; video</h3><p><code>audio</code> 和 <code>video</code> 是多媒体元素，他们提供相对应的 API 用于开发者定制 UI，同时也提供了出发 UA 展示其默认控件的方式。</p>
-<h3 id="embed"><a href="#embed" class="headerlink" title="embed"></a>embed</h3><p><code>embed</code> 元素表示一个插件，展用于插件内容。</p>
-<h3 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h3><p><code>mark</code> 元素代表了一个文档中需要标记或者高亮的部分，比如说搜索引擎搜索后的关键词。不要为了语法高亮而去使用 mark，应该使用 <code>strong</code> 元素，<code>mark</code> 元素表示上下文的关联性。</p>
-<h3 id="progress"><a href="#progress" class="headerlink" title="progress"></a>progress</h3><p><code>progress</code> 用来表示一个进度条,代表一个任务的完成进度。</p>
-<h3 id="meter"><a href="#meter" class="headerlink" title="meter"></a>meter</h3><p><code>meter</code> 代表了一个度量，比如对磁盘空间的度量。</p>
-<h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p><code>time</code> 表示一个时间。有两个属性,datetime(一个有效的时间格式，表示具体时间),pubdate(一般用于文章发布时间，评论回复时间等)。</p>
-<h3 id="ruby_u3001rt_u3001rp"><a href="#ruby_u3001rt_u3001rp" class="headerlink" title="ruby、rt、rp"></a>ruby、rt、rp</h3><p><code>ruby</code>、<code>rt</code>、<code>rp</code> 代表 Ruby 表达式。</p>
-<h3 id="bdi"><a href="#bdi" class="headerlink" title="bdi"></a>bdi</h3><p><code>bdi</code> 代表了一段隔绝于周围元素的双向书写文本格式。</p>
-<h3 id="wbr"><a href="#wbr" class="headerlink" title="wbr"></a>wbr</h3><p><code>bdi</code> 代表了可能断行的部分。</p>
-<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p><code>canvas</code> 用于渲染动态位图。</p>
-<h3 id="datalist"><a href="#datalist" class="headerlink" title="datalist"></a>datalist</h3><p><code>datalist</code> 与input的list属性共同使用，可以用于创建下拉选择框控件。</p>
-<h3 id="keygen"><a href="#keygen" class="headerlink" title="keygen"></a>keygen</h3><p><code>keygen</code> 代表生成的密钥对。</p>
-<h3 id="output"><a href="#output" class="headerlink" title="output"></a>output</h3><p><code>output</code> 代表了一种输出内容。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>HTML5 新增了一些元素为了用于更好的文档结构，使用这些标签能让章节和标题特性更精确，使得文档大纲变的可预测，结构更 Semantic！</p>
-<h3 id="section"><a href="#section" class="headerlink" title="s]]>
-    </summary>
-    
-      <category term="HTML5" scheme="http://imhzq.com/tags/HTML5/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
