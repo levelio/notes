@@ -9,7 +9,7 @@
 <p>那又有疑问了，为啥不直接用 <code>undefined</code>？原因是担心拿到的 <code>undefined</code> 可能不是 <code>undefined</code>，可能是被人重新赋值过的全局变量！</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.undefined = &#123;&#125;;</span><br></pre></td></tr></table></figure>
 <p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
-</div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/11/07/20151107_talk-line-height/" class="pre"><i class="icon-previous">当line-height小于font-size时发生了什么</i></a><a href="/2015/11/02/20151102_cascading-and-inheritance/" class="next">CSS的层叠、特殊性和继承<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
+</div><div class="tags"><a href="/tags/javascript/">javascript</a><a href="/tags/前端/">前端</a></div><div class="post-nav"><a href="/2015/11/02/20151102_cascading-and-inheritance/" class="pre"><i class="icon-previous">CSS的层叠、特殊性和继承</i></a><a href="/2015/11/01/20151101_new-tag-from-html5/" class="next">HTML5新增元素介绍<i class="icon-next"></i></a></div><div id="disqus_thread"><script>var disqus_shortname = 'imhzq';
 var disqus_identifier = '2015/11/02/20151102_way-use-void-in-js/';
 var disqus_title = '为什么要用href=javascript:void(0);';
 var disqus_url = 'http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/';
