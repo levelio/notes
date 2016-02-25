@@ -4,7 +4,7 @@
   <subtitle><![CDATA[突然想到你，笑了笑自己]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://imhzq.com/"/>
-  <updated>2016-02-23T17:09:45.000Z</updated>
+  <updated>2016-02-25T14:36:10.000Z</updated>
   <id>http://imhzq.com/</id>
   
   <author>
@@ -13,6 +13,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[修改js词法作用域的几种方式]]></title>
+    <link href="http://imhzq.com/2016/01/13/20160113_js_cheat_scope/"/>
+    <id>http://imhzq.com/2016/01/13/20160113_js_cheat_scope/</id>
+    <published>2016-01-12T16:00:00.000Z</published>
+    <updated>2016-02-25T14:36:10.000Z</updated>
+    <content type="html"><![CDATA[<p>js中的作用域是词法作用域,也就是完全由编写代码期间函数的位置决定,那能不能人为的修改,创建作用域那?当然是可以的.</p>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>虽然 with 已经被弃用,但是了解一下又不会怀孕~ with可以在当前作用域中以传入的对象为基础,创建出一个新的作用域,但是要小心很多坑,看下面这段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">with</span>(obj)&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="number">5</span>;</span><br><span class="line">        a = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = &#123; a: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; b: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn(o1)); <span class="comment">//=&gt; 5</span></span><br><span class="line"><span class="built_in">console</span>.log(fn(o2)); <span class="comment">//=&gt; 5</span></span><br><span class="line"><span class="built_in">console</span>.log(o1.a);  <span class="comment">//=&gt; 2</span></span><br><span class="line"><span class="built_in">console</span>.log(o2.a);  <span class="comment">//=&gt; undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">//=&gt; 2</span></span><br></pre></td></tr></table></figure></p>
+<p>这段代码中o1有a属性,o2没有a属性,fn函数中接收一个obj参数,在函数中对这个obj对象执行了with,在with块内部,我们对变量a进行简单的此法引用.</p>
+<p>这里大家比较有疑问的地方可能是 o2.a 为什么是 undefined,为什么全局对象上多了一个 a 属性?既然说with创建出一个新的作用域,为什么在with块内声明的 c ,还能在外部访问到? 别急,我们一个一个来说.</p>
+<p>这段代码中 o1 因为其中有 a 属性,所以LHS找到了 a,并成功赋值成功,而 o2 中并没有 a 属性,因此并不会创建这个属性,所以 o2.a 是 undefined. with创建出的作用域和一般的作用域也是一样的,如果LHS在一层层的作用域中都找不到 a,则会在全局中创建出一个 a,也是就 window 对象上创建出一个 a属性,并赋值为2. </p>
+<p>那么 c 为什么能被外部的块访问到那,这是因为 with块虽然可以将一个对象处理为词法作用域,但是这个块内部正常的 var 声明并不会被限制在这个块的作用域中,而是被添加到 with 所处的函数作用域中.</p>
+<h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><p>eval 可以动态的修改当前作用域,在执行 eval 时,它可以将你写在其中的字符串当做代码,并把这段代码当做就像写在程序中那个位置中一样,就是说,你在 eval 中写的代码,就好像本来就写在那个位置上一样.但同样也有许多坑,来看看下面这个例子:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">'this.a=2'</span>); <span class="comment">//修改当前作用域</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Fn();</span><br><span class="line"><span class="built_in">console</span>.log(f1.a); <span class="comment">//=&gt; 2;</span></span><br></pre></td></tr></table></figure></p>
+<p>这段代码中 eval 对 fn 的词法作用域进行了修改,动态的为 f1 创建除了 a 属性,但有一种特殊情况,如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">eval</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    e(<span class="string">'this.a=2'</span>); <span class="comment">//修</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Fn();</span><br><span class="line"><span class="built_in">console</span>.log(f1.a); <span class="comment">//=&gt; undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//=&gt; 2;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里把 eval 函数赋值给一个变量后, eval 中得 this 指向不再是当前函数中得this,而是全局对象.</p>
+<p>eval 还有一个有趣的事情是, eval中得代码不会发生提升,可以试试下面的代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a); <span class="comment">//==&gt; ReferenceError: a is not defined</span></span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">'var a = 1'</span>);</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure></p>
+<h2 id="try/catch"><a href="#try/catch" class="headerlink" title="try/catch"></a>try/catch</h2><p>try/catch 的 catch块可以创建出一个全新的词法作用域, js中虽然没有块级作用域,但是 catch块可以模拟,参考下面的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(o)&#123;</span><br><span class="line">        o = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(o); <span class="comment">//=&gt; ReferenceError: o is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure></p>
+<p>通过 try/catch 我们可以模拟块级作用域, 可以看到在 catch 块中声明的 b,在外部无法访问,值得注意的是 catch 块中也会有提升行为,并且把行为提升到 fn 作用域中.</p>
+<p>熟悉 ES6 的同学,可能知道 let 操作符,可以声明块级作用域, 其实 try/catch 可以完美的模拟出 let. 在一些兼容方案中也是如此.</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>with, eval, try/catch 都可以”欺骗”词法环境,但又有各自的缺陷, eval 和 with 因为安全性和性能问题,不推荐大家使用,而 try/catch 在模拟块级作用域,尤其是兼容 let 上还是很有用.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>js中的作用域是词法作用域,也就是完全由编写代码期间函数的位置决定,那能不能人为的修改,创建作用域那?当然是可以的.</p>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[JS中的提升]]></title>
@@ -743,36 +777,6 @@
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
-    
-      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[为什么要用href=javascript:void(0);]]></title>
-    <link href="http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/"/>
-    <id>http://imhzq.com/2015/11/02/20151102_way-use-void-in-js/</id>
-    <published>2015-11-01T16:00:00.000Z</published>
-    <updated>2015-12-12T16:11:33.000Z</updated>
-    <content type="html"><![CDATA[<p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p>
-<p>使用这种方式，常出现在元素是 a 标签，但是又不想让其打开或刷新网页，比如导航列表里面的当前选中项 <code>&lt;a href=&quot;javascript:;&quot; class=&quot;curr&quot;&gt;1&lt;/a&gt;</code>。</p>
-<p>那么究竟为什么这么写呢，<code>href=&quot;javascript:void(0);&quot;</code> 和 <code>herf=&quot;javascript:;&quot;</code> 有什么区别？另外好像 <code>href=&quot;javascript:&quot;</code>这样写也可以啊！</p>
-<p>##JavaScript: 协议的 URI</p>
-<p>经过一番激烈的搜索后，看到如下解释：</p>
-<p>当用户点击一个以 javascript: 协议开头的 URI 时，浏览器会对冒号后面的代码进行求值，然后把求值的结果显示在页面上，这时页面基本上是一大片空白，这通常不是我们想要的。只有当这段代码的求值结果是 undefined 的时候，浏览器才不会去做这件傻事，所以我们经常会用 void 运算符来实现这个需求。像下面这样：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:void(0);"</span>&gt;</span></span><br><span class="line">  这个链接点击之后不会做任何事情，如果去掉 void()，</span><br><span class="line">  点击之后整个页面会被替换成一个字符 0。</span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:void(document.body.style.backgroundColor='green');"</span>&gt;</span></span><br><span class="line">  点击这个链接会让页面背景变成绿色。</span><br><span class="line"><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>焕然大悟啊！<code>void(0)</code>、<code>&quot;&quot;</code>都只是用来返回 <code>undefined</code> 用的，因为 js 分号可以省略，就有了 <code>href=&quot;javascript:&quot;</code> 这样的写法。</p>
-<p>那又有疑问了，为啥不直接用 <code>undefined</code>？原因是担心拿到的 <code>undefined</code> 可能不是 <code>undefined</code>，可能是被人重新赋值过的全局变量！</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.undefined = &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<p>PS: ES3中，window.undefined 就是一个普通的属性，你可以任意殴打，不对，是任意赋值，但在 ES5 中，window.undefined 变成了一个不可写，不可配置的属性，它的值永远都是 undefined 了，瞬间变的高贵冷艳起来了！</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>用了这么久的 <code>href=&quot;javascript:void(0);&quot;</code> 和 <code>href=&quot;javascript:;&quot;</code>,突然被人问：为什么这么写？竟不知如何回答…(果然，我是弱鸡啊!)</p]]>
-    </summary>
-    
-      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
     
       <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
