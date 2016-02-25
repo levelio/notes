@@ -49,6 +49,37 @@
   </entry>
   
   <entry>
+    <title><![CDATA[ES6之let]]></title>
+    <link href="http://imhzq.com/2016/01/12/20160112_js_es6_let/"/>
+    <id>http://imhzq.com/2016/01/12/20160112_js_es6_let/</id>
+    <published>2016-01-11T16:00:00.000Z</published>
+    <updated>2016-02-25T15:45:41.000Z</updated>
+    <content type="html"><![CDATA[<p>如果以前说 js 中没有块级作用域的话, ES6 后就不能这么说了哦!</p>
+<h2 id="u4EC0_u4E48_u662Flet"><a href="#u4EC0_u4E48_u662Flet" class="headerlink" title="什么是let"></a>什么是let</h2><p>let 是 ES6 中新增的关键字, 类似于 var 用来声明变量,但是所声明的变量只有在 let 所在块内有效.换句话说,let 声明的变量隐式地绑定在 let 的包含块中.let 需要在js的 <code>use strict</code> 模式下才能使用.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="pi">    "use strict"</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">//=&gt; 1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(a); <span class="comment">//=&gt; ReferenceError: a is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure></p>
+<h2 id="let_u4E0D_u4F1A_u6709_u63D0_u5347_u884C_u4E3A"><a href="#let_u4E0D_u4F1A_u6709_u63D0_u5347_u884C_u4E3A" class="headerlink" title="let不会有提升行为"></a>let不会有提升行为</h2><p>let 修饰的变量不会有提升行为,如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="pi">    "use strict"</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">//=&gt; ReferenceError</span></span><br><span class="line">        <span class="built_in">console</span>.log(b); <span class="comment">//=&gt; undefined</span></span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure></p>
+<p>因为没有了提升行为,导致的直接结果就是,let 所在的整个块中, let 声明之前,访问此变量都会发生 ReferenceError.</p>
+<h2 id="let_u5FAA_u73AF"><a href="#let_u5FAA_u73AF" class="headerlink" title="let循环"></a>let循环</h2><p>let使用的典型痢疾就是绑定到 for 循环的块中<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var temps = [];</span><br><span class="line">function fn()&#123;</span><br><span class="line"><span class="code">    "use strict"</span></span><br><span class="line"><span class="code">    for(let i = 0; i &lt; 3; i++)&#123;</span></span><br><span class="line"><span class="code">        temps[i] = function()&#123;</span></span><br><span class="line"><span class="code">            console.log(i);</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br><span class="line">temps[<span class="link_label">0</span>](<span class="link_url"></span>); //=&gt; 0</span><br><span class="line">temps[<span class="link_label">1</span>](<span class="link_url"></span>); //=&gt; 1</span><br><span class="line">temps[<span class="link_label">2</span>](<span class="link_url"></span>); //=&gt; 2</span><br></pre></td></tr></table></figure></p>
+<p>如果不使用 let,按照以前的做法,我们会通过一个闭包,将每次循环的 i 保存下来,现在有了 let 就方便多了.</p>
+<p>实际上 let 不仅将 i 绑定到了 for 循环的块中, 事实上它将其重新绑定到了循环中的每个迭代中, 确保使用上一个循环结束时的值重新进行赋值, 就好像 C#,java 中一样.看起来就像这样<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    let j;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)&#123;</span><br><span class="line">        let i = j;  <span class="comment">//每个迭代重新绑定</span></span><br><span class="line">        console.<span class="built_in">log</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="let_u4E0D_u5141_u8BB8_u91CD_u590D_u58F0_u660E"><a href="#let_u4E0D_u5141_u8BB8_u91CD_u590D_u58F0_u660E" class="headerlink" title="let不允许重复声明"></a>let不允许重复声明</h2><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">2</span>; <span class="comment">//ReferenceError</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u6A21_u62DF_let"><a href="#u6A21_u62DF_let" class="headerlink" title="模拟 let"></a>模拟 let</h2><p>在不支持 ES6 的代理环境中,可以使用 try/catch 来模拟会计作用域,详情可以看 <code>修改js词法作用域那篇文章</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如果以前说 js 中没有块级作用域的话, ES6 后就不能这么说了哦!</p>
+<h2 id="u4EC0_u4E48_u662Flet"><a href="#u4EC0_u4E48_u662Flet" class="headerlink" title="什么是let"><]]>
+    </summary>
+    
+      <category term="ES6" scheme="http://imhzq.com/tags/ES6/"/>
+    
+      <category term="javascript" scheme="http://imhzq.com/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[JS中的提升]]></title>
     <link href="http://imhzq.com/2016/01/10/20160110_js_variable_up/"/>
     <id>http://imhzq.com/2016/01/10/20160110_js_variable_up/</id>
@@ -747,33 +778,6 @@
     <summary type="html">
     <![CDATA[<p>样式系统从最右边的选择符开始向左边匹配规则。只要当前选择符的左边还有其他的选择符，样式系统就会继续向左移动，直到找到和规则匹配的元素，或者因为不匹配而退出。</p>
 <h2 id="u6700_u53F3_u8FB9_u4F18_u5148"><a href="#u6700]]>
-    </summary>
-    
-      <category term="Css" scheme="http://imhzq.com/tags/Css/"/>
-    
-      <category term="前端" scheme="http://imhzq.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="FE" scheme="http://imhzq.com/categories/FE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[当line-height小于font-size时发生了什么]]></title>
-    <link href="http://imhzq.com/2015/11/07/20151107_talk-line-height/"/>
-    <id>http://imhzq.com/2015/11/07/20151107_talk-line-height/</id>
-    <published>2015-11-06T16:00:00.000Z</published>
-    <updated>2015-12-12T15:49:20.000Z</updated>
-    <content type="html"><![CDATA[<p>最近在看 line-height 的时候,当 line-height 大于 font-size 时大家都明白，那如果 line-height 小于 font-size 时会发生了什么？</p>
-<h2 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h2><p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1.png" alt="demo1"></p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.<span class="built_in">box</span>&#123;</span><br><span class="line">    <span class="variable">height</span>: <span class="number">300</span>px;</span><br><span class="line">    <span class="built_in">background</span>-<span class="built_in">color</span>: yellowgreen;</span><br><span class="line">&#125;</span><br><span class="line">p&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">16</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">1.5</span>;</span><br><span class="line">&#125;</span><br><span class="line">span&#123;</span><br><span class="line">    font-<span class="built_in">size</span>: <span class="number">100</span>px;</span><br><span class="line">    <span class="built_in">line</span>-<span class="variable">height</span>: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;p&gt;ABCDEFG&lt;span class=<span class="string">"test"</span>&gt;Hello world xxxX&lt;/span&gt;HIGKLMN&lt;/p&gt;</span><br><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>起初，我一直不能明白 20px 的 line-height 减去 100px 的 font-size，得到上下两个半行间距各为 -40px，最后 span 元素的 inline-box 应该是 20px 啊，那为啥 p 元素的 line-box 远远大于这个值啊，难道是内容区将其撑开了？百思不得其姐啊！</p>
-<p>又仔细翻阅了下权威指南相关介绍，啊！我果然还是太年轻了，这里我天真的以为两个负的半行间距会导致 span 元素的 inline-box 下沉,然而并不会，我做了个简单的效果图：</p>
-<p><img src="http://7u2ksn.com1.z0.glb.clouddn.com/demo1-2.png" alt="demo2"></p>
-<p>这里可以清楚的看到，蓝色框为 20px 高的 行内框，在元素内容区<code>垂直居中</code>。因为行框定义为行中最高行内框的顶端到行中最低行内框的底端之间的距离，所以蓝色框的顶部到黄色框的底部之间的距离，就是行框的高度了，也就是绿色框的高度了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>最近在看 line-height 的时候,当 line-height 大于 font-size 时大家都明白，那如果 line-height 小于 font-size 时会发生了什么？</p>
-<h2 id="Demo1"><a href="#Demo1" class="h]]>
     </summary>
     
       <category term="Css" scheme="http://imhzq.com/tags/Css/"/>

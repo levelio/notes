@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imhzq.com/2016/01/12/20160112_js_es6_let/</loc>
+    <lastmod>2016-02-25T15:45:41.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://imhzq.com/2016/01/13/20160113_js_cheat_scope/</loc>
     <lastmod>2016-02-25T14:45:04.000Z</lastmod>
   </url>
@@ -92,12 +97,12 @@
   </url>
   
   <url>
-    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
+    <loc>http://imhzq.com/2015/12/06/20151206_js-call-apply/</loc>
     <lastmod>2015-12-14T17:32:45.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://imhzq.com/2015/12/06/20151206_js-call-apply/</loc>
+    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
     <lastmod>2015-12-14T17:32:45.000Z</lastmod>
   </url>
   
