@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imhzq.com/2015/11/20/20151120_js-strict-model/</loc>
+    <lastmod>2016-02-28T08:21:52.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://imhzq.com/2016/01/23/20160123-gof-for-js-each/</loc>
     <lastmod>2016-02-28T08:10:38.000Z</lastmod>
   </url>
@@ -42,12 +47,12 @@
   </url>
   
   <url>
-    <loc>http://imhzq.com/2016/01/06/20160106_css_flex2/</loc>
+    <loc>http://imhzq.com/2016/01/05/20160105_css_flex1/</loc>
     <lastmod>2016-02-22T16:44:10.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://imhzq.com/2016/01/05/20160105_css_flex1/</loc>
+    <loc>http://imhzq.com/2016/01/06/20160106_css_flex2/</loc>
     <lastmod>2016-02-22T16:44:10.000Z</lastmod>
   </url>
   
@@ -122,12 +127,12 @@
   </url>
   
   <url>
-    <loc>http://imhzq.com/2015/12/06/20151206_js-call-apply/</loc>
+    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
     <lastmod>2015-12-14T17:32:45.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://imhzq.com/2015/12/05/20151205_js-this/</loc>
+    <loc>http://imhzq.com/2015/12/06/20151206_js-call-apply/</loc>
     <lastmod>2015-12-14T17:32:45.000Z</lastmod>
   </url>
   
